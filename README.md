@@ -1,0 +1,5 @@
+- 👋 Hi, I’m Shakib Haris. In most places, my handle is: @skb50bd
+- 👀 I’m interested in C#, F#, .NET, Blazor, Fable etc.
+- 🌱 I’m currently learning Fable-Elmish-React
+- 💞️ I’m looking to collaborate on any open-source projects that helps people.
+- 📫 Reach me at [LinkedIn/skb50bd](https://linkedin.com/in/skb50bd)
