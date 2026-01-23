@@ -1,0 +1,1146 @@
+/* ========================================
+   THEMES.CSS - Theme Definitions (CSS Variables per Theme)
+   ======================================== */
+
+/* ========== TERMINAL THEME (Default) ========== */
+[data-theme="terminal"] {
+    /* Colors - Classic amber terminal aesthetic */
+    --color-bg: #0d0d0d;
+    --color-surface: #1a1a1a;
+    --color-surface-hover: rgba(255, 176, 0, 0.05);
+    --color-primary: #ffb000;
+    --color-primary-dim: #996a00;
+    --color-primary-glow: rgba(255, 176, 0, 0.15);
+    --color-accent: #00ff41;
+    --color-accent-dim: #00a352;
+    --color-secondary: #00ff41;
+    --color-success: #00ff41;
+    --color-error: #ff5f56;
+    --color-text: #ffffff;
+    --color-text-muted: #888888;
+    --color-text-dim: #555555;
+
+    /* Effects */
+    --crt-enabled: 1;
+    --glass-enabled: 0;
+    --scanline-opacity: 0.03;
+
+    /* Borders */
+    --border-color: rgba(255, 176, 0, 0.2);
+    --border-color-hover: rgba(255, 176, 0, 0.4);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px var(--color-primary-glow);
+
+    /* Panel styles */
+    --panel-bg: rgba(255, 176, 0, 0.02);
+    --panel-border: 2px solid var(--color-primary-dim);
+    --panel-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    --panel-margin-left: 1.5rem;
+
+    /* Image filters */
+    --image-filter: sepia(0.2) saturate(1.1);
+    --image-filter-hover: none;
+
+    /* Profile frame - solid border instead of gradient */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.6;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: var(--color-bg);
+    --btn-hover-shadow: 0 15px 35px rgba(255, 176, 0, 0.3);
+}
+
+/* ========== GLASSMORPHIC THEME ========== */
+[data-theme="glassmorphic"] {
+    /* Colors - Monochromatic cool gray with subtle blue tint */
+    --color-bg: #0a0a0f;
+    --color-surface: rgba(255, 255, 255, 0.04);
+    --color-surface-hover: rgba(255, 255, 255, 0.06);
+    --color-primary: #a0aec0;
+    --color-primary-dim: rgba(160, 174, 192, 0.5);
+    --color-primary-glow: rgba(160, 174, 192, 0.15);
+    --color-accent: #cbd5e0;
+    --color-accent-dim: rgba(203, 213, 224, 0.4);
+    --color-secondary: #718096;
+    --color-success: #68d391;
+    --color-error: #fc8181;
+    --color-text: #f7fafc;
+    --color-text-muted: rgba(255, 255, 255, 0.6);
+    --color-text-dim: rgba(255, 255, 255, 0.35);
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 1;
+    --scanline-opacity: 0;
+    --backdrop-blur: blur(20px);
+
+    /* Borders */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-color-hover: rgba(255, 255, 255, 0.15);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.05);
+
+    /* Panel styles */
+    --panel-bg: rgba(255, 255, 255, 0.03);
+    --panel-border: 1px solid rgba(255, 255, 255, 0.08);
+    --panel-radius: var(--radius-2xl);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame - subtle border */
+    --profile-border: 2px solid rgba(255, 255, 255, 0.15);
+    --profile-radius: 24px;
+
+    /* Card accent line */
+    --card-accent-color: rgba(255, 255, 255, 0.3);
+    --card-accent-opacity: 0.5;
+
+    /* Button styles - solid, no gradient */
+    --btn-bg: rgba(255, 255, 255, 0.1);
+    --btn-color: var(--color-text);
+    --btn-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphic background - subtle, no gradient */
+[data-theme="glassmorphic"] body {
+    background: #0a0a0f;
+}
+
+/* ========== MINIMAL LIGHT THEME ========== */
+[data-theme="minimal"] {
+    /* Colors - Clean light theme */
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-hover: rgba(0, 0, 0, 0.02);
+    --color-primary: #1e40af;
+    --color-primary-dim: #3b82f6;
+    --color-primary-glow: rgba(30, 64, 175, 0.1);
+    --color-accent: #1e40af;
+    --color-accent-dim: rgba(30, 64, 175, 0.4);
+    --color-secondary: #475569;
+    --color-success: #059669;
+    --color-error: #dc2626;
+    --color-text: #0f172a;
+    --color-text-muted: #475569;
+    --color-text-dim: #94a3b8;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #e2e8f0;
+    --border-color-hover: #cbd5e1;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-glow: none;
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.8;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #ffffff;
+    --btn-hover-shadow: 0 10px 25px rgba(30, 64, 175, 0.25);
+}
+
+/* Minimal light theme body */
+[data-theme="minimal"] body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+/* ========== MINIMAL DARK THEME ========== */
+[data-theme="minimal-dark"] {
+    /* Colors - Clean dark theme */
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-hover: rgba(255, 255, 255, 0.05);
+    --color-primary: #60a5fa;
+    --color-primary-dim: #3b82f6;
+    --color-primary-glow: rgba(96, 165, 250, 0.15);
+    --color-accent: #60a5fa;
+    --color-accent-dim: rgba(96, 165, 250, 0.4);
+    --color-secondary: #94a3b8;
+    --color-success: #34d399;
+    --color-error: #f87171;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-text-dim: #64748b;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #334155;
+    --border-color-hover: #475569;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+    --shadow-glow: none;
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.7;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #0f172a;
+    --btn-hover-shadow: 0 10px 25px rgba(96, 165, 250, 0.25);
+}
+
+/* Minimal dark theme body */
+[data-theme="minimal-dark"] body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+/* ========== SHARED MINIMAL STYLES ========== */
+[data-theme="minimal"] .command-prompt,
+[data-theme="minimal"] .command-input,
+[data-theme="minimal"] .skills-tree,
+[data-theme="minimal"] .skills-summary,
+[data-theme="minimal-dark"] .command-prompt,
+[data-theme="minimal-dark"] .command-input,
+[data-theme="minimal-dark"] .skills-tree,
+[data-theme="minimal-dark"] .skills-summary {
+    font-family: var(--font-mono);
+}
+
+/* Fix icon visibility in minimal themes */
+[data-theme="minimal"] .tree-item-icon,
+[data-theme="minimal-dark"] .tree-item-icon {
+    filter: none;
+    opacity: 1;
+}
+
+[data-theme="minimal"] .skills-tree img[src$="mikrotik.svg"],
+[data-theme="minimal"] .skills-tree img[src$="fsharp.svg"],
+[data-theme="minimal"] .skills-tree img[src$="dotnet.svg"],
+[data-theme="minimal"] .skills-tree img[src$="network.svg"],
+[data-theme="minimal"] .skills-tree img[src$="github-light.svg"] {
+    /* These assets are white SVGs; invert them for light backgrounds */
+    filter: invert(1) !important;
+}
+
+[data-theme="minimal"] .service-icon,
+[data-theme="minimal-dark"] .service-icon {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+}
+
+[data-theme="minimal"] .service-card:hover .service-icon,
+[data-theme="minimal-dark"] .service-card:hover .service-icon {
+    background: var(--color-primary);
+    color: var(--color-surface);
+}
+
+/* Fix portfolio tag colors */
+[data-theme="minimal"] .portfolio-tag,
+[data-theme="minimal-dark"] .portfolio-tag {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+    border: 1px solid var(--border-color);
+}
+
+/* Fix tool tag colors */
+[data-theme="minimal"] .tool-tag,
+[data-theme="minimal-dark"] .tool-tag {
+    background: var(--color-surface-hover);
+    border-color: var(--border-color);
+    color: var(--color-primary);
+}
+
+/* Fix nav dots */
+[data-theme="minimal"] .nav-dot,
+[data-theme="minimal-dark"] .nav-dot {
+    background: var(--color-surface);
+    border-color: var(--border-color);
+}
+
+[data-theme="minimal"] .nav-dot:hover,
+[data-theme="minimal"] .nav-dot.active,
+[data-theme="minimal-dark"] .nav-dot:hover,
+[data-theme="minimal-dark"] .nav-dot.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Fix level dots */
+[data-theme="minimal"] .level-dot,
+[data-theme="minimal-dark"] .level-dot {
+    background: var(--border-color);
+}
+
+[data-theme="minimal"] .level-dot.filled,
+[data-theme="minimal-dark"] .level-dot.filled {
+    background: var(--color-primary);
+    box-shadow: none;
+}
+
+/* Fix scroll arrow */
+[data-theme="minimal"] .scroll-arrow,
+[data-theme="minimal-dark"] .scroll-arrow {
+    border-color: var(--color-text-dim);
+}
+
+[data-theme="minimal"] .scroll-arrow::before,
+[data-theme="minimal-dark"] .scroll-arrow::before {
+    background: var(--color-primary);
+}
+
+/* Fix status dot */
+[data-theme="minimal"] .status-dot,
+[data-theme="minimal-dark"] .status-dot {
+    background: var(--color-success);
+}
+
+/* Fix cursor color */
+[data-theme="minimal"] .cursor,
+[data-theme="minimal-dark"] .cursor {
+    background: var(--color-primary);
+}
+
+/* Fix ASCII logo visibility */
+[data-theme="minimal"] .ascii-logo {
+    color: var(--color-primary);
+    opacity: 0.7;
+}
+
+[data-theme="minimal-dark"] .ascii-logo {
+    color: var(--color-primary);
+    opacity: 0.8;
+}
+
+/* Terminal quote styling */
+[data-theme="minimal"] .quote-text,
+[data-theme="minimal-dark"] .quote-text {
+    color: var(--color-text-dim);
+}
+
+/* Fix gradient icons in portfolio cards */
+[data-theme="minimal"] .gradient-icon,
+[data-theme="minimal-dark"] .gradient-icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========== SOLARIZED DARK THEME ========== */
+[data-theme="solarized-dark"] {
+    /* Colors - Ethan Schoonover's Solarized palette */
+    --color-bg: #002b36;
+    --color-surface: #073642;
+    --color-surface-hover: rgba(88, 110, 117, 0.15);
+    --color-primary: #268bd2;
+    --color-primary-dim: #2176b8;
+    --color-primary-glow: rgba(38, 139, 210, 0.2);
+    --color-accent: #2aa198;
+    --color-accent-dim: rgba(42, 161, 152, 0.5);
+    --color-secondary: #859900;
+    --color-success: #859900;
+    --color-error: #dc322f;
+    --color-text: #93a1a1;
+    --color-text-muted: #839496;
+    --color-text-dim: #657b83;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #073642;
+    --border-color-hover: #586e75;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 15px rgba(38, 139, 210, 0.15);
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.7;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #002b36;
+    --btn-hover-shadow: 0 10px 25px rgba(38, 139, 210, 0.3);
+}
+
+[data-theme="solarized-dark"] body {
+    background: #002b36;
+}
+
+/* ========== SOLARIZED LIGHT THEME ========== */
+[data-theme="solarized-light"] {
+    /* Colors - Solarized Light palette */
+    --color-bg: #fdf6e3;
+    --color-surface: #eee8d5;
+    --color-surface-hover: rgba(101, 123, 131, 0.08);
+    --color-primary: #268bd2;
+    --color-primary-dim: #2176b8;
+    --color-primary-glow: rgba(38, 139, 210, 0.15);
+    --color-accent: #2aa198;
+    --color-accent-dim: rgba(42, 161, 152, 0.5);
+    --color-secondary: #859900;
+    --color-success: #859900;
+    --color-error: #dc322f;
+    --color-text: #657b83;
+    --color-text-muted: #839496;
+    --color-text-dim: #93a1a1;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #eee8d5;
+    --border-color-hover: #93a1a1;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-glow: none;
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.8;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #fdf6e3;
+    --btn-hover-shadow: 0 10px 25px rgba(38, 139, 210, 0.25);
+}
+
+[data-theme="solarized-light"] body {
+    background: #fdf6e3;
+}
+
+/* ========== MONOKAI THEME ========== */
+[data-theme="monokai"] {
+    /* Colors - Classic Monokai palette */
+    --color-bg: #272822;
+    --color-surface: #3e3d32;
+    --color-surface-hover: rgba(166, 226, 46, 0.08);
+    --color-primary: #a6e22e;
+    --color-primary-dim: #8bc720;
+    --color-primary-glow: rgba(166, 226, 46, 0.2);
+    --color-accent: #66d9ef;
+    --color-accent-dim: rgba(102, 217, 239, 0.5);
+    --color-secondary: #f92672;
+    --color-success: #a6e22e;
+    --color-error: #f92672;
+    --color-text: #f8f8f2;
+    --color-text-muted: #a59f85;
+    --color-text-dim: #908b73;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #3e3d32;
+    --border-color-hover: #75715e;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 15px rgba(166, 226, 46, 0.15);
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.7;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #272822;
+    --btn-hover-shadow: 0 10px 25px rgba(166, 226, 46, 0.3);
+}
+
+[data-theme="monokai"] body {
+    background: #272822;
+}
+
+/* ========== DRACULA THEME ========== */
+[data-theme="dracula"] {
+    /* Colors - Dracula palette */
+    --color-bg: #282a36;
+    --color-surface: #44475a;
+    --color-surface-hover: rgba(189, 147, 249, 0.1);
+    --color-primary: #bd93f9;
+    --color-primary-dim: #a67eeb;
+    --color-primary-glow: rgba(189, 147, 249, 0.2);
+    --color-accent: #8be9fd;
+    --color-accent-dim: rgba(139, 233, 253, 0.5);
+    --color-secondary: #ff79c6;
+    --color-success: #50fa7b;
+    --color-error: #ff5555;
+    --color-text: #f8f8f2;
+    --color-text-muted: #bfbfbf;
+    --color-text-dim: #8791b5;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #44475a;
+    --border-color-hover: #6272a4;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 15px rgba(189, 147, 249, 0.2);
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.7;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #282a36;
+    --btn-hover-shadow: 0 10px 25px rgba(189, 147, 249, 0.35);
+}
+
+[data-theme="dracula"] body {
+    background: #282a36;
+}
+
+/* ========== NORD THEME ========== */
+[data-theme="nord"] {
+    /* Colors - Arctic Nord palette */
+    --color-bg: #2e3440;
+    --color-surface: #3b4252;
+    --color-surface-hover: rgba(136, 192, 208, 0.1);
+    --color-primary: #88c0d0;
+    --color-primary-dim: #6eb0c2;
+    --color-primary-glow: rgba(136, 192, 208, 0.2);
+    --color-accent: #81a1c1;
+    --color-accent-dim: rgba(129, 161, 193, 0.5);
+    --color-secondary: #5e81ac;
+    --color-success: #a3be8c;
+    --color-error: #bf616a;
+    --color-text: #eceff4;
+    --color-text-muted: #d8dee9;
+    --color-text-dim: #7b88a1;
+
+    /* Effects */
+    --crt-enabled: 0;
+    --glass-enabled: 0;
+    --scanline-opacity: 0;
+
+    /* Borders */
+    --border-color: #3b4252;
+    --border-color-hover: #4c566a;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 15px rgba(136, 192, 208, 0.15);
+
+    /* Panel styles */
+    --panel-bg: var(--color-surface);
+    --panel-border: 1px solid var(--border-color);
+    --panel-radius: var(--radius-lg);
+    --panel-margin-left: 0;
+
+    /* Image filters */
+    --image-filter: none;
+    --image-filter-hover: none;
+
+    /* Profile frame */
+    --profile-border: 3px solid var(--color-primary);
+    --profile-radius: var(--radius-lg);
+
+    /* Card accent line */
+    --card-accent-color: var(--color-primary);
+    --card-accent-opacity: 0.7;
+
+    /* Button styles */
+    --btn-bg: var(--color-primary);
+    --btn-color: #2e3440;
+    --btn-hover-shadow: 0 10px 25px rgba(136, 192, 208, 0.3);
+}
+
+[data-theme="nord"] body {
+    background: #2e3440;
+}
+
+/* ========== SHARED STYLES FOR NEW THEMES ========== */
+[data-theme="solarized-dark"] .command-prompt,
+[data-theme="solarized-dark"] .command-input,
+[data-theme="solarized-dark"] .skills-tree,
+[data-theme="solarized-dark"] .skills-summary,
+[data-theme="solarized-light"] .command-prompt,
+[data-theme="solarized-light"] .command-input,
+[data-theme="solarized-light"] .skills-tree,
+[data-theme="solarized-light"] .skills-summary,
+[data-theme="monokai"] .command-prompt,
+[data-theme="monokai"] .command-input,
+[data-theme="monokai"] .skills-tree,
+[data-theme="monokai"] .skills-summary,
+[data-theme="dracula"] .command-prompt,
+[data-theme="dracula"] .command-input,
+[data-theme="dracula"] .skills-tree,
+[data-theme="dracula"] .skills-summary,
+[data-theme="nord"] .command-prompt,
+[data-theme="nord"] .command-input,
+[data-theme="nord"] .skills-tree,
+[data-theme="nord"] .skills-summary {
+    font-family: var(--font-mono);
+}
+
+/* Fix icon visibility in new themes */
+[data-theme="solarized-dark"] .tree-item-icon,
+[data-theme="solarized-light"] .tree-item-icon,
+[data-theme="monokai"] .tree-item-icon,
+[data-theme="dracula"] .tree-item-icon,
+[data-theme="nord"] .tree-item-icon {
+    filter: none;
+    opacity: 1;
+}
+
+[data-theme="solarized-light"] .skills-tree img[src$="mikrotik.svg"],
+[data-theme="solarized-light"] .skills-tree img[src$="fsharp.svg"],
+[data-theme="solarized-light"] .skills-tree img[src$="dotnet.svg"],
+[data-theme="solarized-light"] .skills-tree img[src$="network.svg"],
+[data-theme="solarized-light"] .skills-tree img[src$="github-light.svg"] {
+    /* These assets are white SVGs; invert them for light backgrounds */
+    filter: invert(1) !important;
+}
+
+[data-theme="solarized-dark"] .service-icon,
+[data-theme="solarized-light"] .service-icon,
+[data-theme="monokai"] .service-icon,
+[data-theme="dracula"] .service-icon,
+[data-theme="nord"] .service-icon {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+}
+
+[data-theme="solarized-dark"] .service-card:hover .service-icon,
+[data-theme="solarized-light"] .service-card:hover .service-icon,
+[data-theme="monokai"] .service-card:hover .service-icon,
+[data-theme="dracula"] .service-card:hover .service-icon,
+[data-theme="nord"] .service-card:hover .service-icon {
+    background: var(--color-primary);
+    color: var(--color-bg);
+}
+
+/* Fix portfolio tag colors */
+[data-theme="solarized-dark"] .portfolio-tag,
+[data-theme="solarized-light"] .portfolio-tag,
+[data-theme="monokai"] .portfolio-tag,
+[data-theme="dracula"] .portfolio-tag,
+[data-theme="nord"] .portfolio-tag {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+    border: 1px solid var(--border-color);
+}
+
+/* Fix tool tag colors */
+[data-theme="solarized-dark"] .tool-tag,
+[data-theme="solarized-light"] .tool-tag,
+[data-theme="monokai"] .tool-tag,
+[data-theme="dracula"] .tool-tag,
+[data-theme="nord"] .tool-tag {
+    background: var(--color-surface-hover);
+    border-color: var(--border-color);
+    color: var(--color-primary);
+}
+
+/* Fix nav dots */
+[data-theme="solarized-dark"] .nav-dot,
+[data-theme="solarized-light"] .nav-dot,
+[data-theme="monokai"] .nav-dot,
+[data-theme="dracula"] .nav-dot,
+[data-theme="nord"] .nav-dot {
+    background: var(--color-surface);
+    border-color: var(--border-color);
+}
+
+[data-theme="solarized-dark"] .nav-dot:hover,
+[data-theme="solarized-dark"] .nav-dot.active,
+[data-theme="solarized-light"] .nav-dot:hover,
+[data-theme="solarized-light"] .nav-dot.active,
+[data-theme="monokai"] .nav-dot:hover,
+[data-theme="monokai"] .nav-dot.active,
+[data-theme="dracula"] .nav-dot:hover,
+[data-theme="dracula"] .nav-dot.active,
+[data-theme="nord"] .nav-dot:hover,
+[data-theme="nord"] .nav-dot.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Fix level dots */
+[data-theme="solarized-dark"] .level-dot,
+[data-theme="solarized-light"] .level-dot,
+[data-theme="monokai"] .level-dot,
+[data-theme="dracula"] .level-dot,
+[data-theme="nord"] .level-dot {
+    background: var(--border-color);
+}
+
+[data-theme="solarized-dark"] .level-dot.filled,
+[data-theme="solarized-light"] .level-dot.filled,
+[data-theme="monokai"] .level-dot.filled,
+[data-theme="dracula"] .level-dot.filled,
+[data-theme="nord"] .level-dot.filled {
+    background: var(--color-primary);
+    box-shadow: none;
+}
+
+/* Fix scroll arrow */
+[data-theme="solarized-dark"] .scroll-arrow,
+[data-theme="solarized-light"] .scroll-arrow,
+[data-theme="monokai"] .scroll-arrow,
+[data-theme="dracula"] .scroll-arrow,
+[data-theme="nord"] .scroll-arrow {
+    border-color: var(--color-text-dim);
+}
+
+[data-theme="solarized-dark"] .scroll-arrow::before,
+[data-theme="solarized-light"] .scroll-arrow::before,
+[data-theme="monokai"] .scroll-arrow::before,
+[data-theme="dracula"] .scroll-arrow::before,
+[data-theme="nord"] .scroll-arrow::before {
+    background: var(--color-primary);
+}
+
+/* Fix status dot */
+[data-theme="solarized-dark"] .status-dot,
+[data-theme="solarized-light"] .status-dot,
+[data-theme="monokai"] .status-dot,
+[data-theme="dracula"] .status-dot,
+[data-theme="nord"] .status-dot {
+    background: var(--color-success);
+}
+
+/* Fix cursor color */
+[data-theme="solarized-dark"] .cursor,
+[data-theme="solarized-light"] .cursor,
+[data-theme="monokai"] .cursor,
+[data-theme="dracula"] .cursor,
+[data-theme="nord"] .cursor {
+    background: var(--color-primary);
+}
+
+/* Fix ASCII logo visibility */
+[data-theme="solarized-dark"] .ascii-logo,
+[data-theme="monokai"] .ascii-logo,
+[data-theme="dracula"] .ascii-logo,
+[data-theme="nord"] .ascii-logo {
+    color: var(--color-primary);
+    opacity: 0.8;
+}
+
+[data-theme="solarized-light"] .ascii-logo {
+    color: var(--color-primary);
+    opacity: 0.7;
+}
+
+/* Terminal quote styling */
+[data-theme="solarized-dark"] .quote-text,
+[data-theme="solarized-light"] .quote-text,
+[data-theme="monokai"] .quote-text,
+[data-theme="dracula"] .quote-text,
+[data-theme="nord"] .quote-text {
+    color: var(--color-text-dim);
+}
+
+/* Fix gradient icons in portfolio cards */
+[data-theme="solarized-dark"] .gradient-icon,
+[data-theme="monokai"] .gradient-icon,
+[data-theme="dracula"] .gradient-icon,
+[data-theme="nord"] .gradient-icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="solarized-light"] .gradient-icon {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========== ACCESSIBILITY FIXES FOR INPUT FIELDS AND HEADER ========== */
+
+/* Solarized Dark - improve terminal header and input visibility */
+[data-theme="solarized-dark"] .terminal-title {
+    color: #93a1a1;
+}
+
+[data-theme="solarized-dark"] .command-input {
+    color: #93a1a1;
+}
+
+[data-theme="solarized-dark"] .command-input::placeholder {
+    color: #657b83;
+}
+
+[data-theme="solarized-dark"] .form-group input,
+[data-theme="solarized-dark"] .form-group textarea {
+    color: #93a1a1;
+    background: #073642;
+}
+
+[data-theme="solarized-dark"] .form-group input::placeholder,
+[data-theme="solarized-dark"] .form-group textarea::placeholder {
+    color: #657b83;
+}
+
+/* Solarized Light - improve input visibility */
+[data-theme="solarized-light"] .terminal-title {
+    color: #586e75;
+}
+
+[data-theme="solarized-light"] .command-input {
+    color: #586e75;
+}
+
+[data-theme="solarized-light"] .command-input::placeholder {
+    color: #93a1a1;
+}
+
+[data-theme="solarized-light"] .form-group input,
+[data-theme="solarized-light"] .form-group textarea {
+    color: #586e75;
+    background: #eee8d5;
+}
+
+[data-theme="solarized-light"] .form-group input::placeholder,
+[data-theme="solarized-light"] .form-group textarea::placeholder {
+    color: #93a1a1;
+}
+
+/* Nord - improve terminal header and input visibility */
+[data-theme="nord"] .terminal-title {
+    color: #d8dee9;
+}
+
+[data-theme="nord"] .command-input {
+    color: #eceff4;
+}
+
+[data-theme="nord"] .command-input::placeholder {
+    color: #7b88a1;
+}
+
+[data-theme="nord"] .form-group input,
+[data-theme="nord"] .form-group textarea {
+    color: #eceff4;
+    background: #3b4252;
+}
+
+[data-theme="nord"] .form-group input::placeholder,
+[data-theme="nord"] .form-group textarea::placeholder {
+    color: #7b88a1;
+}
+
+/* Dracula - improve input visibility */
+[data-theme="dracula"] .terminal-title {
+    color: #bfbfbf;
+}
+
+[data-theme="dracula"] .command-input {
+    color: #f8f8f2;
+}
+
+[data-theme="dracula"] .command-input::placeholder {
+    color: #8791b5;
+}
+
+[data-theme="dracula"] .form-group input,
+[data-theme="dracula"] .form-group textarea {
+    color: #f8f8f2;
+    background: #44475a;
+}
+
+[data-theme="dracula"] .form-group input::placeholder,
+[data-theme="dracula"] .form-group textarea::placeholder {
+    color: #8791b5;
+}
+
+/* Monokai - improve input visibility */
+[data-theme="monokai"] .terminal-title {
+    color: #a59f85;
+}
+
+[data-theme="monokai"] .command-input {
+    color: #f8f8f2;
+}
+
+[data-theme="monokai"] .command-input::placeholder {
+    color: #908b73;
+}
+
+[data-theme="monokai"] .form-group input,
+[data-theme="monokai"] .form-group textarea {
+    color: #f8f8f2;
+    background: #3e3d32;
+}
+
+[data-theme="monokai"] .form-group input::placeholder,
+[data-theme="monokai"] .form-group textarea::placeholder {
+    color: #908b73;
+}
+
+/* Minimal Dark - improve input visibility */
+[data-theme="minimal-dark"] .form-group input,
+[data-theme="minimal-dark"] .form-group textarea {
+    color: #f1f5f9;
+    background: #1e293b;
+}
+
+[data-theme="minimal-dark"] .form-group input::placeholder,
+[data-theme="minimal-dark"] .form-group textarea::placeholder {
+    color: #64748b;
+}
+
+/* Glassmorphic - improve input visibility */
+[data-theme="glassmorphic"] .terminal-title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="glassmorphic"] .command-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="glassmorphic"] .form-group input::placeholder,
+[data-theme="glassmorphic"] .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Terminal theme - ensure good contrast */
+[data-theme="terminal"] .terminal-title {
+    color: #888888;
+}
+
+[data-theme="terminal"] .command-input::placeholder {
+    color: #666666;
+}
+
+/* Minimal Light - ensure input visibility on light background */
+[data-theme="minimal"] .terminal-title {
+    color: #64748b;
+}
+
+[data-theme="minimal"] .command-input {
+    color: #0f172a;
+}
+
+[data-theme="minimal"] .command-input::placeholder {
+    color: #94a3b8;
+}
+
+/* ========== COMMAND INPUT CONTAINER BACKGROUNDS ========== */
+
+/* Solarized Dark */
+[data-theme="solarized-dark"] .command-input-container {
+    background: #073642;
+    border-top-color: #586e75;
+}
+
+/* Solarized Light */
+[data-theme="solarized-light"] .command-input-container {
+    background: #eee8d5;
+    border-top-color: #93a1a1;
+}
+
+/* Nord */
+[data-theme="nord"] .command-input-container {
+    background: #3b4252;
+    border-top-color: #4c566a;
+}
+
+/* Dracula */
+[data-theme="dracula"] .command-input-container {
+    background: #44475a;
+    border-top-color: #6272a4;
+}
+
+/* Monokai */
+[data-theme="monokai"] .command-input-container {
+    background: #3e3d32;
+    border-top-color: #75715e;
+}
+
+/* Minimal Dark */
+[data-theme="minimal-dark"] .command-input-container {
+    background: #1e293b;
+    border-top-color: #334155;
+}
+
+/* Minimal Light */
+[data-theme="minimal"] .command-input-container {
+    background: #ffffff;
+    border-top-color: #e2e8f0;
+}
+
+/* ========== FORM INPUT BORDERS FOR BETTER VISIBILITY ========== */
+
+[data-theme="solarized-dark"] .form-group input,
+[data-theme="solarized-dark"] .form-group textarea {
+    border: 1px solid #586e75;
+}
+
+[data-theme="solarized-dark"] .form-group input:focus,
+[data-theme="solarized-dark"] .form-group textarea:focus {
+    border-color: #268bd2;
+}
+
+[data-theme="solarized-light"] .form-group input,
+[data-theme="solarized-light"] .form-group textarea {
+    border: 1px solid #93a1a1;
+}
+
+[data-theme="solarized-light"] .form-group input:focus,
+[data-theme="solarized-light"] .form-group textarea:focus {
+    border-color: #268bd2;
+}
+
+[data-theme="nord"] .form-group input,
+[data-theme="nord"] .form-group textarea {
+    border: 1px solid #4c566a;
+}
+
+[data-theme="nord"] .form-group input:focus,
+[data-theme="nord"] .form-group textarea:focus {
+    border-color: #88c0d0;
+}
+
+[data-theme="dracula"] .form-group input,
+[data-theme="dracula"] .form-group textarea {
+    border: 1px solid #6272a4;
+}
+
+[data-theme="dracula"] .form-group input:focus,
+[data-theme="dracula"] .form-group textarea:focus {
+    border-color: #bd93f9;
+}
+
+[data-theme="monokai"] .form-group input,
+[data-theme="monokai"] .form-group textarea {
+    border: 1px solid #75715e;
+}
+
+[data-theme="monokai"] .form-group input:focus,
+[data-theme="monokai"] .form-group textarea:focus {
+    border-color: #a6e22e;
+}

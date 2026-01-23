@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakib Haris | Software & Systems Engineer</title>
+    <meta name="description" content="Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.">
+    <meta name="keywords" content="Software Engineer, Systems Engineer, Infrastructure, DevOps, .NET, Kubernetes, Bangladesh">
+    <meta name="author" content="Shakib Haris">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shakib Haris | Software & Systems Engineer">
+    <meta property="og:description" content="Optimizing tech, securing systems – passion meets profession">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shakib.bd">
+    <meta property="og:image" content="./assets/images/me.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@skb50bd">
+    <meta name="twitter:title" content="Shakib Haris | Software & Systems Engineer">
+    <meta name="twitter:description" content="Optimizing tech, securing systems – passion meets profession">
+
+    <link rel="icon" href="./assets/svg/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://shakib.bd">
+    <link rel="alternate" href="https://shakib.io">
+    <link rel="alternate" href="https://shakibharis.dev">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://shakib.bd/#person",
+                "name": "Shakib Haris",
+                "givenName": "Shakib",
+                "familyName": "Haris",
+                "jobTitle": "Software & Systems Engineer",
+                "description": "Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
+                "url": "https://shakib.bd",
+                "image": "https://shakib.bd/assets/images/me.webp",
+                "email": "mailto:hello@shakib.bd",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Dhaka",
+                    "addressCountry": "Bangladesh"
+                },
+                "sameAs": [
+                    "https://linkedin.com/in/skb50bd",
+                    "https://github.com/skb50bd",
+                    "https://twitter.com/skb50bd"
+                ],
+                "knowsAbout": [
+                    "C#", "F#", "Python", ".NET", "ASP.NET Core",
+                    "Kubernetes", "Docker", "DevOps", "Infrastructure Engineering",
+                    "Microsoft Azure", "Linux", "Windows Server",
+                    "PostgreSQL", "SQL Server", "Redis",
+                    "Prometheus", "Grafana", "Elastic Stack"
+                ],
+                "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "East West University",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "Bangladesh"
+                    }
+                },
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Chaldal Limited",
+                    "url": "https://chaldal.tech"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://shakib.bd/#website",
+                "url": "https://shakib.bd",
+                "name": "Shakib Haris | Software & Systems Engineer",
+                "description": "Portfolio website of Shakib Haris - Software & Systems Engineer specializing in .NET, DevOps, and Cloud Architecture",
+                "author": { "@id": "https://shakib.bd/#person" },
+                "inLanguage": "en-US"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://shakib.bd/#webpage",
+                "url": "https://shakib.bd",
+                "name": "Shakib Haris | Software & Systems Engineer",
+                "isPartOf": { "@id": "https://shakib.bd/#website" },
+                "about": { "@id": "https://shakib.bd/#person" },
+                "description": "Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
+                "inLanguage": "en-US"
+            },
+            {
+                "@type": "ItemList",
+                "name": "Professional Services",
+                "description": "Services offered by Shakib Haris",
+                "itemListElement": [
+                    {
+                        "@type": "Service",
+                        "position": 1,
+                        "name": ".NET Development",
+                        "description": "Building robust, scalable server-side systems with C#, F#, ASP.NET Core, EF Core"
+                    },
+                    {
+                        "@type": "Service",
+                        "position": 2,
+                        "name": "DevOps Engineering",
+                        "description": "Connecting development, security, and operations for harmonious, fast delivery pipelines"
+                    },
+                    {
+                        "@type": "Service",
+                        "position": 3,
+                        "name": "IT Infrastructure",
+                        "description": "Administering systems & networks for streamlined, secure organizational harmony"
+                    },
+                    {
+                        "@type": "Service",
+                        "position": 4,
+                        "name": "Containerization",
+                        "description": "Utilizing Docker and Kubernetes for enhanced portability, scalability, and efficiency"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-theme="terminal">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">Initializing terminal...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- CRT Overlay -->
+    <div class="crt-overlay"></div>
+
+    <!-- Help Modal -->
+    <div class="help-modal" id="helpModal">
+        <div class="help-content">
+            <div class="help-header">
+                <h3>Available Commands</h3>
+                <button class="help-close" id="helpClose">&times;</button>
+            </div>
+            <ul class="help-commands">
+                <!-- Populated by content-renderer.js -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Theme Modal -->
+    <div class="help-modal" id="themeModal">
+        <div class="help-content">
+            <div class="help-header">
+                <h3>Available Themes</h3>
+                <button class="help-close" id="themeClose">&times;</button>
+            </div>
+            <ul class="help-commands theme-list">
+                <!-- Populated by content-renderer.js -->
+            </ul>
+            <p class="theme-hint">Type <code>theme &lt;name&gt;</code> to switch or use the palette button</p>
+        </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav" aria-label="Quick navigation">
+        <div class="nav-dot active" data-section="hero" data-label="Home" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="about" data-label="About" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="experience" data-label="Experience" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="services" data-label="Services" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="skills" data-label="Skills" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="portfolio" data-label="Projects" role="button" tabindex="0"></div>
+        <div class="nav-dot" data-section="contact" data-label="Contact" role="button" tabindex="0"></div>
+    </nav>
+
+    <!-- Terminal Frame -->
+    <div class="terminal-frame">
+        <!-- Terminal Header -->
+        <header class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-btn"></div>
+                <div class="terminal-btn"></div>
+                <div class="terminal-btn"></div>
+            </div>
+            <div class="terminal-title">shakib@portfolio:~</div>
+            <div class="terminal-actions">
+                <div class="theme-selector">
+                    <button class="theme-btn" aria-label="Change theme">
+                        <i class="las la-palette"></i>
+                    </button>
+                    <div class="theme-dropdown">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                </div>
+                <div class="terminal-status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span>ONLINE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Terminal Body -->
+        <main class="terminal-body" id="terminalBody">
+            <!-- Hero Section -->
+            <section class="command-section visible" id="hero" aria-label="Introduction">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text" id="heroCommand"></span><span class="cursor"></span>
+                </div>
+                <div class="output-panel hero-output">
+                    <pre class="ascii-logo" aria-hidden="true"></pre>
+                    <h1 class="hero-name"></h1>
+                    <p class="hero-title"></p>
+                    <p class="hero-tagline"></p>
+                    <div class="hero-stats">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                    <div class="scroll-hint">
+                        <span>Scroll to explore</span>
+                        <div class="scroll-arrow"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="command-section" id="about" aria-label="About me">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">cat about.md</span>
+                </div>
+                <div class="output-panel">
+                    <div class="about-grid">
+                        <div class="profile-container">
+                            <div class="profile-frame">
+                                <img class="profile-image" src="" alt="">
+                            </div>
+                        </div>
+                        <div class="about-text">
+                            <h2></h2>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <!-- System Info Style Quick Facts -->
+                    <div class="about-system-info">
+                        <div class="system-info-header">
+                            <span class="info-prompt">$</span> neofetch --about-me
+                        </div>
+                        <div class="system-info-grid">
+                            <!-- Populated by content-renderer.js -->
+                        </div>
+                    </div>
+
+                    <!-- Current Interests -->
+                    <div class="about-interests">
+                        <div class="interests-header">
+                            <span class="info-prompt">$</span> cat ~/.interests
+                        </div>
+                        <div class="interests-content">
+                            <!-- Populated by content-renderer.js -->
+                        </div>
+                    </div>
+
+                    <!-- Decorative Terminal Quote -->
+                    <blockquote class="terminal-quote">
+                        <span class="quote-symbol">&gt;</span>
+                        <div class="quote-content">
+                            <p class="quote-text"></p>
+                            <cite class="quote-author"></cite>
+                        </div>
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="command-section" id="experience" aria-label="Work experience">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">tree --experience</span>
+                </div>
+                <div class="output-panel">
+                    <div class="experience-tree">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="command-section" id="services" aria-label="Services">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">systemctl list-services --active</span>
+                </div>
+                <div class="output-panel">
+                    <div class="services-grid">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="command-section" id="skills" aria-label="Skills">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">tree ~/skills --level 2</span>
+                </div>
+                <div class="output-panel">
+                    <div class="skills-tree">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+
+                    <div class="skills-summary">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="command-section" id="portfolio" aria-label="Portfolio">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">ls -la ./projects/</span>
+                </div>
+                <div class="output-panel">
+                    <div class="portfolio-grid">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="command-section" id="contact" aria-label="Contact">
+                <div class="command-prompt">
+                    <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span>
+                    <span class="prompt-path">~</span>
+                    <span class="prompt-symbol">$</span>
+                    <span class="command-text">mail -s "Let's Connect" hello@shakib.bd</span>
+                </div>
+                <div class="output-panel">
+                    <div class="contact-container">
+                        <div class="contact-header">
+                            <h2></h2>
+                            <p></p>
+                        </div>
+                        <form class="contact-form" action="" method="POST">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="full-name" placeholder="Your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Your message..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                        <div class="social-links">
+                            <!-- Populated by content-renderer.js -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="terminal-footer">
+                <p class="footer-location">
+                    <i class="las la-map-marker" aria-hidden="true"></i>
+                </p>
+                <p></p>
+                <p style="margin-top: 0.75rem; color: var(--color-primary-dim);">
+                    <span class="prompt-symbol">$</span> exit 0
+                </p>
+            </footer>
+        </main>
+
+        <!-- Command Input -->
+        <div class="command-input-container">
+            <span class="prompt-user">shakib</span><span class="prompt-at" style="color: var(--color-text-dim);">@</span><span class="prompt-host" style="color: var(--color-secondary);">portfolio</span>
+            <span class="prompt-symbol">$</span>
+            <input type="text" class="command-input" placeholder="Type 'help' for commands..." id="commandInput" aria-label="Command input">
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/scroll-handler.js"></script>
+    <script src="js/command-system.js"></script>
+    <script src="js/content-renderer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

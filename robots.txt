@@ -1,0 +1,19 @@
+# Robots.txt for shakib.bd Portfolio
+# https://shakib.bd
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://shakib.bd/sitemap.xml
+
+# Allow all crawlers to access content
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Point crawlers to the structured data
+# Content is dynamically loaded from /data/content.json
+# but all SEO-critical information is in structured data (JSON-LD)
