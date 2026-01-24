@@ -1,0 +1,23 @@
+name: portfolio
+
+services:
+  portfolio:
+    image: ghcr.io/skb50bd/skb50bd:latest
+    hostname: portfolio
+    container_name: portfolio
+    restart: unless-stopped
+    networks:
+      ingress:
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 256M
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+
+networks:
+  ingress:
+    external: true
