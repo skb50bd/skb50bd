@@ -20,7 +20,7 @@
     ]
   },
   "about": {
-    "profileImage": "assets/images/avatar.webp",
+    "profileImage": "assets/images/avatar-mono.webp",
     "headline": "I build systems that stay fast, stay up, and stay secure",
     "bio": "I’m a Systems & Software Engineer focused on building production-grade platforms that scale with confidence. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate the boring parts with clean IaC and reliable CI/CD. I’m comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",
     "systemInfo": [
