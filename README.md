@@ -45,7 +45,7 @@
 
 - 📍 **Dhaka, Bangladesh**
 - 🎯 **Infra / DevOps / Platform**
-- 💻 **C# • F# • Python**
+- 💻 **C# • F# • PowerShell • Bash • Python**
 - 📈 **Reliability • Performance • Observability • Cost**
 
 ---
