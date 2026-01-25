@@ -104,6 +104,57 @@
     }
 }
 
+/* Network activity blink */
+@keyframes networkBlink {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(0.7);
+    }
+}
+
+/* Ticker scroll animation */
+@keyframes tickerScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Subtle data flow for header */
+@keyframes dataFlow {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+/* CPU/Memory meter animation */
+@keyframes meterPulse {
+    0%, 100% {
+        width: var(--meter-base);
+    }
+    25% {
+        width: calc(var(--meter-base) + 5%);
+    }
+    50% {
+        width: calc(var(--meter-base) - 3%);
+    }
+    75% {
+        width: calc(var(--meter-base) + 2%);
+    }
+}
+
 /* Typing cursor */
 @keyframes typing {
     from { width: 0; }

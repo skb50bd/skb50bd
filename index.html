@@ -195,12 +195,38 @@
     <div class="terminal-frame">
         <!-- Terminal Header -->
         <header class="terminal-header">
-            <div class="terminal-buttons" aria-hidden="true">
-                <div class="terminal-btn"></div>
-                <div class="terminal-btn"></div>
-                <div class="terminal-btn"></div>
+            <a href="#hero" class="brand-logo" aria-label="Go to top">
+                <img src="./assets/images/shakib-256x256.webp" alt="Shakib" class="brand-avatar">
+                <span class="brand-text">shakib<span class="brand-separator">:</span><span
+                        class="brand-path">~</span></span>
+            </a>
+            <div class="terminal-center">
+                <div class="header-activity">
+                    <div class="activity-item network">
+                        <i class="las la-network-wired"></i>
+                        <span class="activity-value" id="networkActivity">↑ 2.4kb/s</span>
+                        <span class="activity-indicator"></span>
+                    </div>
+                    <div class="activity-item">
+                        <i class="las la-microchip"></i>
+                        <span>CPU:</span>
+                        <span class="activity-value" id="cpuUsage">12%</span>
+                    </div>
+                    <div class="activity-item">
+                        <i class="las la-memory"></i>
+                        <span>MEM:</span>
+                        <span class="activity-value" id="memUsage">384MB</span>
+                    </div>
+                    <div class="activity-item">
+                        <i class="las la-clock"></i>
+                        <span>UP:</span>
+                        <span class="activity-value" id="uptime">127d 14h</span>
+                    </div>
+                </div>
+                <div class="header-clock">
+                    <span class="clock-time" id="headerClock">--:--:--</span>
+                </div>
             </div>
-            <div class="terminal-title">shakib@portfolio:~</div>
             <div class="terminal-actions">
                 <div class="theme-selector">
                     <button class="theme-btn" aria-label="Change theme">
@@ -209,10 +235,6 @@
                     <div class="theme-dropdown">
                         <!-- Populated by content-renderer.js -->
                     </div>
-                </div>
-                <div class="terminal-status">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>ONLINE</span>
                 </div>
             </div>
         </header>
@@ -422,9 +444,13 @@
 
         <!-- Command Input -->
         <div class="command-input-container">
-            <span class="prompt-user">shakib</span><span class="prompt-at"
-                style="color: var(--color-text-dim);">@</span><span class="prompt-host"
-                style="color: var(--color-secondary);">portfolio</span>
+            <div class="system-ticker" id="systemTicker">
+                <div class="ticker-content">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+            <span class="prompt-user">shakib</span><span class="prompt-at">@</span><span
+                class="prompt-host">portfolio</span>
             <span class="prompt-symbol">$</span>
             <input type="text" class="command-input" placeholder="Type 'help' for commands..." id="commandInput"
                 aria-label="Command input">
@@ -436,6 +462,7 @@
     <script src="js/scroll-handler.js"></script>
     <script src="js/command-system.js"></script>
     <script src="js/content-renderer.js"></script>
+    <script src="js/activity-simulator.js"></script>
     <script src="js/app.js"></script>
 </body>
 

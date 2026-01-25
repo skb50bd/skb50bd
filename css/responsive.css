@@ -112,23 +112,63 @@
     .theme-selector:focus-within .theme-dropdown {
         transform: translateX(-50%) translateY(0);
     }
+
+    /* Compact header activity on tablet - show only key items */
+    .terminal-center {
+        gap: 1rem;
+    }
+
+    .terminal-center .header-activity {
+        gap: 0.75rem;
+    }
+
+    /* Hide some activity items on tablet, keep essentials */
+    .terminal-center .activity-item:nth-child(3),
+    .terminal-center .activity-item:nth-child(4) {
+        display: none;
+    }
+
+    /* Hide ticker on tablet */
+    .system-ticker {
+        display: none;
+    }
 }
 
 /* ========== SMALL MOBILE (max-width: 480px) ========== */
 @media (max-width: 480px) {
-    /* Terminal header */
+    /* Terminal header - compact with mini activity */
     .terminal-header {
-        padding: 0.5rem 1rem;
+        padding: 0.4rem 0.75rem;
     }
 
-    .terminal-title {
+    /* Brand logo - smaller on mobile */
+    .brand-avatar {
+        width: 24px;
+        height: 24px;
+    }
+
+    .brand-text {
+        font-size: 0.75rem;
+    }
+
+    /* Show only clock on mobile, hide other activity */
+    .terminal-center {
+        flex: 0;
+        gap: 0;
+    }
+
+    .terminal-center .header-activity {
         display: none;
+    }
+
+    .terminal-center .header-clock {
+        font-size: 0.55rem;
     }
 
     /* Terminal body */
     .terminal-body {
         padding: 1rem;
-        padding-bottom: 4.5rem;
+        padding-bottom: 4rem;
     }
 
     /* Output panel */
@@ -158,9 +198,24 @@
         font-size: 2rem;
     }
 
-    /* Command input */
+    /* Command input - slightly larger for touch */
     .command-input-container {
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .command-input-container .prompt-user,
+    .command-input-container .prompt-host,
+    .command-input-container .prompt-at,
+    .command-input-container .prompt-symbol {
+        font-size: 0.65rem;
+    }
+
+    .command-input {
+        font-size: 0.7rem;
+    }
+
+    .command-input::placeholder {
+        font-size: 0.65rem;
     }
 
     /* Profile frame */

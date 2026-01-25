@@ -32,13 +32,43 @@ const ThemeManager = {
      * Set up event listeners for theme controls
      */
     setupEventListeners() {
-        // Theme dropdown buttons
+        const themeBtn = document.querySelector('.theme-btn');
+        const themeDropdown = document.querySelector('.theme-dropdown');
+        const themeSelector = document.querySelector('.theme-selector');
+
+        // Toggle dropdown on button click
+        if (themeBtn && themeDropdown) {
+            themeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                themeDropdown.classList.toggle('open');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (themeDropdown && themeSelector && !themeSelector.contains(e.target)) {
+                themeDropdown.classList.remove('open');
+            }
+        });
+
+        // Close dropdown on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && themeDropdown) {
+                themeDropdown.classList.remove('open');
+            }
+        });
+
+        // Theme dropdown buttons - select theme and close dropdown
         const dropdownButtons = document.querySelectorAll('.theme-dropdown button[data-theme]');
         dropdownButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 const theme = e.target.dataset.theme;
                 if (theme && this.themes.includes(theme)) {
                     this.setTheme(theme);
+                    // Close the dropdown after selection
+                    if (themeDropdown) {
+                        themeDropdown.classList.remove('open');
+                    }
                 }
             });
         });
