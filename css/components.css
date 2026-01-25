@@ -130,6 +130,7 @@
 .terminal-center {
     flex: 1;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
@@ -139,13 +140,15 @@
 }
 
 .header-activity {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
     gap: 1rem;
 }
 
 .activity-item {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.35rem;
     font-family: var(--font-mono);
@@ -881,29 +884,37 @@
     left: 0;
     right: 0;
     height: 18px;
+    max-height: 18px;
     background: linear-gradient(180deg, transparent 0%, var(--color-surface) 100%);
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     padding: 0 1rem;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .ticker-content {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
     gap: 2rem;
     animation: tickerScroll 30s linear infinite;
     white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 .ticker-item {
     font-size: 0.55rem;
     color: var(--color-text-dim);
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.3rem;
     opacity: 0.6;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .ticker-item i {
