@@ -1,0 +1,843 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Shakib Haris",
+    "label": "Software & Systems Engineer",
+    "image": "assets/images/shakib.webp",
+    "email": "hello@shakib.bd",
+    "url": "https://shakib.bd",
+    "summary": "Senior Software & Systems Engineer with 5+ years of enterprise experience building secure, reliable, and highly automated platforms. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate with clean IaC and reliable CI/CD. Comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",
+    "location": {
+      "city": "Dhaka",
+      "countryCode": "BD",
+      "region": "Bangladesh"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "skb50bd",
+        "url": "https://skb.bd/in"
+      },
+      {
+        "network": "GitHub",
+        "username": "skb50bd",
+        "url": "https://skb.bd/gh"
+      },
+      {
+        "network": "Twitter",
+        "username": "skb50bd",
+        "url": "https://skb.bd/x"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Chaldal Limited",
+      "position": "Infrastructure Engineer",
+      "url": "https://chaldal.tech",
+      "startDate": "2023-01",
+      "summary": "Designing and operating high-availability on-prem Kubernetes platform with production-grade reliability, security architecture, and observability.",
+      "highlights": [
+        "Designed and operated a highly-available on-prem Kubernetes platform with production-grade reliability",
+        "Hardened network and access controls with pragmatic security architecture and compliance-minded defaults",
+        "Built observability and alerting that reduced MTTR and improved on-call signal quality",
+        "Automated infrastructure delivery with IaC + CI/CD, enabling safe, repeatable changes at scale",
+        "Enabled ML/AI workloads on Kubernetes with dependable scheduling, storage, and operational guardrails"
+      ],
+      "keywords": ["k3s", "rancher", "pfsense", "wireguard", "elastic", "ansible"]
+    },
+    {
+      "name": "Chaldal Limited",
+      "position": "Software Engineer IV",
+      "url": "https://chaldal.tech",
+      "startDate": "2022-01",
+      "endDate": "2022-12",
+      "summary": "Led delivery of last-mile routing system and improved inventory system performance through profiling and optimization.",
+      "highlights": [
+        "Delivered a last-mile routing system that improved delivery efficiency and operational decision-making",
+        "Improved inventory system performance by 20% through profiling, query optimization, and caching strategy",
+        "Led cross-team execution by aligning requirements, managing trade-offs, and unblocking delivery"
+      ],
+      "keywords": ["optimization", "valhalla", "open-street-maps", "caching"]
+    },
+    {
+      "name": "Chaldal Limited",
+      "position": "Software Engineer III",
+      "url": "https://chaldal.tech",
+      "startDate": "2021-01",
+      "endDate": "2021-12",
+      "summary": "Shipped 40+ customer-facing features with instrumentation and production accountability while mentoring junior engineers.",
+      "highlights": [
+        "Shipped 40+ customer-facing features with instrumentation, performance monitoring, and production accountability",
+        "Mentored junior engineers through pairing, design guidance, and actionable code reviews",
+        "Raised engineering quality by improving review practices, standards, and release safety"
+      ],
+      "keywords": ["c#", "asp-net-core", "ef-core", "sql-server"]
+    },
+    {
+      "name": "Chaldal Limited",
+      "position": "Software Engineer II",
+      "url": "https://chaldal.tech",
+      "startDate": "2020-04",
+      "endDate": "2020-12",
+      "summary": "Delivered 30+ features in inventory workflows with focus on correctness and maintainability.",
+      "highlights": [
+        "Delivered 30+ features in inventory workflows with a focus on correctness, clarity, and maintainability",
+        "Improved system efficiency by reducing expensive operations and tightening critical code paths"
+      ],
+      "keywords": ["c#", "asp-net-core", "sql-server"]
+    },
+    {
+      "name": "Freelance",
+      "position": "Fullstack Developer",
+      "startDate": "2018-01",
+      "endDate": "2019-12",
+      "summary": "Built end-to-end ERP solutions and a University Management System with role-based access and operational reporting.",
+      "highlights": [
+        "Built and delivered end-to-end ERP solutions—data modeling, workflows, reporting, and deployment",
+        "Designed and implemented a University Management System with role-based access and operational reporting"
+      ],
+      "keywords": [".net", "mongodb", "winforms", "sql-server"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "East West University",
+      "area": "Computer Science & Engineering",
+      "studyType": "Bachelor of Science",
+      "startDate": "2015",
+      "endDate": "2019",
+      "courses": [
+        "IEEE Published: Blockchain-Based e-Recruitment Platform",
+        "IEEE Published: Fake News Detection using Blockchain"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "name": "Blockchain-Based e-Recruitment Platform",
+      "publisher": "IEEE",
+      "releaseDate": "2019",
+      "summary": "Research paper on leveraging blockchain technology for secure and transparent e-recruitment processes."
+    },
+    {
+      "name": "Fake News Detection using Blockchain",
+      "publisher": "IEEE",
+      "releaseDate": "2019",
+      "summary": "Research paper on utilizing blockchain technology to combat fake news and ensure information integrity."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Backend Development",
+      "level": "Expert",
+      "keywords": ["C#", "F#", ".NET", "ASP.NET Core", "EF Core", "Python"]
+    },
+    {
+      "name": "Containers & Orchestration",
+      "level": "Advanced",
+      "keywords": ["Docker", "Kubernetes", "Rancher", "Harbor", "Helm"]
+    },
+    {
+      "name": "Infrastructure & IaC",
+      "level": "Advanced",
+      "keywords": ["Ansible", "Private Cloud", "Hyper-V", "QEMU/KVM", "Xen Orchestra"]
+    },
+    {
+      "name": "Databases & Storage",
+      "level": "Expert",
+      "keywords": ["MS SQL Server", "PostgreSQL", "Redis", "SeaweedFS"]
+    },
+    {
+      "name": "Observability",
+      "level": "Advanced",
+      "keywords": ["Prometheus", "Grafana", "Elastic Stack", "CheckMK"]
+    },
+    {
+      "name": "Networking",
+      "level": "Expert",
+      "keywords": ["TCP/IP", "DNS", "MikroTik", "Nginx", "HAProxy", "WireGuard", "OpenVPN"]
+    },
+    {
+      "name": "Identity & Security",
+      "level": "Advanced",
+      "keywords": ["Active Directory", "Zitadel", "SSSD", "PKI", "SIEM"]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "level": "Advanced",
+      "keywords": ["Microsoft Azure", "Azure DevOps", "GitHub Actions", "CI/CD", "GitOps"]
+    },
+    {
+      "name": "Operating Systems",
+      "level": "Expert",
+      "keywords": ["Windows Server", "Ubuntu", "Debian", "Linux Administration"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "High-Availability Kubernetes Cluster",
+      "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
+      "highlights": ["Kubernetes", "Linux", "Network", "Security"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Logging & Observability System",
+      "description": "End-to-end observability (metrics, logs, dashboards, alerting) with actionable signals that improve MTTR and enable confident, data-driven operations.",
+      "highlights": ["Elastic", "Grafana", "Prometheus", "CheckMK"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Multi-Region Private Cloud Network",
+      "description": "Resilient multi-site private cloud networking using WireGuard/IPsec and dynamic routing (OSPF/BGP/Anycast) to deliver fault-tolerant connectivity and clean segmentation.",
+      "highlights": ["MikroTik", "WireGuard", "BGP", "OSPF"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Distributed Storage System",
+      "description": "Distributed storage designed for durability and availability, with operational tooling and replication strategies that fit enterprise reliability requirements.",
+      "highlights": ["Distributed Storage", "Reliability", "Scalability"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "AI/ML Infrastructure",
+      "description": "Kubernetes-based ML infrastructure with GPU scheduling and deployment automation—built to keep training and inference pipelines reliable and repeatable.",
+      "highlights": ["AI/ML", "GPU", "Kubernetes", "PyTorch"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Network Monitoring System",
+      "description": "Custom monitoring with Python + CheckMK to track network health, performance, and anomalies—so issues are detected early and resolved faster.",
+      "highlights": ["Python", "CheckMK", "MikroTik"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Network Configuration Management",
+      "description": "Network configuration management with audit trails and approvals—standardizing change control across MikroTik/Juniper/Cisco and reducing configuration drift.",
+      "highlights": ["C#", "MikroTik", "Juniper", "Cisco"],
+      "url": "https://chaldal.tech",
+      "type": "infrastructure"
+    },
+    {
+      "name": "Pathao Courier NopCommerce Plugin",
+      "description": "Production-ready integration plugin for Pathao Courier in NopCommerce—focused on reliability, clean integration points, and maintainable implementation.",
+      "highlights": [".NET", "C#", "NopCommerce"],
+      "url": "https://github.com/skb50bd/nop-plugin-pathao-courier",
+      "type": "software"
+    },
+    {
+      "name": "Khata: Modern ERP Solution",
+      "description": "A modern ERP platform for small businesses—inventory, accounting, and customer workflows designed with practicality, correctness, and extensibility in mind.",
+      "highlights": [".NET", "C#", "ASP.NET Core", "EF Core"],
+      "url": "https://github.com/skb50bd/khata",
+      "type": "software"
+    },
+    {
+      "name": "Scroll: Product Magazine",
+      "description": "A polished product showcase platform with strong content modeling and performance-minded delivery—built for clean UX and easy iteration.",
+      "highlights": ["ASP.NET Core", "EF Core", "Postgres"],
+      "url": "https://github.com/skb50bd/scroll",
+      "type": "software"
+    },
+    {
+      "name": "BD Tax Calc",
+      "description": "A tax calculator built with functional-first design in F#—lean, testable, and precise business logic with a clean architecture mindset.",
+      "highlights": [".NET", "F#", "SAFE Stack"],
+      "url": "https://github.com/skb50bd/bxtaxcalc",
+      "type": "software"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Latency & Reliability",
+      "keywords": ["Performance Profiling", "Bottleneck Elimination", "Load Testing"]
+    },
+    {
+      "name": "Security by Design",
+      "keywords": ["Defense-in-depth", "Least Privilege", "Security Controls"]
+    },
+    {
+      "name": "Systems Thinking",
+      "keywords": ["Distributed Systems", "Observability", "Failure Modes", "Operational Excellence"]
+    }
+  ],
+  "meta": {
+    "canonical": "https://shakib.bd/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2026-01-30",
+    "theme": "elegant"
+  },
+  "custom": {
+    "meta": {
+      "title": "Shakib Haris | Software & Systems Engineer",
+      "description": "Senior Software & Systems Engineer with 5+ years of enterprise experience building secure, reliable, and highly automated platforms. Specializing in .NET systems, Kubernetes, infrastructure engineering, and DevOps with a strong focus on performance, observability, and cost efficiency.",
+      "keywords": "Senior Software Engineer, Systems Engineer, Platform Engineering, Infrastructure, DevOps, SRE, .NET, Kubernetes, Cloud Architecture, Observability, Bangladesh",
+      "twitter": "@skb50bd"
+    },
+    "hero": {
+      "asciiLogo": "   _____ _           _    _ _\n  / ____| |         | |  (_) |\n | (___ | |__   __ _| | ___| |__\n  \\___ \\| '_ \\ / _` | |/ / | '_ \\\n  ____) | | | | (_| |   <| | |_) |\n |_____/|_| |_|\\__,_|_|\\_\\_|_.__/",
+      "tagline": "\"I design and operate secure, high-performance systems—from code to clusters.\"",
+      "stats": [
+        { "value": "5+", "label": "Years Enterprise Experience" },
+        { "value": "70+", "label": "Features Engineered" },
+        { "value": "49%", "label": "Infrastructure Cost Optimization" }
+      ]
+    },
+    "about": {
+      "headline": "I build systems that stay fast, stay up, and stay secure",
+      "systemInfo": [
+        { "label": "Location", "value": "Dhaka, Bangladesh" },
+        { "label": "Focus", "value": "Infrastructure & DevOps" },
+        { "label": "Languages", "value": "C#, F#, Python" },
+        { "label": "Tools", "value": "Kubernetes, Ansible, Docker" }
+      ],
+      "interests": [
+        {
+          "icon": "⚡",
+          "title": "Latency & Reliability",
+          "description": "Profiling hot paths, eliminating bottlenecks, and engineering for predictable performance under load"
+        },
+        {
+          "icon": "🔒",
+          "title": "Security by Design",
+          "description": "Defense-in-depth: least privilege, secure defaults, hardening, and observable security controls"
+        },
+        {
+          "icon": "🌐",
+          "title": "Open Systems Mindset",
+          "description": "Pragmatic OSS usage and contribution—choosing tools based on reliability, maintainability, and fit"
+        },
+        {
+          "icon": "📚",
+          "title": "Systems Thinking",
+          "description": "Always sharpening fundamentals: distributed systems, observability, failure modes, and operational excellence"
+        }
+      ],
+      "quote": {
+        "text": "The best code is no code at all. The second best is code that's so simple, it obviously has no bugs.",
+        "author": "Unknown wisdom"
+      }
+    },
+    "services": [
+      {
+        "icon": "las la-code",
+        "title": ".NET Development",
+        "description": "Building high-throughput APIs and backend systems with C#/.NET (ASP.NET Core, EF Core), designed for maintainability, observability, and real-world production load.",
+        "projectCount": 9
+      },
+      {
+        "icon": "lab la-dev",
+        "title": "DevOps Engineering",
+        "description": "Shipping safer, faster: CI/CD, IaC, release automation, and pragmatic DevSecOps practices that reduce risk while increasing delivery velocity.",
+        "projectCount": 6
+      },
+      {
+        "icon": "lab la-connectdevelop",
+        "title": "Microservices Architecture",
+        "description": "Designing service boundaries, contracts, and operational patterns (observability, resiliency, failure isolation) so distributed systems stay debuggable and stable.",
+        "projectCount": 4
+      },
+      {
+        "icon": "las la-sitemap",
+        "title": "IT Infrastructure",
+        "description": "Designing and operating secure infrastructure: networks, identity, compute, storage, and operational processes built for uptime and auditability.",
+        "projectCount": 8
+      },
+      {
+        "icon": "las la-shield-alt",
+        "title": "Security & SIEM",
+        "description": "Implementing detection, logging, and response workflows—turning security signals into actionable alerts and measurable controls.",
+        "projectCount": 2
+      },
+      {
+        "icon": "las la-box",
+        "title": "Containerization",
+        "description": "Containerizing and orchestrating workloads with Docker/Kubernetes—secure defaults, sensible resource management, and operational visibility from day one.",
+        "projectCount": 7
+      }
+    ],
+    "skills": {
+      "summary": {
+        "totalTechnologies": 41,
+        "categories": 11,
+        "learning": ["HCI", "Terraform", "ITSP"]
+      },
+      "categories": [
+        {
+          "name": "development",
+          "displayName": "development",
+          "count": 4,
+          "items": [
+            {
+              "name": "C#",
+              "icon": "./assets/svg/csharp.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Primary language for enterprise applications, APIs, and backend services. Expert in async patterns, LINQ, and .NET ecosystem.",
+              "years": "5+"
+            },
+            {
+              "name": "F#",
+              "icon": "./assets/svg/fsharp.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Functional-first language for data processing, domain modeling, and type-safe applications. Used for complex business logic.",
+              "years": "3+"
+            },
+            {
+              "name": "Python",
+              "icon": "./assets/svg/python.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Automation scripts, DevOps tooling, data processing, and rapid prototyping. Proficient with Flask, FastAPI, and scripting.",
+              "years": "3+"
+            },
+            {
+              "name": ".NET / ASP.NET",
+              "icon": "./assets/svg/dotnet.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Full-stack framework for web APIs, microservices, and enterprise applications. Expert in EF Core, Identity, and middleware.",
+              "years": "5+"
+            }
+          ]
+        },
+        {
+          "name": "operating-systems",
+          "displayName": "operating-systems",
+          "count": 2,
+          "items": [
+            {
+              "name": "Windows Server",
+              "icon": "./assets/svg/windows-10.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Enterprise administration including AD DS, DNS, DHCP, Group Policy, failover clustering, and Windows Admin Center.",
+              "years": "5+"
+            },
+            {
+              "name": "Ubuntu / Debian",
+              "icon": "./assets/svg/ubuntu-linux.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Server administration, systemd services, package management, shell scripting, and security hardening for production systems.",
+              "years": "5+"
+            }
+          ]
+        },
+        {
+          "name": "containers",
+          "displayName": "containers",
+          "count": 4,
+          "items": [
+            {
+              "name": "Docker",
+              "icon": "./assets/svg/docker-moby.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Container builds, multi-stage Dockerfiles, Docker Compose, networking, volumes, and production optimization.",
+              "years": "4+"
+            },
+            {
+              "name": "Kubernetes",
+              "icon": "./assets/svg/kubernetes.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Cluster deployment, Helm charts, Ingress controllers, RBAC, persistent storage, and GitOps workflows with ArgoCD.",
+              "years": "3+"
+            },
+            {
+              "name": "Rancher",
+              "icon": "./assets/svg/rancher.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Multi-cluster Kubernetes management, RKE2 deployments, user management, and centralized cluster operations.",
+              "years": "3+"
+            },
+            {
+              "name": "Harbor",
+              "icon": "./assets/svg/harbor.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Private container registry with vulnerability scanning, image signing, replication policies, and access control.",
+              "years": "3+"
+            }
+          ]
+        },
+        {
+          "name": "virtualization",
+          "displayName": "virtualization",
+          "count": 3,
+          "items": [
+            {
+              "name": "Hyper-V",
+              "icon": "./assets/svg/windows-10.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Windows virtualization with live migration, failover clustering, replica, and System Center Virtual Machine Manager.",
+              "years": "4+"
+            },
+            {
+              "name": "QEMU / KVM",
+              "icon": "./assets/svg/qemu.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Linux virtualization with libvirt, virt-manager, GPU passthrough, and performance tuning for production VMs.",
+              "years": "3+"
+            },
+            {
+              "name": "Xen Orchestra",
+              "icon": "./assets/svg/xen-orchestra.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "XCP-ng management platform for VM orchestration, backup/restore, continuous replication, and pool management.",
+              "years": "2+"
+            }
+          ]
+        },
+        {
+          "name": "infrastructure",
+          "displayName": "infrastructure",
+          "count": 2,
+          "items": [
+            {
+              "name": "Ansible",
+              "icon": "./assets/svg/ansible.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Infrastructure automation with playbooks, roles, inventory management, and AWX/Tower for enterprise deployments.",
+              "years": "3+"
+            },
+            {
+              "name": "Private Cloud",
+              "icon": "./assets/svg/private-cloud.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Design and deployment of on-premise cloud infrastructure with compute, storage, and networking integration.",
+              "years": "4+"
+            }
+          ]
+        },
+        {
+          "name": "data-storage",
+          "displayName": "data-storage",
+          "count": 4,
+          "items": [
+            {
+              "name": "MS SQL Server",
+              "icon": "./assets/svg/microsoft-sql-server-light.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Enterprise database administration, Always On availability groups, performance tuning, and SSIS/SSRS integration.",
+              "years": "5+"
+            },
+            {
+              "name": "PostgreSQL",
+              "icon": "./assets/svg/postgres.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Open-source database with replication, partitioning, JSON support, and extensions like PostGIS and TimescaleDB.",
+              "years": "3+"
+            },
+            {
+              "name": "Redis",
+              "icon": "./assets/svg/redis.svg",
+              "level": 3,
+              "levelName": "Proficient",
+              "description": "In-memory caching, session storage, pub/sub messaging, and Redis Cluster for high-availability deployments.",
+              "years": "2+"
+            },
+            {
+              "name": "SeaweedFS",
+              "icon": "./assets/svg/seaweedfs.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Distributed object storage with S3 API compatibility, replication, erasure coding, and tiered storage.",
+              "years": "2+"
+            }
+          ]
+        },
+        {
+          "name": "observability",
+          "displayName": "observability",
+          "count": 4,
+          "items": [
+            {
+              "name": "Prometheus",
+              "icon": "./assets/svg/prometheus.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Metrics collection, PromQL queries, alerting rules, service discovery, and federation for large-scale monitoring.",
+              "years": "3+"
+            },
+            {
+              "name": "Grafana",
+              "icon": "./assets/svg/grafana.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Dashboard creation, data source integration, alerting, and Grafana Loki for log aggregation and querying.",
+              "years": "3+"
+            },
+            {
+              "name": "Elastic Stack",
+              "icon": "./assets/svg/elastic.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Elasticsearch, Logstash, Kibana for centralized logging, full-text search, and analytics dashboards.",
+              "years": "2+"
+            },
+            {
+              "name": "CheckMK",
+              "icon": "./assets/svg/checkmk.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Infrastructure monitoring with agent-based checks, SNMP, custom plugins, and automated host discovery.",
+              "years": "2+"
+            }
+          ]
+        },
+        {
+          "name": "networking",
+          "displayName": "networking",
+          "count": 6,
+          "items": [
+            {
+              "name": "TCP/IP & DNS",
+              "icon": "./assets/svg/network.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Network design, subnetting, VLANs, routing protocols, DNS administration, and traffic analysis with Wireshark.",
+              "years": "5+"
+            },
+            {
+              "name": "MikroTik",
+              "icon": "./assets/svg/mikrotik.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "RouterOS configuration for enterprise routing, VLANs, firewalls, VPNs, QoS, and network monitoring.",
+              "years": "5+"
+            },
+            {
+              "name": "OpenVPN",
+              "icon": "./assets/svg/openvpn.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Site-to-site and remote access VPN with certificate management, split tunneling, and high-availability setups.",
+              "years": "3+"
+            },
+            {
+              "name": "WireGuard",
+              "icon": "./assets/svg/wireguard.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Modern VPN protocol with minimal configuration, excellent performance, and integration with various platforms.",
+              "years": "2+"
+            },
+            {
+              "name": "Nginx",
+              "icon": "./assets/svg/nginx.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Reverse proxy, load balancing, SSL termination, rate limiting, and caching for high-traffic applications.",
+              "years": "4+"
+            },
+            {
+              "name": "HAProxy",
+              "icon": "./assets/svg/haproxy.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "TCP/HTTP load balancer with health checks, sticky sessions, ACLs, and high-availability configurations.",
+              "years": "3+"
+            }
+          ]
+        },
+        {
+          "name": "identity-security",
+          "displayName": "identity-security",
+          "count": 5,
+          "items": [
+            {
+              "name": "Active Directory",
+              "icon": "./assets/svg/active-directory.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Domain services, Group Policy, federation with ADFS, Azure AD Connect, and multi-forest architectures.",
+              "years": "5+"
+            },
+            {
+              "name": "Zitadel",
+              "icon": "./assets/svg/zitadel-light.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Modern identity management with OIDC/OAuth2, multi-tenancy, passwordless auth, and self-hosted deployments.",
+              "years": "2+"
+            },
+            {
+              "name": "SSSD",
+              "icon": "./assets/svg/redhat-linux.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Linux integration with Active Directory, Kerberos authentication, sudo rules, and centralized access control.",
+              "years": "3+"
+            },
+            {
+              "name": "PKI",
+              "icon": "./assets/svg/cert-manager.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Certificate authority management, TLS/SSL certificates, code signing, and automated cert renewal with ACME.",
+              "years": "3+"
+            },
+            {
+              "name": "SIEM / Security",
+              "icon": "./assets/svg/security-onion.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Security monitoring, log correlation, threat detection, incident response, and compliance reporting.",
+              "years": "2+"
+            }
+          ]
+        },
+        {
+          "name": "cloud-devops",
+          "displayName": "cloud-devops",
+          "count": 5,
+          "items": [
+            {
+              "name": "Microsoft Azure",
+              "icon": "./assets/svg/azure.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Azure VMs, AKS, App Services, Azure DevOps, networking, and hybrid cloud integration with on-premise.",
+              "years": "4+"
+            },
+            {
+              "name": "Azure DevOps",
+              "icon": "./assets/svg/azure-devops.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Build and release automation with Azure DevOps, GitHub Actions, GitLab CI, and ArgoCD for GitOps.",
+              "years": "3+"
+            },
+            {
+              "name": "GitHub",
+              "icon": "./assets/svg/github-light.svg",
+              "level": 5,
+              "levelName": "Expert",
+              "description": "Version control, pull requests, code reviews, branch protection, GitHub Packages, and repository management.",
+              "years": "5+"
+            },
+            {
+              "name": "GitHub Actions",
+              "icon": "./assets/svg/github-light.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Workflow automation, custom actions, matrix builds, self-hosted runners, and reusable workflows.",
+              "years": "3+"
+            },
+            {
+              "name": "AI/ML Ops",
+              "icon": "./assets/svg/ai-ml.svg",
+              "level": 3,
+              "levelName": "Proficient",
+              "description": "Model deployment pipelines, GPU infrastructure, inference serving, and integration with LLM platforms.",
+              "years": "1+"
+            }
+          ]
+        },
+        {
+          "name": "self-hosted",
+          "displayName": "self-hosted",
+          "count": 3,
+          "items": [
+            {
+              "name": "Nextcloud",
+              "icon": "./assets/svg/nextcloud.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Self-hosted collaboration with file sync, calendars, contacts, Talk video calls, and Office integration.",
+              "years": "2+"
+            },
+            {
+              "name": "OwnCloud",
+              "icon": "./assets/svg/owncloud.svg",
+              "level": 4,
+              "levelName": "Advanced",
+              "description": "Enterprise file sync and share with external storage backends, LDAP integration, and audit logging.",
+              "years": "2+"
+            },
+            {
+              "name": "OpenStreetMap",
+              "icon": "./assets/svg/openstreetmap.svg",
+              "level": 3,
+              "levelName": "Proficient",
+              "description": "Self-hosted tile server, Nominatim geocoding, routing engines, and custom map styling with vector tiles.",
+              "years": "1+"
+            }
+          ]
+        }
+      ]
+    },
+    "portfolio": {
+      "gradients": {
+        "High-Availability Kubernetes Cluster": { "gradient": "gradient-k8s", "icon": "las la-server" },
+        "Logging & Observability System": { "gradient": "gradient-observability", "icon": "las la-chart-line" },
+        "Multi-Region Private Cloud Network": { "gradient": "gradient-network", "icon": "las la-network-wired" },
+        "Distributed Storage System": { "gradient": "gradient-storage", "icon": "las la-database" },
+        "AI/ML Infrastructure": { "gradient": "gradient-aiml", "icon": "las la-brain" },
+        "Network Monitoring System": { "gradient": "gradient-network", "icon": "las la-eye" },
+        "Network Configuration Management": { "gradient": "gradient-observability", "icon": "las la-cog" }
+      },
+      "images": {
+        "Pathao Courier NopCommerce Plugin": "./assets/images/pathao-courier.webp",
+        "Khata: Modern ERP Solution": "./assets/images/khata.webp",
+        "Scroll: Product Magazine": "./assets/images/scroll.webp",
+        "BD Tax Calc": "./assets/images/bdtaxcalc.webp"
+      }
+    },
+    "contact": {
+      "heading": "Let's build something production-grade.",
+      "subheading": "If you need a senior engineer who can design, ship, and operate reliable systems end-to-end, let's talk.",
+      "formAction": "https://formspree.io/f/xnqegejp",
+      "socialIcons": {
+        "LinkedIn": "lab la-linkedin-in",
+        "GitHub": "lab la-github",
+        "Twitter": "lab la-twitter",
+        "email": "las la-envelope"
+      }
+    },
+    "footer": {
+      "copyright": "2026 Shakib Haris. All Rights Reserved"
+    },
+    "commands": [
+      { "name": "help", "description": "Show this help menu" },
+      { "name": "whoami", "description": "Go to introduction" },
+      { "name": "about", "description": "Learn about me" },
+      { "name": "experience", "description": "View work history" },
+      { "name": "services", "description": "See specializations" },
+      { "name": "skills", "description": "View tech stack" },
+      { "name": "projects", "description": "Browse portfolio" },
+      { "name": "contact", "description": "Get in touch" },
+      { "name": "theme", "description": "List available themes" },
+      { "name": "theme <name>", "description": "Switch theme (9 themes available)" },
+      { "name": "clear", "description": "Refresh animations" }
+    ],
+    "themes": [
+      { "id": "terminal", "name": "Terminal", "description": "Classic amber CRT terminal" },
+      { "id": "glassmorphic", "name": "Glassmorphic", "description": "Modern frosted glass dark" },
+      { "id": "minimal", "name": "Minimal Light", "description": "Clean light theme" },
+      { "id": "minimal-dark", "name": "Minimal Dark", "description": "Clean dark theme" },
+      { "id": "solarized-dark", "name": "Solarized Dark", "description": "Solarized dark palette" },
+      { "id": "solarized-light", "name": "Solarized Light", "description": "Solarized light palette" },
+      { "id": "monokai", "name": "Monokai", "description": "Sublime Text classic" },
+      { "id": "dracula", "name": "Dracula", "description": "Popular purple dark theme" },
+      { "id": "nord", "name": "Nord", "description": "Arctic minimalist blue" }
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 /**
  * Content Renderer Module
- * Loads content from JSON and renders it to the DOM
+ * Loads content from JSON Resume format and renders it to the DOM
  */
 
 const ContentRenderer = {
-    content: null,
+    resume: null,
 
     /**
      * Initialize the content renderer
@@ -19,21 +19,21 @@ const ContentRenderer = {
     },
 
     /**
-     * Load content from JSON file
+     * Load content from JSON Resume file
      */
     async loadContent() {
-        const response = await fetch('./data/content.json');
+        const response = await fetch('./resume.json');
         if (!response.ok) {
-            throw new Error(`Failed to load content: ${response.status}`);
+            throw new Error(`Failed to load resume: ${response.status}`);
         }
-        this.content = await response.json();
+        this.resume = await response.json();
     },
 
     /**
      * Render all content sections
      */
     renderAll() {
-        if (!this.content) return;
+        if (!this.resume) return;
         
         this.renderMeta();
         this.renderHero();
@@ -52,15 +52,16 @@ const ContentRenderer = {
      * Render meta tags (for dynamic updates if needed)
      */
     renderMeta() {
-        const { meta } = this.content;
-        document.title = meta.title;
+        const { custom } = this.resume;
+        document.title = custom.meta.title;
     },
 
     /**
      * Render hero section
      */
     renderHero() {
-        const { hero } = this.content;
+        const { basics, custom } = this.resume;
+        const { hero } = custom;
         
         // ASCII Logo
         const asciiLogo = document.querySelector('.ascii-logo');
@@ -68,25 +69,25 @@ const ContentRenderer = {
             asciiLogo.textContent = hero.asciiLogo;
         }
         
-        // Name
+        // Name - from JSON Resume basics
         const heroName = document.querySelector('.hero-name');
         if (heroName) {
-            heroName.textContent = hero.name;
+            heroName.textContent = basics.name;
         }
         
-        // Title
+        // Title - from JSON Resume basics
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
-            heroTitle.textContent = hero.title;
+            heroTitle.textContent = basics.label;
         }
         
-        // Tagline
+        // Tagline - from custom
         const heroTagline = document.querySelector('.hero-tagline');
         if (heroTagline) {
             heroTagline.textContent = hero.tagline;
         }
         
-        // Stats
+        // Stats - from custom
         const heroStats = document.querySelector('.hero-stats');
         if (heroStats) {
             heroStats.innerHTML = hero.stats.map(stat => `
@@ -102,28 +103,29 @@ const ContentRenderer = {
      * Render about section
      */
     renderAbout() {
-        const { about } = this.content;
+        const { basics, custom } = this.resume;
+        const { about } = custom;
         
-        // Profile image
+        // Profile image - from JSON Resume basics
         const profileImage = document.querySelector('.profile-image');
         if (profileImage) {
-            profileImage.src = about.profileImage;
-            profileImage.alt = this.content.hero.name;
+            profileImage.src = basics.image;
+            profileImage.alt = basics.name;
         }
         
-        // Headline
+        // Headline - from custom
         const aboutHeadline = document.querySelector('.about-text h2');
         if (aboutHeadline) {
             aboutHeadline.textContent = about.headline;
         }
         
-        // Bio
+        // Bio - from JSON Resume basics.summary
         const aboutBio = document.querySelector('.about-text p');
         if (aboutBio) {
-            aboutBio.textContent = about.bio;
+            aboutBio.textContent = basics.summary;
         }
         
-        // System Info
+        // System Info - from custom
         const systemInfoGrid = document.querySelector('.system-info-grid');
         if (systemInfoGrid) {
             systemInfoGrid.innerHTML = about.systemInfo.map(info => `
@@ -134,7 +136,7 @@ const ContentRenderer = {
             `).join('');
         }
         
-        // Interests
+        // Interests - from custom
         const interestsContent = document.querySelector('.interests-content');
         if (interestsContent) {
             interestsContent.innerHTML = about.interests.map(interest => `
@@ -148,7 +150,7 @@ const ContentRenderer = {
             `).join('');
         }
         
-        // Quote
+        // Quote - from custom
         const quoteText = document.querySelector('.quote-text');
         const quoteAuthor = document.querySelector('.quote-author');
         if (quoteText) {
@@ -160,26 +162,59 @@ const ContentRenderer = {
     },
 
     /**
+     * Format date from JSON Resume format (YYYY-MM) to display format
+     */
+    formatDateRange(startDate, endDate) {
+        const formatDate = (dateStr) => {
+            if (!dateStr) return 'Present';
+            const [year, month] = dateStr.split('-');
+            if (!month) return year;
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${months[parseInt(month) - 1]} ${year}`;
+        };
+        return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+    },
+
+    /**
      * Render experience section
      */
     renderExperience() {
-        const { experience } = this.content;
+        const { work, education } = this.resume;
         
         const experienceTree = document.querySelector('.experience-tree');
         if (experienceTree) {
-            experienceTree.innerHTML = experience.map(exp => `
+            // Render work experience
+            const workItems = work.map(exp => `
                 <article class="tree-node">
-                    <div class="node-date">${exp.date}</div>
-                    <h3 class="node-title">${exp.title}</h3>
-                    <div class="node-company">${exp.company}</div>
+                    <div class="node-date">${this.formatDateRange(exp.startDate, exp.endDate)}</div>
+                    <h3 class="node-title">${exp.position}</h3>
+                    <div class="node-company">${exp.name}</div>
                     <ul class="node-highlights">
                         ${exp.highlights.map(h => `<li>${h}</li>`).join('')}
                     </ul>
                     <div class="tool-tags">
-                        ${exp.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                        ${(exp.keywords || []).map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
                     </div>
                 </article>
             `).join('');
+
+            // Render education
+            const educationItems = education.map(edu => `
+                <article class="tree-node">
+                    <div class="node-date">${this.formatDateRange(edu.startDate, edu.endDate)}</div>
+                    <h3 class="node-title">${edu.studyType} ${edu.area}</h3>
+                    <div class="node-company">${edu.institution}</div>
+                    <ul class="node-highlights">
+                        ${(edu.courses || []).map(c => `<li>${c}</li>`).join('')}
+                    </ul>
+                    <div class="tool-tags">
+                        ${['blockchain', 'smart-contract', 'ieee'].map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                    </div>
+                </article>
+            `).join('');
+
+            experienceTree.innerHTML = workItems + educationItems;
         }
     },
 
@@ -187,7 +222,7 @@ const ContentRenderer = {
      * Render services section
      */
     renderServices() {
-        const { services } = this.content;
+        const { services } = this.resume.custom;
         
         const servicesGrid = document.querySelector('.services-grid');
         if (servicesGrid) {
@@ -219,7 +254,7 @@ const ContentRenderer = {
      * Render skills section
      */
     renderSkills() {
-        const { skills } = this.content;
+        const { skills } = this.resume.custom;
         
         const skillsTree = document.querySelector('.skills-tree');
         if (skillsTree) {
@@ -282,35 +317,38 @@ const ContentRenderer = {
      * Render portfolio section
      */
     renderPortfolio() {
-        const { portfolio } = this.content;
+        const { projects, custom } = this.resume;
+        const { portfolio } = custom;
         
         const portfolioGrid = document.querySelector('.portfolio-grid');
         if (portfolioGrid) {
-            portfolioGrid.innerHTML = portfolio.map(project => {
+            portfolioGrid.innerHTML = projects.map(project => {
                 if (project.type === 'infrastructure') {
+                    const visual = portfolio.gradients[project.name] || { gradient: 'gradient-k8s', icon: 'las la-server' };
                     return `
                         <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                            <div class="portfolio-gradient ${project.gradient}">
-                                <i class="${project.icon} gradient-icon" aria-hidden="true"></i>
+                            <div class="portfolio-gradient ${visual.gradient}">
+                                <i class="${visual.icon} gradient-icon" aria-hidden="true"></i>
                             </div>
                             <div class="portfolio-info">
-                                <h3>${project.title}</h3>
+                                <h3>${project.name}</h3>
                                 <p>${project.description}</p>
                                 <div class="portfolio-tags">
-                                    ${project.tags.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
+                                    ${project.highlights.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
                                 </div>
                             </div>
                         </a>
                     `;
                 } else {
+                    const image = portfolio.images[project.name] || './assets/images/me.webp';
                     return `
                         <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                            <img src="${project.image}" alt="${project.title} screenshot" class="portfolio-image" loading="lazy">
+                            <img src="${image}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                             <div class="portfolio-info">
-                                <h3>${project.title}</h3>
+                                <h3>${project.name}</h3>
                                 <p>${project.description}</p>
                                 <div class="portfolio-tags">
-                                    ${project.tags.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
+                                    ${project.highlights.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
                                 </div>
                             </div>
                         </a>
@@ -321,10 +359,19 @@ const ContentRenderer = {
     },
 
     /**
+     * Get icon class for social network
+     */
+    getSocialIcon(network) {
+        const { socialIcons } = this.resume.custom.contact;
+        return socialIcons[network] || 'las la-link';
+    },
+
+    /**
      * Render contact section
      */
     renderContact() {
-        const { contact } = this.content;
+        const { basics, custom } = this.resume;
+        const { contact } = custom;
         
         // Header
         const contactHeader = document.querySelector('.contact-header h2');
@@ -343,14 +390,23 @@ const ContentRenderer = {
             contactForm.action = contact.formAction;
         }
         
-        // Social links
+        // Social links - from JSON Resume basics.profiles
         const socialLinks = document.querySelector('.social-links');
         if (socialLinks) {
-            socialLinks.innerHTML = contact.socialLinks.map(link => `
-                <a href="${link.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${link.platform}">
-                    <i class="${link.icon}" aria-hidden="true"></i>
+            const profileLinks = basics.profiles.map(profile => `
+                <a href="${profile.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${profile.network}">
+                    <i class="${this.getSocialIcon(profile.network)}" aria-hidden="true"></i>
                 </a>
             `).join('');
+            
+            // Add email link
+            const emailLink = `
+                <a href="mailto:${basics.email}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Email">
+                    <i class="${this.getSocialIcon('email')}" aria-hidden="true"></i>
+                </a>
+            `;
+            
+            socialLinks.innerHTML = profileLinks + emailLink;
         }
     },
 
@@ -358,13 +414,17 @@ const ContentRenderer = {
      * Render footer
      */
     renderFooter() {
-        const { footer } = this.content;
+        const { basics, custom } = this.resume;
+        const { footer } = custom;
         
+        // Location - from JSON Resume basics.location
         const footerLocation = document.querySelector('.footer-location');
         if (footerLocation) {
-            footerLocation.innerHTML = `<i class="las la-map-marker" aria-hidden="true"></i>${footer.location}`;
+            const location = `${basics.location.city}, ${basics.location.region}`;
+            footerLocation.innerHTML = `<i class="las la-map-marker" aria-hidden="true"></i>${location}`;
         }
         
+        // Copyright - from custom
         const footerCopyright = document.querySelector('.terminal-footer > p:nth-child(2)');
         if (footerCopyright) {
             footerCopyright.textContent = `© ${footer.copyright}`;
@@ -375,7 +435,7 @@ const ContentRenderer = {
      * Render commands for help modal
      */
     renderCommands() {
-        const { commands } = this.content;
+        const { commands } = this.resume.custom;
         
         const helpCommands = document.querySelector('.help-commands:not(.theme-list)');
         if (helpCommands) {
@@ -392,7 +452,7 @@ const ContentRenderer = {
      * Render themes for theme modal
      */
     renderThemes() {
-        const { themes } = this.content;
+        const { themes } = this.resume.custom;
         
         const themeList = document.querySelector('.theme-list');
         if (themeList) {
