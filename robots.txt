@@ -15,5 +15,5 @@ User-agent: Bingbot
 Allow: /
 
 # Point crawlers to the structured data
-# Content is dynamically loaded from /data/content.json
+# Content is dynamically loaded from /resume.json + /resume.overlay.json
 # but all SEO-critical information is in structured data (JSON-LD)

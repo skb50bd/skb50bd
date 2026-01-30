@@ -3,8 +3,8 @@
  * Build Script for Portfolio
  *
  * This script generates a pre-rendered version of the site for SEO optimization.
- * It reads content.json and injects it directly into the HTML as a fallback
- * for crawlers that don't execute JavaScript.
+ * It reads resume.json + resume.overlay.json and injects content directly into
+ * the HTML as a fallback for crawlers that don't execute JavaScript.
  *
  * Usage: node build.js
  *
@@ -18,7 +18,8 @@ const path = require('path');
 
 // Configuration
 const CONFIG = {
-    contentFile: './data/content.json',
+    resumeFile: './resume.json',
+    overlayFile: './resume.overlay.json',
     templateFile: './index.html',
     sitemapFile: './sitemap.xml',
     outputDir: process.argv.includes('--output')
@@ -28,11 +29,79 @@ const CONFIG = {
 };
 
 /**
- * Load JSON content
+ * Deep merge two objects, with source overriding target
+ * Arrays are merged by index (source[i] extends target[i])
+ */
+function deepMerge(target, source) {
+    if (!source) return target;
+    if (!target) return source;
+
+    const result = { ...target };
+
+    for (const key of Object.keys(source)) {
+        if (source[key] === null || source[key] === undefined) {
+            continue;
+        }
+
+        if (Array.isArray(source[key]) && Array.isArray(target[key])) {
+            // Merge arrays by index
+            result[key] = target[key].map((item, index) => {
+                if (source[key][index]) {
+                    if (typeof item === 'object' && typeof source[key][index] === 'object') {
+                        return deepMerge(item, source[key][index]);
+                    }
+                    return source[key][index];
+                }
+                return item;
+            });
+            // Add any extra items from source
+            if (source[key].length > target[key].length) {
+                result[key] = result[key].concat(source[key].slice(target[key].length));
+            }
+        } else if (typeof source[key] === 'object' && typeof target[key] === 'object' && !Array.isArray(source[key])) {
+            // Deep merge objects
+            result[key] = deepMerge(target[key], source[key]);
+        } else {
+            // Override with source value
+            result[key] = source[key];
+        }
+    }
+
+    return result;
+}
+
+/**
+ * Load and merge JSON Resume + overlay
  */
 function loadContent() {
-    const contentPath = path.resolve(CONFIG.contentFile);
-    return JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+    // Load base resume
+    const resumePath = path.resolve(CONFIG.resumeFile);
+    const baseResume = JSON.parse(fs.readFileSync(resumePath, 'utf8'));
+
+    // Load overlay (optional)
+    let overlay = {};
+    const overlayPath = path.resolve(CONFIG.overlayFile);
+    if (fs.existsSync(overlayPath)) {
+        overlay = JSON.parse(fs.readFileSync(overlayPath, 'utf8'));
+    }
+
+    // Merge and return
+    return deepMerge(baseResume, overlay);
+}
+
+/**
+ * Format date from JSON Resume format (YYYY-MM) to display format
+ */
+function formatDateRange(startDate, endDate) {
+    const formatDate = (dateStr) => {
+        if (!dateStr) return 'Present';
+        const [year, month] = dateStr.split('-');
+        if (!month) return year;
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${months[parseInt(month) - 1]} ${year}`;
+    };
+    return `${formatDate(startDate)} - ${formatDate(endDate)}`;
 }
 
 /**
@@ -49,15 +118,17 @@ function generateLevelDots(level) {
 /**
  * Generate hero section HTML
  */
-function generateHeroHTML(content) {
-    const { hero } = content;
+function generateHeroHTML(resume) {
+    const { basics, ui } = resume;
+    const hero = ui?.hero || {};
+
     return `
-        <pre class="ascii-logo" aria-hidden="true">${hero.asciiLogo}</pre>
-        <h1 class="hero-name">${hero.name}</h1>
-        <p class="hero-title">${hero.title}</p>
-        <p class="hero-tagline">${hero.tagline}</p>
+        <pre class="ascii-logo" aria-hidden="true">${hero.asciiLogo || ''}</pre>
+        <h1 class="hero-name">${basics.name}</h1>
+        <p class="hero-title">${basics.label}</p>
+        <p class="hero-tagline">${hero.tagline || ''}</p>
         <div class="hero-stats">
-            ${hero.stats.map(stat => `
+            ${(hero.stats || []).map(stat => `
                 <div class="stat-item">
                     <div class="stat-value">${stat.value}</div>
                     <div class="stat-label">${stat.label}</div>
@@ -74,19 +145,22 @@ function generateHeroHTML(content) {
 /**
  * Generate about section HTML
  */
-function generateAboutHTML(content) {
-    const { about, hero } = content;
+function generateAboutHTML(resume) {
+    const { basics, ui } = resume;
+    const about = ui?.about || {};
+
     return {
-        profileImage: about.profileImage,
-        headline: about.headline,
-        bio: about.bio,
-        systemInfo: about.systemInfo.map(info => `
+        profileImage: basics.image,
+        name: basics.name,
+        headline: about.headline || '',
+        bio: basics.summary,
+        systemInfo: (about.systemInfo || []).map(info => `
             <div class="info-block">
                 <div class="info-label">${info.label}</div>
                 <div class="info-value">${info.value}</div>
             </div>
         `).join(''),
-        interests: about.interests.map(interest => `
+        interests: (about.interests || []).map(interest => `
             <div class="interest-item">
                 <span class="interest-icon">${interest.icon}</span>
                 <div class="interest-text">
@@ -95,36 +169,55 @@ function generateAboutHTML(content) {
                 </div>
             </div>
         `).join(''),
-        quote: `"${about.quote.text}"`,
-        quoteAuthor: `— ${about.quote.author}`
+        quote: about.quote ? `"${about.quote.text}"` : '',
+        quoteAuthor: about.quote ? `— ${about.quote.author}` : ''
     };
 }
 
 /**
  * Generate experience section HTML
  */
-function generateExperienceHTML(content) {
-    const { experience } = content;
-    return experience.map(exp => `
+function generateExperienceHTML(resume) {
+    const { work, education } = resume;
+
+    // Work experience
+    const workItems = work.map(exp => `
         <article class="tree-node">
-            <div class="node-date">${exp.date}</div>
-            <h3 class="node-title">${exp.title}</h3>
-            <div class="node-company">${exp.company}</div>
+            <div class="node-date">${formatDateRange(exp.startDate, exp.endDate)}</div>
+            <h3 class="node-title">${exp.position}</h3>
+            <div class="node-company">${exp.name}</div>
             <ul class="node-highlights">
                 ${exp.highlights.map(h => `<li>${h}</li>`).join('')}
             </ul>
             <div class="tool-tags">
-                ${exp.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                ${(exp.keywords || []).map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
             </div>
         </article>
     `).join('');
+
+    // Education
+    const educationItems = education.map(edu => `
+        <article class="tree-node">
+            <div class="node-date">${formatDateRange(edu.startDate, edu.endDate)}</div>
+            <h3 class="node-title">${edu.studyType} ${edu.area}</h3>
+            <div class="node-company">${edu.institution}</div>
+            <ul class="node-highlights">
+                ${(edu.highlights || []).map(h => `<li>${h}</li>`).join('')}
+            </ul>
+            <div class="tool-tags">
+                ${(edu.keywords || []).map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+            </div>
+        </article>
+    `).join('');
+
+    return workItems + educationItems;
 }
 
 /**
  * Generate services section HTML
  */
-function generateServicesHTML(content) {
-    const { services } = content;
+function generateServicesHTML(resume) {
+    const services = resume.ui?.services || [];
     return services.map(service => `
         <article class="service-card">
             <div class="service-header">
@@ -140,8 +233,10 @@ function generateServicesHTML(content) {
 /**
  * Generate skills section HTML
  */
-function generateSkillsHTML(content) {
-    const { skills } = content;
+function generateSkillsHTML(resume) {
+    const skills = resume.ui?.skills;
+    if (!skills) return { skillsTree: '', summary: '' };
+
     const categories = skills.categories;
     const lastIndex = categories.length - 1;
 
@@ -196,20 +291,20 @@ function generateSkillsHTML(content) {
 /**
  * Generate portfolio section HTML
  */
-function generatePortfolioHTML(content) {
-    const { portfolio } = content;
-    return portfolio.map(project => {
+function generatePortfolioHTML(resume) {
+    const { projects } = resume;
+    return projects.map(project => {
         if (project.type === 'infrastructure') {
             return `
                 <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                    <div class="portfolio-gradient ${project.gradient}">
-                        <i class="${project.icon} gradient-icon" aria-hidden="true"></i>
+                    <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
+                        <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                     </div>
                     <div class="portfolio-info">
-                        <h3>${project.title}</h3>
+                        <h3>${project.name}</h3>
                         <p>${project.description}</p>
                         <div class="portfolio-tags">
-                            ${project.tags.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
+                            ${project.highlights.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
                         </div>
                     </div>
                 </a>
@@ -217,12 +312,12 @@ function generatePortfolioHTML(content) {
         } else {
             return `
                 <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                    <img src="${project.image}" alt="${project.title} screenshot" class="portfolio-image" loading="lazy">
+                    <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                     <div class="portfolio-info">
-                        <h3>${project.title}</h3>
+                        <h3>${project.name}</h3>
                         <p>${project.description}</p>
                         <div class="portfolio-tags">
-                            ${project.tags.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
+                            ${project.highlights.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('')}
                         </div>
                     </div>
                 </a>
@@ -232,27 +327,47 @@ function generatePortfolioHTML(content) {
 }
 
 /**
+ * Get icon class for social network
+ */
+function getSocialIcon(network, resume) {
+    const socialIcons = resume.ui?.contact?.socialIcons || {};
+    return socialIcons[network] || 'las la-link';
+}
+
+/**
  * Generate contact section HTML
  */
-function generateContactHTML(content) {
-    const { contact } = content;
+function generateContactHTML(resume) {
+    const { basics, ui } = resume;
+    const contact = ui?.contact || {};
+
+    // Social links from JSON Resume basics.profiles
+    const socialLinks = basics.profiles.map(profile => `
+        <a href="${profile.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${profile.network}">
+            <i class="${getSocialIcon(profile.network, resume)}" aria-hidden="true"></i>
+        </a>
+    `).join('');
+
+    // Add email link
+    const emailLink = `
+        <a href="mailto:${basics.email}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Email">
+            <i class="${getSocialIcon('email', resume)}" aria-hidden="true"></i>
+        </a>
+    `;
+
     return {
-        heading: contact.heading,
-        subheading: contact.subheading,
-        formAction: contact.formAction,
-        socialLinks: contact.socialLinks.map(link => `
-            <a href="${link.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${link.platform}">
-                <i class="${link.icon}" aria-hidden="true"></i>
-            </a>
-        `).join('')
+        heading: contact.heading || '',
+        subheading: contact.subheading || '',
+        formAction: contact.formAction || '',
+        socialLinks: socialLinks + emailLink
     };
 }
 
 /**
  * Generate commands HTML
  */
-function generateCommandsHTML(content) {
-    const { commands } = content;
+function generateCommandsHTML(resume) {
+    const commands = resume.ui?.commands || [];
     return commands.map(cmd => `
         <li>
             <span class="cmd-name">${cmd.name}</span>
@@ -264,8 +379,8 @@ function generateCommandsHTML(content) {
 /**
  * Generate themes HTML
  */
-function generateThemesHTML(content) {
-    const { themes } = content;
+function generateThemesHTML(resume) {
+    const themes = resume.ui?.themes || [];
     return {
         themeList: themes.map(theme => `
             <li>
@@ -282,19 +397,24 @@ function generateThemesHTML(content) {
 /**
  * Build the pre-rendered HTML
  */
-function buildHTML(content) {
+function buildHTML(resume) {
     let html = fs.readFileSync(CONFIG.templateFile, 'utf8');
 
     // Generate all content
-    const heroHTML = generateHeroHTML(content);
-    const aboutData = generateAboutHTML(content);
-    const experienceHTML = generateExperienceHTML(content);
-    const servicesHTML = generateServicesHTML(content);
-    const skillsData = generateSkillsHTML(content);
-    const portfolioHTML = generatePortfolioHTML(content);
-    const contactData = generateContactHTML(content);
-    const commandsHTML = generateCommandsHTML(content);
-    const themesData = generateThemesHTML(content);
+    const heroHTML = generateHeroHTML(resume);
+    const aboutData = generateAboutHTML(resume);
+    const experienceHTML = generateExperienceHTML(resume);
+    const servicesHTML = generateServicesHTML(resume);
+    const skillsData = generateSkillsHTML(resume);
+    const portfolioHTML = generatePortfolioHTML(resume);
+    const contactData = generateContactHTML(resume);
+    const commandsHTML = generateCommandsHTML(resume);
+    const themesData = generateThemesHTML(resume);
+
+    // Footer data
+    const { basics, ui } = resume;
+    const footer = ui?.footer || {};
+    const location = `${basics.location.city}, ${basics.location.region}`;
 
     // Replace hero section
     html = html.replace(
@@ -305,7 +425,7 @@ function buildHTML(content) {
     // Replace about profile image
     html = html.replace(
         /<img class="profile-image" src="" alt="">/,
-        `<img class="profile-image" src="${aboutData.profileImage}" alt="${content.hero.name}">`
+        `<img class="profile-image" src="${aboutData.profileImage}" alt="${aboutData.name}">`
     );
 
     // Replace about headline
@@ -393,11 +513,11 @@ function buildHTML(content) {
     // Replace footer
     html = html.replace(
         /<p class="footer-location">\s*<i class="las la-map-marker" aria-hidden="true"><\/i>\s*<\/p>/,
-        `<p class="footer-location"><i class="las la-map-marker" aria-hidden="true"></i>${content.footer.location}</p>`
+        `<p class="footer-location"><i class="las la-map-marker" aria-hidden="true"></i>${location}</p>`
     );
     html = html.replace(
         /<footer class="terminal-footer">\s*<p class="footer-location">[^<]*<\/p>\s*<p><\/p>/m,
-        `<footer class="terminal-footer"><p class="footer-location"><i class="las la-map-marker" aria-hidden="true"></i>${content.footer.location}</p><p>© ${content.footer.copyright}</p>`
+        `<footer class="terminal-footer"><p class="footer-location"><i class="las la-map-marker" aria-hidden="true"></i>${location}</p><p>© ${footer.copyright || ''}</p>`
     );
 
     // Replace help commands
@@ -439,12 +559,12 @@ function build() {
     console.log('🔨 Building pre-rendered portfolio...\n');
 
     // Load content
-    console.log('📄 Loading content.json...');
-    const content = loadContent();
+    console.log('📄 Loading resume.json + overlay...');
+    const resume = loadContent();
 
     // Build HTML
     console.log('🏗️  Generating pre-rendered HTML...');
-    const html = buildHTML(content);
+    const html = buildHTML(resume);
 
     // Create output directory
     if (!fs.existsSync(CONFIG.outputDir)) {
@@ -457,7 +577,7 @@ function build() {
     console.log(`✓ Wrote pre-rendered HTML to ${outputPath}`);
 
     // Copy assets
-    const assetDirs = ['css', 'js', 'assets', 'data'];
+    const assetDirs = ['css', 'js', 'assets'];
     assetDirs.forEach(dir => {
         const src = path.resolve(dir);
         const dest = path.join(CONFIG.outputDir, dir);
@@ -468,7 +588,7 @@ function build() {
     });
 
     // Copy root files
-    const rootFiles = ['robots.txt', 'sitemap.xml', 'favicon.ico'];
+    const rootFiles = ['robots.txt', 'sitemap.xml', 'favicon.ico', 'resume.json', 'resume.overlay.json'];
     rootFiles.forEach(file => {
         const src = path.resolve(file);
         const dest = path.join(CONFIG.outputDir, file);

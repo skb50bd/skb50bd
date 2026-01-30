@@ -1,6 +1,6 @@
 /**
  * Content Renderer Module
- * Loads content from JSON Resume format and renders it to the DOM
+ * Loads content from JSON Resume + overlay and renders it to the DOM
  */
 
 const ContentRenderer = {
@@ -19,14 +19,71 @@ const ContentRenderer = {
     },
 
     /**
-     * Load content from JSON Resume file
+     * Deep merge two objects, with source overriding target
+     * Arrays are merged by index (source[i] extends target[i])
+     */
+    deepMerge(target, source) {
+        if (!source) return target;
+        if (!target) return source;
+
+        const result = { ...target };
+
+        for (const key of Object.keys(source)) {
+            if (source[key] === null || source[key] === undefined) {
+                continue;
+            }
+
+            if (Array.isArray(source[key]) && Array.isArray(target[key])) {
+                // Merge arrays by index
+                result[key] = target[key].map((item, index) => {
+                    if (source[key][index]) {
+                        if (typeof item === 'object' && typeof source[key][index] === 'object') {
+                            return this.deepMerge(item, source[key][index]);
+                        }
+                        return source[key][index];
+                    }
+                    return item;
+                });
+                // Add any extra items from source
+                if (source[key].length > target[key].length) {
+                    result[key] = result[key].concat(source[key].slice(target[key].length));
+                }
+            } else if (typeof source[key] === 'object' && typeof target[key] === 'object' && !Array.isArray(source[key])) {
+                // Deep merge objects
+                result[key] = this.deepMerge(target[key], source[key]);
+            } else {
+                // Override with source value
+                result[key] = source[key];
+            }
+        }
+
+        return result;
+    },
+
+    /**
+     * Load content from JSON Resume file + overlay
      */
     async loadContent() {
-        const response = await fetch('./resume.json');
-        if (!response.ok) {
-            throw new Error(`Failed to load resume: ${response.status}`);
+        // Load base resume
+        const resumeResponse = await fetch('./resume.json');
+        if (!resumeResponse.ok) {
+            throw new Error(`Failed to load resume: ${resumeResponse.status}`);
         }
-        this.resume = await response.json();
+        const baseResume = await resumeResponse.json();
+
+        // Load overlay (optional - don't fail if missing)
+        let overlay = {};
+        try {
+            const overlayResponse = await fetch('./resume.overlay.json');
+            if (overlayResponse.ok) {
+                overlay = await overlayResponse.json();
+            }
+        } catch (e) {
+            console.warn('No overlay file found, using base resume only');
+        }
+
+        // Merge overlay onto base
+        this.resume = this.deepMerge(baseResume, overlay);
     },
 
     /**
@@ -52,20 +109,22 @@ const ContentRenderer = {
      * Render meta tags (for dynamic updates if needed)
      */
     renderMeta() {
-        const { custom } = this.resume;
-        document.title = custom.meta.title;
+        const { ui } = this.resume;
+        if (ui?.meta?.title) {
+            document.title = ui.meta.title;
+        }
     },
 
     /**
      * Render hero section
      */
     renderHero() {
-        const { basics, custom } = this.resume;
-        const { hero } = custom;
+        const { basics, ui } = this.resume;
+        const hero = ui?.hero || {};
         
         // ASCII Logo
         const asciiLogo = document.querySelector('.ascii-logo');
-        if (asciiLogo) {
+        if (asciiLogo && hero.asciiLogo) {
             asciiLogo.textContent = hero.asciiLogo;
         }
         
@@ -81,15 +140,15 @@ const ContentRenderer = {
             heroTitle.textContent = basics.label;
         }
         
-        // Tagline - from custom
+        // Tagline - from overlay
         const heroTagline = document.querySelector('.hero-tagline');
-        if (heroTagline) {
+        if (heroTagline && hero.tagline) {
             heroTagline.textContent = hero.tagline;
         }
         
-        // Stats - from custom
+        // Stats - from overlay
         const heroStats = document.querySelector('.hero-stats');
-        if (heroStats) {
+        if (heroStats && hero.stats) {
             heroStats.innerHTML = hero.stats.map(stat => `
                 <div class="stat-item">
                     <div class="stat-value">${stat.value}</div>
@@ -103,8 +162,8 @@ const ContentRenderer = {
      * Render about section
      */
     renderAbout() {
-        const { basics, custom } = this.resume;
-        const { about } = custom;
+        const { basics, ui } = this.resume;
+        const about = ui?.about || {};
         
         // Profile image - from JSON Resume basics
         const profileImage = document.querySelector('.profile-image');
@@ -113,9 +172,9 @@ const ContentRenderer = {
             profileImage.alt = basics.name;
         }
         
-        // Headline - from custom
+        // Headline - from overlay
         const aboutHeadline = document.querySelector('.about-text h2');
-        if (aboutHeadline) {
+        if (aboutHeadline && about.headline) {
             aboutHeadline.textContent = about.headline;
         }
         
@@ -125,9 +184,9 @@ const ContentRenderer = {
             aboutBio.textContent = basics.summary;
         }
         
-        // System Info - from custom
+        // System Info - from overlay
         const systemInfoGrid = document.querySelector('.system-info-grid');
-        if (systemInfoGrid) {
+        if (systemInfoGrid && about.systemInfo) {
             systemInfoGrid.innerHTML = about.systemInfo.map(info => `
                 <div class="info-block">
                     <div class="info-label">${info.label}</div>
@@ -136,9 +195,9 @@ const ContentRenderer = {
             `).join('');
         }
         
-        // Interests - from custom
+        // Interests - from overlay
         const interestsContent = document.querySelector('.interests-content');
-        if (interestsContent) {
+        if (interestsContent && about.interests) {
             interestsContent.innerHTML = about.interests.map(interest => `
                 <div class="interest-item">
                     <span class="interest-icon">${interest.icon}</span>
@@ -150,13 +209,13 @@ const ContentRenderer = {
             `).join('');
         }
         
-        // Quote - from custom
+        // Quote - from overlay
         const quoteText = document.querySelector('.quote-text');
         const quoteAuthor = document.querySelector('.quote-author');
-        if (quoteText) {
+        if (quoteText && about.quote) {
             quoteText.textContent = `"${about.quote.text}"`;
         }
-        if (quoteAuthor) {
+        if (quoteAuthor && about.quote) {
             quoteAuthor.textContent = `— ${about.quote.author}`;
         }
     },
@@ -206,10 +265,10 @@ const ContentRenderer = {
                     <h3 class="node-title">${edu.studyType} ${edu.area}</h3>
                     <div class="node-company">${edu.institution}</div>
                     <ul class="node-highlights">
-                        ${(edu.courses || []).map(c => `<li>${c}</li>`).join('')}
+                        ${(edu.highlights || []).map(h => `<li>${h}</li>`).join('')}
                     </ul>
                     <div class="tool-tags">
-                        ${['blockchain', 'smart-contract', 'ieee'].map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                        ${(edu.keywords || []).map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
                     </div>
                 </article>
             `).join('');
@@ -222,7 +281,8 @@ const ContentRenderer = {
      * Render services section
      */
     renderServices() {
-        const { services } = this.resume.custom;
+        const services = this.resume.ui?.services;
+        if (!services) return;
         
         const servicesGrid = document.querySelector('.services-grid');
         if (servicesGrid) {
@@ -254,7 +314,8 @@ const ContentRenderer = {
      * Render skills section
      */
     renderSkills() {
-        const { skills } = this.resume.custom;
+        const skills = this.resume.ui?.skills;
+        if (!skills) return;
         
         const skillsTree = document.querySelector('.skills-tree');
         if (skillsTree) {
@@ -303,7 +364,7 @@ const ContentRenderer = {
         
         // Skills summary
         const skillsSummary = document.querySelector('.skills-summary');
-        if (skillsSummary) {
+        if (skillsSummary && skills.summary) {
             const { summary } = skills;
             skillsSummary.innerHTML = `
                 <span>Total: <code>${summary.totalTechnologies} technologies</code></span>
@@ -317,18 +378,16 @@ const ContentRenderer = {
      * Render portfolio section
      */
     renderPortfolio() {
-        const { projects, custom } = this.resume;
-        const { portfolio } = custom;
+        const { projects } = this.resume;
         
         const portfolioGrid = document.querySelector('.portfolio-grid');
         if (portfolioGrid) {
             portfolioGrid.innerHTML = projects.map(project => {
                 if (project.type === 'infrastructure') {
-                    const visual = portfolio.gradients[project.name] || { gradient: 'gradient-k8s', icon: 'las la-server' };
                     return `
                         <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                            <div class="portfolio-gradient ${visual.gradient}">
-                                <i class="${visual.icon} gradient-icon" aria-hidden="true"></i>
+                            <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
+                                <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                             </div>
                             <div class="portfolio-info">
                                 <h3>${project.name}</h3>
@@ -340,10 +399,9 @@ const ContentRenderer = {
                         </a>
                     `;
                 } else {
-                    const image = portfolio.images[project.name] || './assets/images/me.webp';
                     return `
                         <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-                            <img src="${image}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
+                            <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                             <div class="portfolio-info">
                                 <h3>${project.name}</h3>
                                 <p>${project.description}</p>
@@ -362,7 +420,7 @@ const ContentRenderer = {
      * Get icon class for social network
      */
     getSocialIcon(network) {
-        const { socialIcons } = this.resume.custom.contact;
+        const socialIcons = this.resume.ui?.contact?.socialIcons || {};
         return socialIcons[network] || 'las la-link';
     },
 
@@ -370,23 +428,23 @@ const ContentRenderer = {
      * Render contact section
      */
     renderContact() {
-        const { basics, custom } = this.resume;
-        const { contact } = custom;
+        const { basics, ui } = this.resume;
+        const contact = ui?.contact || {};
         
         // Header
         const contactHeader = document.querySelector('.contact-header h2');
-        if (contactHeader) {
+        if (contactHeader && contact.heading) {
             contactHeader.textContent = contact.heading;
         }
         
         const contactSubheader = document.querySelector('.contact-header p');
-        if (contactSubheader) {
+        if (contactSubheader && contact.subheading) {
             contactSubheader.textContent = contact.subheading;
         }
         
         // Form action
         const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
+        if (contactForm && contact.formAction) {
             contactForm.action = contact.formAction;
         }
         
@@ -414,8 +472,8 @@ const ContentRenderer = {
      * Render footer
      */
     renderFooter() {
-        const { basics, custom } = this.resume;
-        const { footer } = custom;
+        const { basics, ui } = this.resume;
+        const footer = ui?.footer || {};
         
         // Location - from JSON Resume basics.location
         const footerLocation = document.querySelector('.footer-location');
@@ -424,9 +482,9 @@ const ContentRenderer = {
             footerLocation.innerHTML = `<i class="las la-map-marker" aria-hidden="true"></i>${location}`;
         }
         
-        // Copyright - from custom
+        // Copyright - from overlay
         const footerCopyright = document.querySelector('.terminal-footer > p:nth-child(2)');
-        if (footerCopyright) {
+        if (footerCopyright && footer.copyright) {
             footerCopyright.textContent = `© ${footer.copyright}`;
         }
     },
@@ -435,7 +493,8 @@ const ContentRenderer = {
      * Render commands for help modal
      */
     renderCommands() {
-        const { commands } = this.resume.custom;
+        const commands = this.resume.ui?.commands;
+        if (!commands) return;
         
         const helpCommands = document.querySelector('.help-commands:not(.theme-list)');
         if (helpCommands) {
@@ -452,7 +511,8 @@ const ContentRenderer = {
      * Render themes for theme modal
      */
     renderThemes() {
-        const { themes } = this.resume.custom;
+        const themes = this.resume.ui?.themes;
+        if (!themes) return;
         
         const themeList = document.querySelector('.theme-list');
         if (themeList) {
