@@ -36,7 +36,7 @@
       "position": "IT Consultant",
       "url": "https://sportsverse.bd",
       "startDate": "2026-01",
-      "summary": "Revolutionize the customer experience of an early stage sports accessories platform in Bangladesh by adapting the cutting edge technologies and best practices.",
+      "summary": "Helping a growing sports accessories brand in Bangladesh modernize their tech stack and deliver a fast, reliable shopping experience from day one.",
       "highlights": [
         "Rearchitected an old and unmaintainable WordPress site into a modern React, ASP.NET Core and PostgreSQL based platform",
         "Improved the SEO ranking of the website by implementing SEO best practices",
@@ -49,7 +49,7 @@
       "position": "IT Consultant",
       "url": "https://samimstutorial.com",
       "startDate": "2025-10",
-      "summary": "Spearheading the IT infrastructure and digital transformation of a leading educational institution in Bangladesh, Samim's Tutorial. Architecting and deploying scalable, secure, and cost-effective solutions to support their mission of providing quality education to students.",
+      "summary": "Leading the digital transformation of one of Bangladesh's prominent educational institutions — replacing manual processes with purpose-built software and reliable infrastructure.",
       "highlights": [
         "Transformed the unorganized, paper-based admission and class management system into a streamlined, digital ecosystem",
         "Implemented a robust, multi-layered security architecture to safeguard sensitive student data and institutional assets",
@@ -63,7 +63,7 @@
       "position": "Infrastructure Engineer",
       "url": "https://chaldal.tech",
       "startDate": "2023-01",
-      "summary": "Designing and operating high-availability on-prem Kubernetes platform with production-grade reliability, security architecture, and observability.",
+      "summary": "Own the on-prem Kubernetes platform end-to-end — from bare metal to production workloads — with a focus on uptime, security, and operational simplicity.",
       "highlights": [
         "Designed and operated a highly-available on-prem Kubernetes platform with production-grade reliability",
         "Hardened network and access controls with pragmatic security architecture and compliance-minded defaults",
@@ -78,7 +78,7 @@
       "url": "https://chaldal.tech",
       "startDate": "2022-01",
       "endDate": "2022-12",
-      "summary": "Led delivery of last-mile routing system and improved inventory system performance through profiling and optimization.",
+      "summary": "Took ownership of high-impact delivery projects — from building a last-mile routing system to measurably improving inventory performance.",
       "highlights": [
         "Delivered a last-mile routing system that improved delivery efficiency and operational decision-making",
         "Improved inventory system performance by 20% through profiling, query optimization, and caching strategy",
@@ -91,7 +91,7 @@
       "url": "https://chaldal.tech",
       "startDate": "2021-01",
       "endDate": "2021-12",
-      "summary": "Shipped 40+ customer-facing features with instrumentation and production accountability while mentoring junior engineers.",
+      "summary": "Shipped dozens of customer-facing features with production accountability, while mentoring teammates and raising the bar on engineering quality.",
       "highlights": [
         "Shipped 40+ customer-facing features with instrumentation, performance monitoring, and production accountability",
         "Mentored junior engineers through pairing, design guidance, and actionable code reviews",
@@ -104,7 +104,7 @@
       "url": "https://chaldal.tech",
       "startDate": "2020-04",
       "endDate": "2020-12",
-      "summary": "Delivered 30+ features in inventory workflows with focus on correctness and maintainability.",
+      "summary": "Hit the ground running — delivered 30+ features in inventory workflows, earning trust through consistent, high-quality work.",
       "highlights": [
         "Delivered 30+ features in inventory workflows with a focus on correctness, clarity, and maintainability",
         "Improved system efficiency by reducing expensive operations and tightening critical code paths"
@@ -115,7 +115,7 @@
       "position": "Fullstack Developer",
       "startDate": "2018-01",
       "endDate": "2019-12",
-      "summary": "Built end-to-end ERP solutions and a University Management System with role-based access and operational reporting.",
+      "summary": "Built real-world ERP and university management systems from scratch — owning the full stack from data modeling to deployment.",
       "highlights": [
         "Built and delivered end-to-end ERP solutions—data modeling, workflows, reporting, and deployment",
         "Designed and implemented a University Management System with role-based access and operational reporting"
@@ -136,13 +136,13 @@
       "name": "Blockchain-Based e-Recruitment Platform",
       "publisher": "IEEE",
       "releaseDate": "2019",
-      "summary": "Research paper on leveraging blockchain technology for secure and transparent e-recruitment processes."
+      "summary": "Published at IEEE — explored how blockchain can bring transparency and trust to online recruitment."
     },
     {
       "name": "Fake News Detection using Blockchain",
       "publisher": "IEEE",
       "releaseDate": "2019",
-      "summary": "Research paper on utilizing blockchain technology to combat fake news and ensure information integrity."
+      "summary": "Published at IEEE — proposed a blockchain-based approach to verifying news authenticity and fighting misinformation."
     }
   ],
   "skills": [
