@@ -32,7 +32,34 @@
   },
   "work": [
     {
-      "name": "Chaldal Limited",
+      "name": "SportsVerse",
+      "position": "IT Consultant",
+      "url": "https://sportsverse.bd",
+      "startDate": "2026-01",
+      "summary": "Revolutionize the customer experience of an early stage sports accessories platform in Bangladesh by adapting the cutting edge technologies and best practices.",
+      "highlights": [
+        "Rearchitected an old and unmaintainable WordPress site into a modern React, ASP.NET Core and PostgreSQL based platform",
+        "Improved the SEO ranking of the website by implementing SEO best practices",
+        "Integrate third-party payments, shipping and inventory management systems",
+        "Develop intricate accounting system for fine-grained financial reporting and analytics"
+      ]
+    },
+    {
+      "name": "Samim's Tutorial",
+      "position": "IT Consultant",
+      "url": "https://samimstutorial.com",
+      "startDate": "2025-10",
+      "summary": "Spearheading the IT infrastructure and digital transformation of a leading educational institution in Bangladesh, Samim's Tutorial. Architecting and deploying scalable, secure, and cost-effective solutions to support their mission of providing quality education to students.",
+      "highlights": [
+        "Transformed the unorganized, paper-based admission and class management system into a streamlined, digital ecosystem",
+        "Implemented a robust, multi-layered security architecture to safeguard sensitive student data and institutional assets",
+        "Engineered a scalable, cost-effective cloud infrastructure that supports seamless online and offline operations",
+        "Developed a comprehensive suite of applications to support the institution's academic and administrative needs",
+        "Architected and developed student's portal for assisting online class and exam participation"
+      ]
+    },
+    {
+      "name": "Chaldal PLC",
       "position": "Infrastructure Engineer",
       "url": "https://chaldal.tech",
       "startDate": "2023-01",
@@ -46,7 +73,7 @@
       ]
     },
     {
-      "name": "Chaldal Limited",
+      "name": "Chaldal PLC",
       "position": "Software Engineer IV",
       "url": "https://chaldal.tech",
       "startDate": "2022-01",
@@ -59,7 +86,7 @@
       ]
     },
     {
-      "name": "Chaldal Limited",
+      "name": "Chaldal PLC",
       "position": "Software Engineer III",
       "url": "https://chaldal.tech",
       "startDate": "2021-01",
@@ -72,7 +99,7 @@
       ]
     },
     {
-      "name": "Chaldal Limited",
+      "name": "Chaldal PLC",
       "position": "Software Engineer II",
       "url": "https://chaldal.tech",
       "startDate": "2020-04",
@@ -166,6 +193,18 @@
     }
   ],
   "projects": [
+    {
+      "name": "SportsVerse",
+      "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
+      "highlights": ["React", "Next.js", "PostgreSQL", "SEO", "Payments", "Shipping", "Pathao", "UddoktaPay", "OAuth"],
+      "url": "https://sportsverse.bd"
+    },
+    {
+      "name": "Samim's Tutorial",
+      "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
+      "highlights": ["React", "Next.js", "ASP.NET Core", "PostgreSQL", "Education", "EdTech", "Zitadel", "OIDC", "JWT"],
+      "url": "https://samimstutorial.com"
+    },
     {
       "name": "High-Availability Kubernetes Cluster",
       "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",

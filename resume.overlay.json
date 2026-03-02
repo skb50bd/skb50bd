@@ -4,6 +4,8 @@
     "image": "assets/images/shakib.webp"
   },
   "work": [
+    { "keywords": ["docker", ".net", "react", "next.js", "postgresql", "oauth", "payments", "shipping", "pathao", "uddoktapay"] },
+    { "keywords": ["docker", ".net", "react", "next.js", "postgresql", "zitadel", "edtech", "education"] },
     { "keywords": ["k3s", "rancher", "pfsense", "wireguard", "elastic", "ansible"] },
     { "keywords": ["optimization", "valhalla", "open-street-maps", "caching"] },
     { "keywords": ["c#", "asp-net-core", "ef-core", "sql-server"] },
@@ -20,6 +22,8 @@
     }
   ],
   "projects": [
+    { "type": "software", "image": "./assets/images/sportsverse.webp" },
+    { "type": "software", "image": "./assets/images/samimstutorial.webp" },
     { "type": "infrastructure", "gradient": "gradient-k8s", "icon": "las la-server" },
     { "type": "infrastructure", "gradient": "gradient-observability", "icon": "las la-chart-line" },
     { "type": "infrastructure", "gradient": "gradient-network", "icon": "las la-network-wired" },
