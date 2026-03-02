@@ -42,6 +42,9 @@ const ScrollHandler = {
                     // Update nav dots
                     const sectionId = entry.target.id;
                     this.updateNavDots(sectionId);
+
+                    // Stagger reveal child items
+                    this.revealStaggerItems(entry.target);
                 }
             });
         }, observerOptions);
@@ -50,6 +53,32 @@ const ScrollHandler = {
         this.sections.forEach(section => {
             this.observer.observe(section);
         });
+    },
+
+    /**
+     * Reveal stagger items within a container with incremental delays
+     * @param {Element} container - The parent element to search for stagger items
+     */
+    revealStaggerItems(container) {
+        const staggerContainers = container.querySelectorAll('.stagger-container');
+        staggerContainers.forEach(staggerContainer => {
+            const items = staggerContainer.querySelectorAll('.stagger-item:not(.revealed)');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('revealed');
+                }, index * 120);
+            });
+        });
+
+        // Also handle direct stagger items (e.g. experience tree nodes)
+        const directItems = container.querySelectorAll('.stagger-item:not(.revealed)');
+        if (directItems.length > 0 && staggerContainers.length === 0) {
+            directItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('revealed');
+                }, index * 120);
+            });
+        }
     },
 
     /**

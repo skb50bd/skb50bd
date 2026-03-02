@@ -276,6 +276,108 @@
     animation-delay: 500ms;
 }
 
+/* ========== SHIMMER SWEEP (service card hover) ========== */
+@keyframes shimmerSweep {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* ========== GRADIENT SHIFT (ambient motion for gradient cards) ========== */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ========== REVEAL UP (stagger scroll reveal) ========== */
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== REVEAL SCALE (stagger scroll reveal alt) ========== */
+@keyframes revealScale {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ========== GENTLE FLOAT (hero ambient motion) ========== */
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ========== GLOW BORDER PULSE ========== */
+@keyframes glowBorder {
+    0%, 100% {
+        box-shadow: 0 0 0 0 var(--color-primary-glow);
+    }
+    50% {
+        box-shadow: 0 0 20px 2px var(--color-primary-glow);
+    }
+}
+
+/* ========== STAGGER ANIMATION SYSTEM ========== */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--transition-smooth),
+                transform 0.6s var(--transition-smooth);
+}
+
+.stagger-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero section ambient float */
+.stat-item {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.stat-item:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.stat-item:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.stat-item:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+/* Scroll arrow extra pulse */
+.scroll-arrow {
+    animation: glowBorder 3s ease-in-out infinite;
+}
+
 /* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -291,7 +393,20 @@
         transform: none;
     }
 
+    .stagger-item {
+        opacity: 1;
+        transform: none;
+    }
+
     .scroll-arrow::before {
+        animation: none;
+    }
+
+    .scroll-arrow {
+        animation: none;
+    }
+
+    .stat-item {
         animation: none;
     }
 
@@ -302,5 +417,9 @@
     .cursor {
         animation: none;
         opacity: 1;
+    }
+
+    .portfolio-gradient {
+        animation: none;
     }
 }

@@ -91,7 +91,7 @@ const ContentRenderer = {
      */
     renderAll() {
         if (!this.resume) return;
-        
+
         this.renderMeta();
         this.renderHero();
         this.renderAbout();
@@ -121,31 +121,31 @@ const ContentRenderer = {
     renderHero() {
         const { basics, ui } = this.resume;
         const hero = ui?.hero || {};
-        
+
         // ASCII Logo
         const asciiLogo = document.querySelector('.ascii-logo');
         if (asciiLogo && hero.asciiLogo) {
             asciiLogo.textContent = hero.asciiLogo;
         }
-        
+
         // Name - from JSON Resume basics
         const heroName = document.querySelector('.hero-name');
         if (heroName) {
             heroName.textContent = basics.name;
         }
-        
+
         // Title - from JSON Resume basics
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
             heroTitle.textContent = basics.label;
         }
-        
+
         // Tagline - from overlay
         const heroTagline = document.querySelector('.hero-tagline');
         if (heroTagline && hero.tagline) {
             heroTagline.textContent = hero.tagline;
         }
-        
+
         // Stats - from overlay
         const heroStats = document.querySelector('.hero-stats');
         if (heroStats && hero.stats) {
@@ -164,26 +164,26 @@ const ContentRenderer = {
     renderAbout() {
         const { basics, ui } = this.resume;
         const about = ui?.about || {};
-        
+
         // Profile image - from JSON Resume basics
         const profileImage = document.querySelector('.profile-image');
         if (profileImage) {
             profileImage.src = basics.image;
             profileImage.alt = basics.name;
         }
-        
+
         // Headline - from overlay
         const aboutHeadline = document.querySelector('.about-text h2');
         if (aboutHeadline && about.headline) {
             aboutHeadline.textContent = about.headline;
         }
-        
+
         // Bio - from JSON Resume basics.summary
         const aboutBio = document.querySelector('.about-text p');
         if (aboutBio) {
             aboutBio.textContent = basics.summary;
         }
-        
+
         // System Info - from overlay
         const systemInfoGrid = document.querySelector('.system-info-grid');
         if (systemInfoGrid && about.systemInfo) {
@@ -194,7 +194,7 @@ const ContentRenderer = {
                 </div>
             `).join('');
         }
-        
+
         // Interests - from overlay
         const interestsContent = document.querySelector('.interests-content');
         if (interestsContent && about.interests) {
@@ -208,7 +208,7 @@ const ContentRenderer = {
                 </div>
             `).join('');
         }
-        
+
         // Quote - from overlay
         const quoteText = document.querySelector('.quote-text');
         const quoteAuthor = document.querySelector('.quote-author');
@@ -228,8 +228,8 @@ const ContentRenderer = {
             if (!dateStr) return 'Present';
             const [year, month] = dateStr.split('-');
             if (!month) return year;
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             return `${months[parseInt(month) - 1]} ${year}`;
         };
         return `${formatDate(startDate)} - ${formatDate(endDate)}`;
@@ -240,15 +240,16 @@ const ContentRenderer = {
      */
     renderExperience() {
         const { work, education } = this.resume;
-        
+
         const experienceTree = document.querySelector('.experience-tree');
         if (experienceTree) {
             // Render work experience
             const workItems = work.map(exp => `
-                <article class="tree-node">
+                <article class="tree-node stagger-item">
                     <div class="node-date">${this.formatDateRange(exp.startDate, exp.endDate)}</div>
                     <h3 class="node-title">${exp.position}</h3>
                     <div class="node-company">${exp.name}</div>
+                    ${exp.summary ? `<p class="node-summary">${exp.summary}</p>` : ''}
                     <ul class="node-highlights">
                         ${exp.highlights.map(h => `<li>${h}</li>`).join('')}
                     </ul>
@@ -260,10 +261,11 @@ const ContentRenderer = {
 
             // Render education
             const educationItems = education.map(edu => `
-                <article class="tree-node">
+                <article class="tree-node stagger-item">
                     <div class="node-date">${this.formatDateRange(edu.startDate, edu.endDate)}</div>
                     <h3 class="node-title">${edu.studyType} ${edu.area}</h3>
                     <div class="node-company">${edu.institution}</div>
+                    ${edu.summary ? `<p class="node-summary">${edu.summary}</p>` : ''}
                     <ul class="node-highlights">
                         ${(edu.highlights || []).map(h => `<li>${h}</li>`).join('')}
                     </ul>
@@ -283,11 +285,11 @@ const ContentRenderer = {
     renderServices() {
         const services = this.resume.ui?.services;
         if (!services) return;
-        
+
         const servicesGrid = document.querySelector('.services-grid');
         if (servicesGrid) {
             servicesGrid.innerHTML = services.map(service => `
-                <article class="service-card">
+                <article class="service-card stagger-item">
                     <div class="service-header">
                         <div class="service-icon"><i class="${service.icon}" aria-hidden="true"></i></div>
                         <h3>${service.title}</h3>
@@ -316,12 +318,12 @@ const ContentRenderer = {
     renderSkills() {
         const skills = this.resume.ui?.skills;
         if (!skills) return;
-        
+
         const skillsTree = document.querySelector('.skills-tree');
         if (skillsTree) {
             const categories = skills.categories;
             const lastIndex = categories.length - 1;
-            
+
             skillsTree.innerHTML = `
                 <div class="tree-root">~/skills</div>
                 ${categories.map((category, index) => `
@@ -361,7 +363,7 @@ const ContentRenderer = {
                 `).join('')}
             `;
         }
-        
+
         // Skills summary
         const skillsSummary = document.querySelector('.skills-summary');
         if (skillsSummary && skills.summary) {
@@ -379,13 +381,13 @@ const ContentRenderer = {
      */
     renderPortfolio() {
         const { projects } = this.resume;
-        
+
         const portfolioGrid = document.querySelector('.portfolio-grid');
         if (portfolioGrid) {
             portfolioGrid.innerHTML = projects.map(project => {
                 if (project.type === 'infrastructure') {
                     return `
-                        <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+                        <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
                             <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
                                 <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                             </div>
@@ -400,7 +402,7 @@ const ContentRenderer = {
                     `;
                 } else {
                     return `
-                        <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+                        <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
                             <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                             <div class="portfolio-info">
                                 <h3>${project.name}</h3>
@@ -430,24 +432,24 @@ const ContentRenderer = {
     renderContact() {
         const { basics, ui } = this.resume;
         const contact = ui?.contact || {};
-        
+
         // Header
         const contactHeader = document.querySelector('.contact-header h2');
         if (contactHeader && contact.heading) {
             contactHeader.textContent = contact.heading;
         }
-        
+
         const contactSubheader = document.querySelector('.contact-header p');
         if (contactSubheader && contact.subheading) {
             contactSubheader.textContent = contact.subheading;
         }
-        
+
         // Form action
         const contactForm = document.querySelector('.contact-form');
         if (contactForm && contact.formAction) {
             contactForm.action = contact.formAction;
         }
-        
+
         // Social links - from JSON Resume basics.profiles
         const socialLinks = document.querySelector('.social-links');
         if (socialLinks) {
@@ -456,14 +458,14 @@ const ContentRenderer = {
                     <i class="${this.getSocialIcon(profile.network)}" aria-hidden="true"></i>
                 </a>
             `).join('');
-            
+
             // Add email link
             const emailLink = `
                 <a href="mailto:${basics.email}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Email">
                     <i class="${this.getSocialIcon('email')}" aria-hidden="true"></i>
                 </a>
             `;
-            
+
             socialLinks.innerHTML = profileLinks + emailLink;
         }
     },
@@ -474,14 +476,14 @@ const ContentRenderer = {
     renderFooter() {
         const { basics, ui } = this.resume;
         const footer = ui?.footer || {};
-        
+
         // Location - from JSON Resume basics.location
         const footerLocation = document.querySelector('.footer-location');
         if (footerLocation) {
             const location = `${basics.location.city}, ${basics.location.region}`;
             footerLocation.innerHTML = `<i class="las la-map-marker" aria-hidden="true"></i>${location}`;
         }
-        
+
         // Copyright - from overlay
         const footerCopyright = document.querySelector('.terminal-footer > p:nth-child(2)');
         if (footerCopyright && footer.copyright) {
@@ -495,7 +497,7 @@ const ContentRenderer = {
     renderCommands() {
         const commands = this.resume.ui?.commands;
         if (!commands) return;
-        
+
         const helpCommands = document.querySelector('.help-commands:not(.theme-list)');
         if (helpCommands) {
             helpCommands.innerHTML = commands.map(cmd => `
@@ -513,7 +515,7 @@ const ContentRenderer = {
     renderThemes() {
         const themes = this.resume.ui?.themes;
         if (!themes) return;
-        
+
         const themeList = document.querySelector('.theme-list');
         if (themeList) {
             themeList.innerHTML = themes.map(theme => `
@@ -523,7 +525,7 @@ const ContentRenderer = {
                 </li>
             `).join('');
         }
-        
+
         // Theme dropdown
         const themeDropdown = document.querySelector('.theme-dropdown');
         if (themeDropdown) {

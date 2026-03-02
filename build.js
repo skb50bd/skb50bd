@@ -182,10 +182,11 @@ function generateExperienceHTML(resume) {
 
     // Work experience
     const workItems = work.map(exp => `
-        <article class="tree-node">
+        <article class="tree-node stagger-item">
             <div class="node-date">${formatDateRange(exp.startDate, exp.endDate)}</div>
             <h3 class="node-title">${exp.position}</h3>
             <div class="node-company">${exp.name}</div>
+            ${exp.summary ? `<p class="node-summary">${exp.summary}</p>` : ''}
             <ul class="node-highlights">
                 ${exp.highlights.map(h => `<li>${h}</li>`).join('')}
             </ul>
@@ -197,10 +198,11 @@ function generateExperienceHTML(resume) {
 
     // Education
     const educationItems = education.map(edu => `
-        <article class="tree-node">
+        <article class="tree-node stagger-item">
             <div class="node-date">${formatDateRange(edu.startDate, edu.endDate)}</div>
             <h3 class="node-title">${edu.studyType} ${edu.area}</h3>
             <div class="node-company">${edu.institution}</div>
+            ${edu.summary ? `<p class="node-summary">${edu.summary}</p>` : ''}
             <ul class="node-highlights">
                 ${(edu.highlights || []).map(h => `<li>${h}</li>`).join('')}
             </ul>
@@ -219,7 +221,7 @@ function generateExperienceHTML(resume) {
 function generateServicesHTML(resume) {
     const services = resume.ui?.services || [];
     return services.map(service => `
-        <article class="service-card">
+        <article class="service-card stagger-item">
             <div class="service-header">
                 <div class="service-icon"><i class="${service.icon}" aria-hidden="true"></i></div>
                 <h3>${service.title}</h3>
@@ -296,7 +298,7 @@ function generatePortfolioHTML(resume) {
     return projects.map(project => {
         if (project.type === 'infrastructure') {
             return `
-                <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+                <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
                     <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
                         <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                     </div>
@@ -311,7 +313,7 @@ function generatePortfolioHTML(resume) {
             `;
         } else {
             return `
-                <a href="${project.url}" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+                <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
                     <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                     <div class="portfolio-info">
                         <h3>${project.name}</h3>
@@ -464,14 +466,14 @@ function buildHTML(resume) {
 
     // Replace experience tree
     html = html.replace(
-        /<div class="experience-tree">\s*<!-- Populated by content-renderer\.js -->\s*<\/div>/,
-        `<div class="experience-tree">${experienceHTML}</div>`
+        /<div class="experience-tree stagger-container">\s*<\!-- Populated by content-renderer\.js -->\s*<\/div>/,
+        `<div class="experience-tree stagger-container">${experienceHTML}</div>`
     );
 
     // Replace services grid
     html = html.replace(
-        /<div class="services-grid">\s*<!-- Populated by content-renderer\.js -->\s*<\/div>/,
-        `<div class="services-grid">${servicesHTML}</div>`
+        /<div class="services-grid stagger-container">\s*<\!-- Populated by content-renderer\.js -->\s*<\/div>/,
+        `<div class="services-grid stagger-container">${servicesHTML}</div>`
     );
 
     // Replace skills tree
@@ -488,8 +490,8 @@ function buildHTML(resume) {
 
     // Replace portfolio grid
     html = html.replace(
-        /<div class="portfolio-grid">\s*<!-- Populated by content-renderer\.js -->\s*<\/div>/,
-        `<div class="portfolio-grid">${portfolioHTML}</div>`
+        /<div class="portfolio-grid stagger-container">\s*<\!-- Populated by content-renderer\.js -->\s*<\/div>/,
+        `<div class="portfolio-grid stagger-container">${portfolioHTML}</div>`
     );
 
     // Replace contact header
