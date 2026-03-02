@@ -195,13 +195,13 @@
   "projects": [
     {
       "name": "SportsVerse",
-      "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
+      "description": "A comprehensive sports e-commerce platform built with Next.js and PostgreSQL, featuring a modern UI, secure payments, and seamless shipping integration with Pathao and UddoktaPay.",
       "highlights": ["React", "Next.js", "PostgreSQL", "SEO", "Payments", "Shipping", "Pathao", "UddoktaPay", "OAuth"],
       "url": "https://sportsverse.bd"
     },
     {
       "name": "Samim's Tutorial",
-      "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
+      "description": "An online education platform built with Next.js and ASP.NET Core, featuring a modern UI, secure payments, and seamless integration with Zitadel for authentication and authorization.",
       "highlights": ["React", "Next.js", "ASP.NET Core", "PostgreSQL", "Education", "EdTech", "Zitadel", "OIDC", "JWT"],
       "url": "https://samimstutorial.com"
     },
