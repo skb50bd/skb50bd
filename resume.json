@@ -32,33 +32,6 @@
   },
   "work": [
     {
-      "name": "SportsVerse",
-      "position": "IT Consultant",
-      "url": "https://sportsverse.bd",
-      "startDate": "2026-01",
-      "summary": "Helping a growing sports accessories brand in Bangladesh modernize their tech stack and deliver a fast, reliable shopping experience from day one.",
-      "highlights": [
-        "Rearchitected an old and unmaintainable WordPress site into a modern React, ASP.NET Core and PostgreSQL based platform",
-        "Improved the SEO ranking of the website by implementing SEO best practices",
-        "Integrate third-party payments, shipping and inventory management systems",
-        "Develop intricate accounting system for fine-grained financial reporting and analytics"
-      ]
-    },
-    {
-      "name": "Samim's Tutorial",
-      "position": "IT Consultant",
-      "url": "https://samimstutorial.com",
-      "startDate": "2025-10",
-      "summary": "Leading the digital transformation of one of Bangladesh's prominent educational institutions — replacing manual processes with purpose-built software and reliable infrastructure.",
-      "highlights": [
-        "Transformed the unorganized, paper-based admission and class management system into a streamlined, digital ecosystem",
-        "Implemented a robust, multi-layered security architecture to safeguard sensitive student data and institutional assets",
-        "Engineered a scalable, cost-effective cloud infrastructure that supports seamless online and offline operations",
-        "Developed a comprehensive suite of applications to support the institution's academic and administrative needs",
-        "Architected and developed student's portal for assisting online class and exam participation"
-      ]
-    },
-    {
       "name": "Chaldal PLC",
       "position": "Infrastructure Engineer",
       "url": "https://chaldal.tech",

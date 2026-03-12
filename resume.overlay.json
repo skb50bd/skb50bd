@@ -4,8 +4,6 @@
     "image": "assets/images/shakib.webp"
   },
   "work": [
-    { "keywords": ["docker", ".net", "react", "next.js", "postgresql", "oauth", "payments", "shipping", "pathao", "uddoktapay"] },
-    { "keywords": ["docker", ".net", "react", "next.js", "postgresql", "zitadel", "edtech", "education"] },
     { "keywords": ["k3s", "rancher", "pfsense", "wireguard", "elastic", "ansible"] },
     { "keywords": ["optimization", "valhalla", "open-street-maps", "caching"] },
     { "keywords": ["c#", "asp-net-core", "ef-core", "sql-server"] },
