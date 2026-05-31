@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 MD032 -->
 
 <p align="center">
-  <img src="assets/images/avatar-mono.webp" width="140" alt="Shakib Haris avatar" />
+  <img src="assets/images/profile.webp" width="140" alt="Shakib Haris avatar" />
 </p>
 
 <h2 align="center">Shakib Haris</h2>

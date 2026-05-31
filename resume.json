@@ -3,7 +3,7 @@
   "basics": {
     "name": "Shakib Haris",
     "label": "Software & Systems Engineer",
-    "image": "assets/images/shakib-new.webp",
+    "image": "assets/images/profile.webp",
     "email": "hello@shakib.bd",
     "url": "https://shakib.bd",
     "summary": "Senior Software & Systems Engineer with 8+ years of enterprise experience building secure, reliable, and highly automated platforms. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate with clean IaC and reliable CI/CD. Comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",

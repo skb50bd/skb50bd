@@ -438,7 +438,7 @@ function buildHTML(resume) {
 
     // Replace about profile image (pixel-image wrapper)
     html = html.replace(
-        /<div class="pixel-image" data-src="assets\/images\/shakib-new\.webp" data-grid="6x4" data-grayscale="true">\s*<img class="profile-image" src="" alt="" loading="eager">\s*<\/div>/,
+        /<div class="pixel-image" data-src="assets\/images\/profile\.webp" data-grid="6x4" data-grayscale="true">\s*<img class="profile-image" src="" alt="" loading="eager">\s*<\/div>/,
         `<div class="pixel-image" data-src="${aboutData.profileImage}" data-grid="6x4" data-grayscale="true">\n                                <img class="profile-image" src="${aboutData.profileImage}" alt="${aboutData.name}" loading="eager">\n                            <\/div>`
     );
 

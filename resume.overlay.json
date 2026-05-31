@@ -1,7 +1,7 @@
 {
   "$comment": "Portfolio UI overlay - extends resume.json with site-specific data",
   "basics": {
-    "image": "assets/images/shakib-new.webp"
+    "image": "assets/images/profile.webp"
   },
   "work": [
     { "keywords": ["k3s", "rancher", "pfsense", "wireguard", "elastic", "ansible"] },
