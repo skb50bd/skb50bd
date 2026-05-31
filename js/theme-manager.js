@@ -1,79 +1,47 @@
 /**
  * Theme Manager Module
- * Handles theme switching with localStorage persistence
+ * Handles theme cycling with View Transitions API animated reveal (MagicUI-inspired)
  */
-
 const ThemeManager = {
-    themes: ['terminal', 'glassmorphic', 'minimal', 'minimal-dark', 'solarized-dark', 'solarized-light', 'monokai', 'dracula', 'nord'],
+    themes: ['terminal', 'glass', 'light'],
+    themeLabels: { terminal: 'Terminal', glass: 'Glass', light: 'Light' },
     current: 'terminal',
     storageKey: 'portfolio-theme',
 
-    /**
-     * Initialize the theme manager
-     */
     init() {
-        // Load saved theme or use default
+        // Migrate legacy theme keys
+        const legacyMap = {
+            glassmorphic: 'glass',
+            minimal: 'light',
+            'minimal-dark': 'terminal',
+            'solarized-dark': 'terminal',
+            'solarized-light': 'light',
+            monokai: 'terminal',
+            dracula: 'glass',
+            nord: 'glass'
+        };
         const savedTheme = localStorage.getItem(this.storageKey);
-        if (savedTheme && this.themes.includes(savedTheme)) {
-            this.current = savedTheme;
+        const migrated = legacyMap[savedTheme] || savedTheme;
+
+        if (migrated && this.themes.includes(migrated)) {
+            this.current = migrated;
+            if (migrated !== savedTheme) {
+                localStorage.setItem(this.storageKey, migrated);
+            }
         }
 
-        // Apply the theme
         this.applyTheme(this.current);
-
-        // Set up event listeners for theme dropdown
         this.setupEventListeners();
-
-        // Update dropdown active state
-        this.updateDropdownState();
+        this.updateLabel();
     },
 
-    /**
-     * Set up event listeners for theme controls
-     */
     setupEventListeners() {
-        const themeBtn = document.querySelector('.theme-btn');
-        const themeDropdown = document.querySelector('.theme-dropdown');
-        const themeSelector = document.querySelector('.theme-selector');
-
-        // Toggle dropdown on button click
-        if (themeBtn && themeDropdown) {
-            themeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                themeDropdown.classList.toggle('open');
-            });
+        const toggleBtn = document.querySelector('.theme-toggle-btn');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => this.cycleTheme());
         }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (themeDropdown && themeSelector && !themeSelector.contains(e.target)) {
-                themeDropdown.classList.remove('open');
-            }
-        });
-
-        // Close dropdown on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && themeDropdown) {
-                themeDropdown.classList.remove('open');
-            }
-        });
-
-        // Theme dropdown buttons - select theme and close dropdown
-        const dropdownButtons = document.querySelectorAll('.theme-dropdown button[data-theme]');
-        dropdownButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const theme = e.target.dataset.theme;
-                if (theme && this.themes.includes(theme)) {
-                    this.setTheme(theme);
-                    // Close the dropdown after selection
-                    if (themeDropdown) {
-                        themeDropdown.classList.remove('open');
-                    }
-                }
-            });
-        });
-
-        // Keyboard shortcut for cycling themes (Ctrl/Cmd + Shift + T)
+        // Keyboard shortcut: Ctrl/Cmd + Shift + T
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 't') {
                 e.preventDefault();
@@ -82,71 +50,105 @@ const ThemeManager = {
         });
     },
 
-    /**
-     * Apply theme to the document
-     * @param {string} theme - Theme name
-     */
     applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         document.body.setAttribute('data-theme', theme);
     },
 
-    /**
-     * Set the current theme
-     * @param {string} theme - Theme name
-     */
     setTheme(theme) {
-        if (!this.themes.includes(theme)) {
-            console.warn(`Theme "${theme}" not found. Available themes: ${this.themes.join(', ')}`);
-            return;
+        if (!this.themes.includes(theme)) return;
+
+        const prev = this.current;
+        this.current = theme;
+
+        // Animated transition via View Transitions API
+        if (typeof document.startViewTransition === 'function') {
+            this.animateTransition(theme, prev);
+        } else {
+            this.applyTheme(theme);
         }
 
-        this.current = theme;
-        this.applyTheme(theme);
         localStorage.setItem(this.storageKey, theme);
-        this.updateDropdownState();
+        this.updateLabel();
 
-        // Dispatch custom event for other modules to react
         window.dispatchEvent(new CustomEvent('themechange', {
             detail: { theme }
         }));
     },
 
     /**
-     * Get the current theme
-     * @returns {string} Current theme name
+     * MagicUI-inspired circle clip-path reveal via View Transitions API
      */
+    animateTransition(newTheme, prevTheme) {
+        const toggleBtn = document.querySelector('.theme-toggle-btn');
+        const rect = toggleBtn ? toggleBtn.getBoundingClientRect() : null;
+        const cx = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+        const cy = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+
+        const maxRadius = Math.hypot(
+            Math.max(cx, window.innerWidth - cx),
+            Math.max(cy, window.innerHeight - cy)
+        );
+
+        const root = document.documentElement;
+        root.dataset.magicuiThemeVt = 'active';
+        root.style.setProperty('--magicui-theme-toggle-vt-duration', '450ms');
+        root.style.setProperty('--magicui-theme-vt-clip-from', `circle(0px at ${cx}px ${cy}px)`);
+
+        const cleanup = () => {
+            delete root.dataset.magicuiThemeVt;
+            root.style.removeProperty('--magicui-theme-toggle-vt-duration');
+            root.style.removeProperty('--magicui-theme-vt-clip-from');
+        };
+
+        const transition = document.startViewTransition(() => {
+            this.applyTheme(newTheme);
+        });
+
+        if (transition?.finished?.finally) {
+            transition.finished.finally(cleanup);
+        } else {
+            cleanup();
+        }
+
+        transition?.ready?.then(() => {
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${cx}px ${cy}px)`,
+                        `circle(${maxRadius}px at ${cx}px ${cy}px)`,
+                    ],
+                },
+                {
+                    duration: 450,
+                    easing: 'ease-in-out',
+                    fill: 'forwards',
+                    pseudoElement: '::view-transition-new(root)',
+                }
+            );
+        });
+    },
+
     getTheme() {
         return this.current;
     },
 
-    /**
-     * Cycle to the next theme
-     */
     cycleTheme() {
         const currentIndex = this.themes.indexOf(this.current);
         const nextIndex = (currentIndex + 1) % this.themes.length;
         this.setTheme(this.themes[nextIndex]);
     },
 
-    /**
-     * Update dropdown button active states
-     */
-    updateDropdownState() {
-        const dropdownButtons = document.querySelectorAll('.theme-dropdown button[data-theme]');
-        dropdownButtons.forEach(button => {
-            button.classList.toggle('active', button.dataset.theme === this.current);
-        });
+    updateLabel() {
+        const label = document.querySelector('.theme-toggle-label');
+        if (label) {
+            label.textContent = this.themeLabels[this.current] || this.current;
+        }
     },
 
-    /**
-     * Get list of available themes
-     * @returns {string[]} Array of theme names
-     */
     getAvailableThemes() {
         return [...this.themes];
     }
 };
 
-// Export for use in other modules
 window.ThemeManager = ThemeManager;

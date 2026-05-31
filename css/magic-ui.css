@@ -1,0 +1,531 @@
+/* ========================================
+   MAGIC-UI.CSS - MagicUI-Inspired Animations & Effects
+   ======================================== */
+
+/* ========== ANIMATED GRADIENT BORDER ========== */
+@property --border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.gradient-border-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+}
+
+.gradient-border-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+        from var(--border-angle, 0deg),
+        var(--color-primary),
+        var(--color-accent),
+        var(--color-secondary),
+        var(--color-primary)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.gradient-border-card:hover::before {
+    opacity: 1;
+    animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+    to { --border-angle: 360deg; }
+}
+
+/* Fallback for browsers without @property support */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+    .gradient-border-card::before {
+        background: linear-gradient(
+            90deg,
+            var(--color-primary),
+            var(--color-accent),
+            var(--color-secondary),
+            var(--color-primary)
+        );
+        background-size: 300% 100%;
+    }
+
+    .gradient-border-card:hover::before {
+        animation: borderRotateFallback 3s linear infinite;
+    }
+
+    @keyframes borderRotateFallback {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 300% 50%; }
+    }
+}
+
+/* ========== TEXT REVEAL (word-by-word) ========== */
+.text-reveal-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px) rotateX(-10deg);
+    filter: blur(4px);
+    transition: opacity 0.5s var(--transition-smooth),
+                transform 0.5s var(--transition-smooth),
+                filter 0.5s var(--transition-smooth);
+}
+
+.text-reveal-word.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    filter: blur(0);
+}
+
+/* ========== AURORA TEXT ========== */
+.aurora-text {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary) 0%,
+        var(--color-accent) 25%,
+        var(--color-secondary) 50%,
+        var(--color-accent) 75%,
+        var(--color-primary) 100%
+    );
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: auroraShift 8s ease-in-out infinite;
+}
+
+@keyframes auroraShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ========== PULSE GLOW RING ========== */
+.pulse-ring {
+    position: relative;
+}
+
+.pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 2px solid var(--color-primary);
+    opacity: 0;
+    animation: pulseRing 2s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* ========== ORBITING PARTICLES ========== */
+.orbiting-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.orbit-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary-glow);
+    opacity: 0.6;
+}
+
+/* ========== RIPPLE EFFECT (on click) ========== */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0);
+    animation: rippleExpand 0.6s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes rippleExpand {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ========== FLOATING CARD (gentle ambient motion) ========== */
+.float-card {
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+.float-card:nth-child(2) { animation-delay: -2s; }
+.float-card:nth-child(3) { animation-delay: -4s; }
+.float-card:nth-child(4) { animation-delay: -1s; }
+.float-card:nth-child(5) { animation-delay: -3s; }
+.float-card:nth-child(6) { animation-delay: -5s; }
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ========== NUMBER COUNTER ========== */
+.counter-value {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========== GLOW TRAIL ON HOVER (disabled - replaced by pattern bg) ========== */
+
+/* ========== STAGGERED LIST REVEAL — MagicUI BlurFade ========== */
+.stagger-reveal > * {
+    opacity: 0;
+    transform: translateY(-6px);
+    filter: blur(6px);
+}
+
+.stagger-reveal > *.revealed {
+    animation: blurFadeReveal 0.4s ease-out forwards;
+}
+
+@keyframes blurFadeReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ========== SECTION DIVIDER GLOW ========== */
+.section-glow-divider {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--color-primary-dim) 20%,
+        var(--color-primary) 50%,
+        var(--color-primary-dim) 80%,
+        transparent 100%
+    );
+    margin: 0;
+    opacity: 0.5;
+}
+
+/* ========== HOVER LIFT WITH GLOW ========== */
+.hover-lift-glow {
+    transition: transform 0.4s var(--transition-smooth),
+                box-shadow 0.4s var(--transition-smooth),
+                border-color 0.4s var(--transition-smooth);
+}
+
+.hover-lift-glow:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px var(--color-primary-glow);
+    border-color: var(--color-primary);
+}
+
+/* ========== SKELETON LOADING SHIMMER ========== */
+.skeleton-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--color-surface) 25%,
+        var(--color-surface-hover) 50%,
+        var(--color-surface) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ========== SPOTLIGHT EFFECT (disabled) ========== */
+
+/* ========== SUBTLE DOT GRID PATTERN BACKGROUND ========== */
+.bg-canvas {
+    display: none;
+}
+
+/* Subtle dot pattern on body via pseudo-element on terminal-frame */
+.terminal-frame::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.25;
+    background-image: radial-gradient(
+        circle,
+        var(--color-primary-dim) 1px,
+        transparent 1px
+    );
+    background-size: 24px 24px;
+    transition: opacity 0.8s ease, background-image 0.8s ease;
+}
+
+[data-theme="terminal"] .terminal-frame::before {
+    opacity: 0;
+}
+
+[data-theme="glass"] .terminal-frame::before {
+    opacity: 0;
+}
+
+[data-theme="light"] .terminal-frame::before {
+    opacity: 0.08;
+    background-image: radial-gradient(circle, #888 1px, transparent 1px);
+}
+
+/* ========== SVG DOT PATTERN (MagicUI) ========== */
+.dot-pattern-svg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    color: var(--color-primary-dim, #996a00);
+    opacity: 0.9;
+}
+
+[data-theme="terminal"] .dot-pattern-svg {
+    display: block;
+}
+
+.dot-pattern-svg circle {
+    transition: opacity 0.6s ease;
+}
+
+/* ========== METEORS (MagicUI) ========== */
+.meteors-container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+[data-theme="terminal"] .meteors-container {
+    display: block;
+}
+
+.meteor {
+    position: absolute;
+    top: -5%;
+    left: var(--meteor-left, 0px);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--color-primary, #ffb000);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transform: rotate(var(--meteor-angle, 215deg));
+    animation: meteorFall var(--meteor-duration, 5s) linear var(--meteor-delay, 0s) infinite;
+    opacity: 0;
+}
+
+.meteor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 50px;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(to right, var(--color-primary, #ffb000), transparent);
+}
+
+@keyframes meteorFall {
+    0% {
+        opacity: 0;
+        transform: rotate(var(--meteor-angle, 215deg)) translateX(0);
+    }
+    5% {
+        opacity: 1;
+    }
+    15% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(var(--meteor-angle, 215deg)) translateX(-400px);
+    }
+}
+
+/* ========== GLASSMORPHIC LIGHT RAYS (MagicUI) ========== */
+.light-rays-container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+    --light-rays-color: #a0aec0;
+    --light-rays-accent: #cbd5e0;
+    --light-rays-blur: 36px;
+    --light-rays-length: 70vh;
+}
+
+[data-theme="glass"] .light-rays-container {
+    display: block;
+    opacity: 0.5;
+}
+
+/* ── Light source blobs (radial gradients) ── */
+.ray-source {
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.ray-source-left {
+    background: radial-gradient(
+        circle at 20% 15%,
+        color-mix(in srgb, var(--light-rays-color) 45%, transparent),
+        transparent 70%
+    );
+}
+
+.ray-source-right {
+    background: radial-gradient(
+        circle at 80% 10%,
+        color-mix(in srgb, var(--light-rays-accent) 35%, transparent),
+        transparent 75%
+    );
+}
+
+/* ── Individual ray beams ── */
+.ray-beam {
+    position: absolute;
+    top: -12%;
+    left: var(--ray-left, 50%);
+    width: var(--ray-width, 200px);
+    height: var(--light-rays-length, 70vh);
+    transform-origin: top center;
+    transform: translateX(-50%) rotate(var(--ray-rotate, 0deg));
+    border-radius: 9999px;
+    background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--light-rays-color) 70%, transparent),
+        transparent
+    );
+    mix-blend-mode: screen;
+    filter: blur(var(--light-rays-blur, 36px));
+    opacity: 0;
+    pointer-events: none;
+    animation: rayFlicker var(--ray-duration, 14s) ease-in-out infinite;
+    animation-delay: var(--ray-delay, 0s);
+}
+
+@keyframes rayFlicker {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) rotate(calc(var(--ray-rotate, 0deg) - var(--ray-swing, 1deg)));
+    }
+    25% {
+        opacity: var(--ray-intensity, 1);
+    }
+    50% {
+        opacity: 0.15;
+        transform: translateX(-50%) rotate(calc(var(--ray-rotate, 0deg) + var(--ray-swing, 1deg)));
+    }
+    75% {
+        opacity: var(--ray-intensity, 1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) rotate(calc(var(--ray-rotate, 0deg) - var(--ray-swing, 1deg)));
+    }
+}
+
+/* Fallback for browsers without color-mix() */
+@supports not (background: color-mix(in srgb, red, blue)) {
+    .ray-source-left {
+        background: radial-gradient(
+            circle at 20% 15%,
+            rgba(160, 174, 192, 0.27),
+            transparent 70%
+        );
+    }
+
+    .ray-source-right {
+        background: radial-gradient(
+            circle at 80% 10%,
+            rgba(203, 213, 224, 0.21),
+            transparent 75%
+        );
+    }
+
+    .ray-beam {
+        background: linear-gradient(
+            to bottom,
+            rgba(160, 174, 192, 0.14),
+            transparent
+        );
+    }
+}
+
+/* ========== VIEW TRANSITIONS API — theme toggle animation ========== */
+html[data-magicui-theme-vt="active"]::view-transition-old(root),
+html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+    animation-duration: var(--magicui-theme-toggle-vt-duration, 450ms);
+}
+
+html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+    clip-path: var(--magicui-theme-vt-clip-from, none);
+    animation: none;
+}
+
+/* ========== HERO NAME SPARKLES (MagicUI SparklesText) ========== */
+.hero-name-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-sparkle {
+    display: block;
+    width: 18px;
+    height: 18px;
+    animation-name: sparkleAnim;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes sparkleAnim {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(75deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(var(--sparkle-scale, 1)) rotate(120deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(150deg);
+    }
+}

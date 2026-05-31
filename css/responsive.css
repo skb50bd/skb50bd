@@ -30,12 +30,7 @@
         grid-template-columns: 1fr;
     }
 
-    /* Hero stats */
-    .hero-stats {
-        gap: var(--spacing-xl);
-    }
-
-    /* Command prompt smaller */
+    /* Form row - single column */
     .command-prompt {
         font-size: 0.8rem;
     }
@@ -50,6 +45,11 @@
     .output-panel {
         margin-left: 0;
         padding: 1.5rem;
+    }
+
+    /* Hero typography */
+    .hero-subtitle {
+        font-size: 0.95rem;
     }
 
     /* Services grid - single column */
@@ -95,22 +95,6 @@
     .skills-summary {
         flex-direction: column;
         gap: 0.5rem;
-    }
-
-    /* Theme selector in header */
-    .theme-selector {
-        position: static;
-    }
-
-    .theme-dropdown {
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-    }
-
-    .theme-selector:hover .theme-dropdown,
-    .theme-selector:focus-within .theme-dropdown {
-        transform: translateX(-50%) translateY(0);
     }
 
     /* Compact header activity on tablet - show only key items */
@@ -185,22 +169,74 @@
         font-size: 0.4rem;
     }
 
+    .hero-greeting {
+        font-size: 0.75rem;
+    }
+
     .hero-name {
         font-size: 2rem;
     }
 
     .hero-title {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         letter-spacing: 0.15em;
     }
 
-    .stat-value {
-        font-size: 2rem;
+    .hero-subtitle {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1.25rem;
+    }
+
+    /* Tickers — tighter on mobile */
+    .hero-metrics {
+        gap: 1.25rem;
+    }
+
+    .ticker-value {
+        font-size: 1.5rem;
+    }
+
+    .ticker-label {
+        font-size: 0.5rem;
+        letter-spacing: 0.08em;
+        max-width: 90px;
+    }
+
+    /* CTA */
+    .ihb-wrapper {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+        margin-top: 0.75rem;
+        gap: 0.35rem;
+    }
+
+    .scroll-hint span {
+        font-size: 0.5rem;
+        letter-spacing: 0.15em;
+    }
+
+    .scroll-arrow {
+        width: 16px;
+        height: 24px;
+    }
+
+    .hero-tech-tag {
+        font-size: 0.58rem;
+        padding: 0.25rem 0.6rem;
     }
 
     /* Command input - slightly larger for touch */
     .command-input-container {
         padding: 0.5rem 0.75rem;
+    }
+
+    .command-prompt {
+        font-size: 0.7rem;
     }
 
     .command-input-container .prompt-user,
@@ -305,7 +341,7 @@
         font-size: 5rem;
     }
 
-    .stat-value {
+    .ticker-value {
         font-size: 3rem;
     }
 }
@@ -351,7 +387,7 @@
     .crt-overlay,
     .quick-nav,
     .command-input-container,
-    .theme-selector,
+    .theme-toggle-btn,
     .loading-screen,
     .help-modal {
         display: none !important;

@@ -3,10 +3,10 @@
   "basics": {
     "name": "Shakib Haris",
     "label": "Software & Systems Engineer",
-    "image": "assets/images/shakib.webp",
+    "image": "assets/images/shakib-new.webp",
     "email": "hello@shakib.bd",
     "url": "https://shakib.bd",
-    "summary": "Senior Software & Systems Engineer with 5+ years of enterprise experience building secure, reliable, and highly automated platforms. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate with clean IaC and reliable CI/CD. Comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",
+    "summary": "Senior Software & Systems Engineer with 8+ years of enterprise experience building secure, reliable, and highly automated platforms. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate with clean IaC and reliable CI/CD. Comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",
     "location": {
       "city": "Dhaka",
       "countryCode": "BD",
@@ -167,6 +167,12 @@
   ],
   "projects": [
     {
+      "name": "Chokidar",
+      "description": "A multi-tenant monitoring platform for networks, services, and hosts — built with .NET 10, Next.js 16, PostgreSQL, and ClickHouse. Features include probe-based health checks, smart alerting, time-series analytics, and multi-tenant isolation.",
+      "highlights": [".NET 10", "Next.js 16", "PostgreSQL", "ClickHouse", "Docker", "Multi-Tenant", "Alerting", "Time-Series"],
+      "url": "https://chokidar.app"
+    },
+    {
       "name": "SportsVerse",
       "description": "A comprehensive sports e-commerce platform built with Next.js and PostgreSQL, featuring a modern UI, secure payments, and seamless shipping integration with Pathao and UddoktaPay.",
       "highlights": ["React", "Next.js", "PostgreSQL", "SEO", "Payments", "Shipping", "Pathao", "UddoktaPay", "OAuth"],
@@ -221,12 +227,6 @@
       "url": "https://chaldal.tech"
     },
     {
-      "name": "Pathao Courier NopCommerce Plugin",
-      "description": "Production-ready integration plugin for Pathao Courier in NopCommerce—focused on reliability, clean integration points, and maintainable implementation.",
-      "highlights": [".NET", "C#", "NopCommerce"],
-      "url": "https://github.com/skb50bd/nop-plugin-pathao-courier"
-    },
-    {
       "name": "Khata: Modern ERP Solution",
       "description": "A modern ERP platform for small businesses—inventory, accounting, and customer workflows designed with practicality, correctness, and extensibility in mind.",
       "highlights": [".NET", "C#", "ASP.NET Core", "EF Core"],
@@ -237,12 +237,6 @@
       "description": "A polished product showcase platform with strong content modeling and performance-minded delivery—built for clean UX and easy iteration.",
       "highlights": ["ASP.NET Core", "EF Core", "Postgres"],
       "url": "https://github.com/skb50bd/scroll"
-    },
-    {
-      "name": "BD Tax Calc",
-      "description": "A tax calculator built with functional-first design in F#—lean, testable, and precise business logic with a clean architecture mindset.",
-      "highlights": [".NET", "F#", "SAFE Stack"],
-      "url": "https://github.com/skb50bd/bxtaxcalc"
     }
   ],
   "interests": [

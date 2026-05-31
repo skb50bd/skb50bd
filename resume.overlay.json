@@ -1,7 +1,7 @@
 {
   "$comment": "Portfolio UI overlay - extends resume.json with site-specific data",
   "basics": {
-    "image": "assets/images/shakib.webp"
+    "image": "assets/images/shakib-new.webp"
   },
   "work": [
     { "keywords": ["k3s", "rancher", "pfsense", "wireguard", "elastic", "ansible"] },
@@ -20,6 +20,7 @@
     }
   ],
   "projects": [
+    { "type": "software", "image": "./assets/images/chokidar.webp" },
     { "type": "software", "image": "./assets/images/sportsverse.webp" },
     { "type": "software", "image": "./assets/images/samimstutorial.webp" },
     { "type": "infrastructure", "gradient": "gradient-k8s", "icon": "las la-server" },
@@ -29,29 +30,31 @@
     { "type": "infrastructure", "gradient": "gradient-aiml", "icon": "las la-brain" },
     { "type": "infrastructure", "gradient": "gradient-network", "icon": "las la-eye" },
     { "type": "infrastructure", "gradient": "gradient-observability", "icon": "las la-cog" },
-    { "type": "software", "image": "./assets/images/pathao-courier.webp" },
     { "type": "software", "image": "./assets/images/khata.webp" },
-    { "type": "software", "image": "./assets/images/scroll.webp" },
-    { "type": "software", "image": "./assets/images/bdtaxcalc.webp" }
+    { "type": "software", "image": "./assets/images/scroll.webp" }
   ],
   "ui": {
     "meta": {
       "title": "Shakib Haris | Software & Systems Engineer",
-      "description": "Senior Software & Systems Engineer with 5+ years of enterprise experience building secure, reliable, and highly automated platforms.",
+      "description": "Senior Software & Systems Engineer with 8+ years of enterprise experience building secure, reliable, and highly automated platforms.",
       "keywords": "Senior Software Engineer, Systems Engineer, Platform Engineering, Infrastructure, DevOps, SRE, .NET, Kubernetes, Cloud Architecture, Observability, Bangladesh",
       "twitter": "@skb50bd"
     },
     "hero": {
-      "asciiLogo": "   _____ _           _    _ _\n  / ____| |         | |  (_) |\n | (___ | |__   __ _| | ___| |__\n  \\___ \\| '_ \\ / _` | |/ / | '_ \\\n  ____) | | | | (_| |   <| | |_) |\n |_____/|_| |_|\\__,_|_|\\_\\_|_.__/",
+      "asciiLogo": "   _____ _           _    _ _\n  / ____| |         | |  (_) |\n | (___ | |__   __ _| | ___| |__\n  \\\\___ \\\\| '_ \\\\ / _` | |/ / | '_ \\\\\\n  ____) | | | | (_| |   <| | |_) |\n |_____/|_| |_|\\\\__,_|_|\\\\_\\\\_|_.__/",
+      "greeting": "Hello, I'm",
       "tagline": "\"I design and operate secure, high-performance systems—from code to clusters.\"",
+      "availability": "Open to engagements",
+      "techTags": [".NET", "Kubernetes", "DevOps", "Infrastructure", "C#", "Docker", "PostgreSQL", "Linux"],
       "stats": [
-        { "value": "5+", "label": "Years Enterprise Experience" },
+        { "value": "8+", "label": "Years Enterprise Experience" },
         { "value": "70+", "label": "Features Engineered" },
         { "value": "49%", "label": "Infrastructure Cost Optimization" }
       ]
     },
     "about": {
       "headline": "I build systems that stay fast, stay up, and stay secure",
+      "bio": "Code meets infrastructure. For 8+ years I've built .NET backends that hold up under load, run Kubernetes on bare metal, and automated deployments until they're boring. I've cut costs by 49%, hardened networks, and built observability that catches fires before they spread. I optimize for the long game.",
       "systemInfo": [
         { "label": "Location", "value": "Dhaka, Bangladesh" },
         { "label": "Focus", "value": "Infrastructure & DevOps" },
@@ -275,19 +278,13 @@
       { "name": "projects", "description": "Browse portfolio" },
       { "name": "contact", "description": "Get in touch" },
       { "name": "theme", "description": "List available themes" },
-      { "name": "theme <name>", "description": "Switch theme (9 themes available)" },
+      { "name": "theme <name>", "description": "Switch theme (3 themes available)" },
       { "name": "clear", "description": "Refresh animations" }
     ],
     "themes": [
       { "id": "terminal", "name": "Terminal", "description": "Classic amber CRT terminal" },
-      { "id": "glassmorphic", "name": "Glassmorphic", "description": "Modern frosted glass dark" },
-      { "id": "minimal", "name": "Minimal Light", "description": "Clean light theme" },
-      { "id": "minimal-dark", "name": "Minimal Dark", "description": "Clean dark theme" },
-      { "id": "solarized-dark", "name": "Solarized Dark", "description": "Solarized dark palette" },
-      { "id": "solarized-light", "name": "Solarized Light", "description": "Solarized light palette" },
-      { "id": "monokai", "name": "Monokai", "description": "Sublime Text classic" },
-      { "id": "dracula", "name": "Dracula", "description": "Popular purple dark theme" },
-      { "id": "nord", "name": "Nord", "description": "Arctic minimalist blue" }
+      { "id": "glass", "name": "Glass", "description": "Modern frosted glass dark" },
+      { "id": "light", "name": "Light", "description": "Clean light theme" }
     ]
   }
 }

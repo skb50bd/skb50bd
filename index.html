@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakib Haris | Software & Systems Engineer</title>
     <meta name="description"
-        content="Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.">
+        content="Software & Systems Engineer with 8+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.">
     <meta name="keywords"
         content="Software Engineer, Systems Engineer, Infrastructure, DevOps, .NET, Kubernetes, Bangladesh">
     <meta name="author" content="Shakib Haris">
@@ -43,7 +43,7 @@
                 "givenName": "Shakib",
                 "familyName": "Haris",
                 "jobTitle": "Software & Systems Engineer",
-                "description": "Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
+                "description": "Software & Systems Engineer with 8+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
                 "url": "https://shakib.bd",
                 "image": "https://shakib.bd/assets/images/me.webp",
                 "email": "mailto:hello@shakib.bd",
@@ -94,7 +94,7 @@
                 "name": "Shakib Haris | Software & Systems Engineer",
                 "isPartOf": { "@id": "https://shakib.bd/#website" },
                 "about": { "@id": "https://shakib.bd/#person" },
-                "description": "Software & Systems Engineer with 5+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
+                "description": "Software & Systems Engineer with 8+ years of enterprise experience. Specializing in .NET development, infrastructure engineering, DevOps, and cloud architecture.",
                 "inLanguage": "en-US"
             },
             {
@@ -137,8 +137,12 @@
     <link rel="stylesheet" href="css/themes.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/magic-ui.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Motion One (vanilla JS animations by Framer Motion team) -->
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.18.0/dist/motion.min.js"></script>
 </head>
 
 <body data-theme="terminal">
@@ -152,6 +156,12 @@
 
     <!-- CRT Overlay -->
     <div class="crt-overlay"></div>
+
+    <!-- Animated Background -->
+    <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="light-rays-container" id="lightRays" aria-hidden="true"></div>
+    <svg class="dot-pattern-svg" id="dotPattern" aria-hidden="true"></svg>
+    <div class="meteors-container" id="meteorsContainer" aria-hidden="true"></div>
 
     <!-- Help Modal -->
     <div class="help-modal" id="helpModal">
@@ -228,14 +238,10 @@
                 </div>
             </div>
             <div class="terminal-actions">
-                <div class="theme-selector">
-                    <button class="theme-btn" aria-label="Change theme">
-                        <i class="las la-palette"></i>
-                    </button>
-                    <div class="theme-dropdown">
-                        <!-- Populated by content-renderer.js -->
-                    </div>
-                </div>
+                <button class="theme-toggle-btn" aria-label="Cycle theme" title="Ctrl+Shift+T to cycle">
+                    <i class="las la-palette"></i>
+                    <span class="theme-toggle-label">Terminal</span>
+                </button>
             </div>
         </header>
 
@@ -248,14 +254,29 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text" id="heroCommand"></span><span class="cursor"></span>
+                    <span class="command-text" id="heroCommand" data-text="whoami --verbose"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel hero-output">
-                    <pre class="ascii-logo" aria-hidden="true"></pre>
-                    <h1 class="hero-name"></h1>
+                    <p class="hero-greeting"></p>
+                    <h1 class="hero-name aurora-text"></h1>
                     <p class="hero-title"></p>
-                    <p class="hero-tagline"></p>
-                    <div class="hero-stats">
+                    <p class="hero-subtitle"></p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="cta-button ihb-wrapper">
+                            <span class="ihb-content">
+                                <span class="ihb-dot"></span>
+                                <span class="ihb-text">Get in touch</span>
+                            </span>
+                            <span class="ihb-overlay">
+                                <span>Get in touch</span>
+                                <i class="las la-arrow-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="hero-metrics">
+                        <!-- Populated by content-renderer.js -->
+                    </div>
+                    <div class="hero-tech-row">
                         <!-- Populated by content-renderer.js -->
                     </div>
                     <div class="scroll-hint">
@@ -272,13 +293,13 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">cat about.md</span>
+                    <span class="command-text" data-text="cat about.md"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="about-grid">
                         <div class="profile-container">
-                            <div class="profile-frame">
-                                <img class="profile-image" src="" alt="">
+                            <div class="pixel-image" data-src="assets/images/shakib-new.webp" data-grid="6x4" data-grayscale="true">
+                                <img class="profile-image" src="" alt="" loading="eager">
                             </div>
                         </div>
                         <div class="about-text">
@@ -325,7 +346,7 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">tree --experience</span>
+                    <span class="command-text" data-text="tree --experience"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="experience-tree stagger-container">
@@ -341,7 +362,7 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">systemctl list-services --active</span>
+                    <span class="command-text" data-text="systemctl list-services --active"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="services-grid stagger-container">
@@ -357,7 +378,7 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">tree ~/skills --level 2</span>
+                    <span class="command-text" data-text="tree ~/skills --level 2"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="skills-tree">
@@ -377,7 +398,7 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">ls -la ./projects/</span>
+                    <span class="command-text" data-text="ls -la ./projects/"></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="portfolio-grid stagger-container">
@@ -393,7 +414,7 @@
                         class="prompt-host">portfolio</span>
                     <span class="prompt-path">~</span>
                     <span class="prompt-symbol">$</span>
-                    <span class="command-text">mail -s "Let's Connect" hello@shakib.bd</span>
+                    <span class="command-text" data-text='mail -s "Let&apos;s Connect" hello@shakib.bd'></span><span class="cursor"></span>
                 </div>
                 <div class="output-panel">
                     <div class="contact-container">
@@ -463,6 +484,10 @@
     <script src="js/command-system.js"></script>
     <script src="js/content-renderer.js"></script>
     <script src="js/activity-simulator.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/animation-enhancer.js"></script>
+    <script src="js/sparkles.js"></script>
+    <script src="js/pixel-image.js"></script>
     <script src="js/app.js"></script>
 </body>
 

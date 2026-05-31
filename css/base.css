@@ -61,6 +61,16 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     transition: background 0.8s ease, color 0.5s ease;
+    user-select: none;
+}
+
+/* Allow selection on name, email, and form fields */
+.hero-name,
+.hero-name *,
+.contact-form input,
+.contact-form textarea,
+a[href^="mailto:"] {
+    user-select: text;
 }
 
 /* ========== SELECTION ========== */

@@ -2,7 +2,6 @@
  * App Module
  * Main initialization and coordination
  */
-
 const App = {
     /**
      * Initialize the application
@@ -16,6 +15,14 @@ const App = {
         ScrollHandler.init();
         CommandSystem.init();
 
+        // Initialize new animation modules
+        this.initEnhancements();
+
+        // Initialize pixel image components
+        if (typeof PixelImage !== 'undefined') {
+            PixelImage.initAll();
+        }
+
         // Set up modals
         this.setupHelpModal();
         this.setupThemeModal();
@@ -25,46 +32,59 @@ const App = {
     },
 
     /**
-     * Set up loading screen and typing animation
+     * Initialize enhanced animations and background
      */
-    setupLoadingScreen() {
-        const hideLoadingAndType = () => {
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('hidden');
-                }
-                this.typeHeroCommand();
-            }, 1800);
-        };
+    initEnhancements() {
+        // Background particle network
+        if (typeof BackgroundAnimator !== 'undefined') {
+            BackgroundAnimator.init();
+        }
 
-        // Check if window has already loaded
-        if (document.readyState === 'complete') {
-            hideLoadingAndType();
-        } else {
-            window.addEventListener('load', hideLoadingAndType);
+        // Motion One enhanced animations
+        if (typeof AnimationEnhancer !== 'undefined') {
+            // Delay slightly so DOM content is fully rendered
+            setTimeout(() => AnimationEnhancer.init(), 300);
+        }
+
+        // Sparkles effect on hero name selection
+        if (typeof SparklesEffect !== 'undefined') {
+            setTimeout(() => SparklesEffect.init(), 500);
         }
     },
 
     /**
-     * Type the hero command with animation
+     * Set up loading screen
      */
-    typeHeroCommand() {
-        const heroCommand = document.getElementById('heroCommand');
-        if (!heroCommand) return;
-
-        const text = 'whoami --verbose';
-        let i = 0;
-
-        function type() {
-            if (i < text.length) {
-                heroCommand.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, 80 + Math.random() * 40);
-            }
+    setupLoadingScreen() {
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (!loadingScreen) {
+            // No loading screen — start hero typing immediately
+            this.startHeroTypingIfReady();
+            return;
         }
 
-        setTimeout(type, 500);
+        const hideLoading = () => {
+            loadingScreen.classList.add('hidden');
+            // Wait for CSS fade-out transition (0.5s) then start hero typing
+            setTimeout(() => this.startHeroTypingIfReady(), 550);
+        };
+
+        if (document.readyState === 'complete') {
+            setTimeout(hideLoading, 800);
+        } else {
+            window.addEventListener('load', () => {
+                setTimeout(hideLoading, 400);
+            });
+        }
+    },
+
+    /**
+     * Start hero typing animation once AnimationEnhancer is ready
+     */
+    startHeroTypingIfReady() {
+        if (typeof AnimationEnhancer !== 'undefined' && AnimationEnhancer.initHeroTyping) {
+            AnimationEnhancer.initHeroTyping();
+        }
     },
 
     /**
@@ -76,21 +96,18 @@ const App = {
 
         if (!helpModal) return;
 
-        // Close button
         if (helpClose) {
             helpClose.addEventListener('click', () => {
                 CommandSystem.hideHelp();
             });
         }
 
-        // Click outside to close
         helpModal.addEventListener('click', (e) => {
             if (e.target === helpModal) {
                 CommandSystem.hideHelp();
             }
         });
 
-        // Escape key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 CommandSystem.hideHelp();
@@ -108,31 +125,16 @@ const App = {
 
         if (!themeModal) return;
 
-        // Close button
         if (themeClose) {
             themeClose.addEventListener('click', () => {
                 CommandSystem.hideThemeList();
             });
         }
 
-        // Click outside to close
         themeModal.addEventListener('click', (e) => {
             if (e.target === themeModal) {
                 CommandSystem.hideThemeList();
             }
-        });
-
-        // Make theme items clickable (items are dynamically generated)
-        const themeItems = themeModal.querySelectorAll('.theme-list li');
-        themeItems.forEach(item => {
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', () => {
-                const themeName = item.querySelector('.cmd-name').textContent;
-                ThemeManager.setTheme(themeName);
-                // Update active state
-                themeItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
         });
     }
 };

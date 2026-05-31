@@ -122,39 +122,49 @@ const ContentRenderer = {
         const { basics, ui } = this.resume;
         const hero = ui?.hero || {};
 
-        // ASCII Logo
-        const asciiLogo = document.querySelector('.ascii-logo');
-        if (asciiLogo && hero.asciiLogo) {
-            asciiLogo.textContent = hero.asciiLogo;
+        // Greeting
+        const greeting = document.querySelector('.hero-greeting');
+        if (greeting && hero.greeting) {
+            greeting.textContent = hero.greeting;
         }
 
-        // Name - from JSON Resume basics
+        // Name
         const heroName = document.querySelector('.hero-name');
-        if (heroName) {
-            heroName.textContent = basics.name;
+        if (heroName && basics.name) {
+            heroName.innerHTML = basics.name.split('').map(ch =>
+                ch === ' ' ? ' ' : `<span>${ch}</span>`
+            ).join('');
         }
 
-        // Title - from JSON Resume basics
+        // Title
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
             heroTitle.textContent = basics.label;
         }
 
-        // Tagline - from overlay
-        const heroTagline = document.querySelector('.hero-tagline');
-        if (heroTagline && hero.tagline) {
-            heroTagline.textContent = hero.tagline;
+        // Subtitle / tagline
+        const subtitle = document.querySelector('.hero-subtitle');
+        if (subtitle && hero.tagline) {
+            subtitle.textContent = hero.tagline;
         }
 
-        // Stats - from overlay
-        const heroStats = document.querySelector('.hero-stats');
+        // Stats — number tickers
+        const heroStats = document.querySelector('.hero-metrics');
         if (heroStats && hero.stats) {
             heroStats.innerHTML = hero.stats.map(stat => `
-                <div class="stat-item">
-                    <div class="stat-value">${stat.value}</div>
-                    <div class="stat-label">${stat.label}</div>
-                </div>
+                <span class="hero-ticker">
+                    <span class="ticker-value" data-counter="${stat.value}">0</span>
+                    <span class="ticker-label">${stat.label}</span>
+                </span>
             `).join('');
+        }
+
+        // Tech tags
+        const techRow = document.querySelector('.hero-tech-row');
+        if (techRow && hero.techTags) {
+            techRow.innerHTML = hero.techTags.map(tag =>
+                `<span class="hero-tech-tag">${tag}</span>`
+            ).join('');
         }
     },
 
@@ -165,11 +175,20 @@ const ContentRenderer = {
         const { basics, ui } = this.resume;
         const about = ui?.about || {};
 
-        // Profile image - from JSON Resume basics
-        const profileImage = document.querySelector('.profile-image');
-        if (profileImage) {
-            profileImage.src = basics.image;
-            profileImage.alt = basics.name;
+        // Profile image — update pixel-image data-src AND fallback img
+        const pixelContainer = document.querySelector('.pixel-image');
+        if (pixelContainer) {
+            pixelContainer.dataset.src = basics.image;
+            // Also update the fallback img inside
+            const fallbackImg = pixelContainer.querySelector('.profile-image');
+            if (fallbackImg) {
+                fallbackImg.src = basics.image;
+                fallbackImg.alt = basics.name;
+            }
+            // Re-init pixel effect with new image
+            if (typeof PixelImage !== 'undefined') {
+                PixelImage.init(pixelContainer);
+            }
         }
 
         // Headline - from overlay
@@ -178,10 +197,10 @@ const ContentRenderer = {
             aboutHeadline.textContent = about.headline;
         }
 
-        // Bio - from JSON Resume basics.summary
+        // Bio — prefer overlay's about.bio, fall back to basics.summary
         const aboutBio = document.querySelector('.about-text p');
         if (aboutBio) {
-            aboutBio.textContent = basics.summary;
+            aboutBio.textContent = about.bio || basics.summary || '';
         }
 
         // System Info - from overlay
@@ -289,7 +308,7 @@ const ContentRenderer = {
         const servicesGrid = document.querySelector('.services-grid');
         if (servicesGrid) {
             servicesGrid.innerHTML = services.map(service => `
-                <article class="service-card stagger-item">
+                <article class="service-card stagger-item hover-lift-glow float-card">
                     <div class="service-header">
                         <div class="service-icon"><i class="${service.icon}" aria-hidden="true"></i></div>
                         <h3>${service.title}</h3>
@@ -387,7 +406,7 @@ const ContentRenderer = {
             portfolioGrid.innerHTML = projects.map(project => {
                 if (project.type === 'infrastructure') {
                     return `
-                        <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
+                        <a href="${project.url}" class="portfolio-card stagger-item hover-lift-glow" target="_blank" rel="noopener noreferrer">
                             <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
                                 <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                             </div>
@@ -402,7 +421,7 @@ const ContentRenderer = {
                     `;
                 } else {
                     return `
-                        <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
+                        <a href="${project.url}" class="portfolio-card stagger-item hover-lift-glow" target="_blank" rel="noopener noreferrer">
                             <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                             <div class="portfolio-info">
                                 <h3>${project.name}</h3>
@@ -515,22 +534,14 @@ const ContentRenderer = {
     renderThemes() {
         const themes = this.resume.ui?.themes;
         if (!themes) return;
-
-        const themeList = document.querySelector('.theme-list');
+        // Theme list in help modal
+        const themeList = document.querySelector('.help-commands.theme-list');
         if (themeList) {
             themeList.innerHTML = themes.map(theme => `
                 <li>
                     <span class="cmd-name">${theme.id}</span>
                     <span class="cmd-desc">${theme.description}</span>
                 </li>
-            `).join('');
-        }
-
-        // Theme dropdown
-        const themeDropdown = document.querySelector('.theme-dropdown');
-        if (themeDropdown) {
-            themeDropdown.innerHTML = themes.map(theme => `
-                <button data-theme="${theme.id}">${theme.name}</button>
             `).join('');
         }
     }

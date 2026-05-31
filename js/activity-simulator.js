@@ -135,6 +135,7 @@ const ActivitySimulator = {
 
     /**
      * Populate the system ticker with simulated logs
+     * Uses ScrollBasedVelocity (MagicUI) - speed changes with scroll
      */
     populateTicker() {
         const tickerContent = document.querySelector('.ticker-content');
@@ -155,15 +156,69 @@ const ActivitySimulator = {
             { icon: 'la-network-wired', text: 'eth0: 1000Mbps full duplex', type: '' },
         ];
 
-        // Create ticker items - duplicate for seamless loop
-        const allMessages = [...tickerMessages, ...tickerMessages];
-        
+        // Create ticker items - duplicate 3x for seamless loop
+        const allMessages = [...tickerMessages, ...tickerMessages, ...tickerMessages];
+
         tickerContent.innerHTML = allMessages.map(msg => `
             <div class="ticker-item ${msg.type}">
                 <i class="las ${msg.icon}"></i>
                 <span>${msg.text}</span>
             </div>
         `).join('');
+
+        // Initialize scroll-based velocity
+        this.initVelocityScroll();
+    },
+
+    /**
+     * ScrollBasedVelocity (MagicUI) - ticker speed responds to page scroll
+     */
+    velocityState: {
+        baseX: 0,
+        lastScrollY: 0,
+        scrollVelocity: 0,
+        smoothVelocity: 0,
+    },
+
+    initVelocityScroll() {
+        const tickerContent = document.querySelector('.ticker-content');
+        if (!tickerContent) return;
+
+        const state = this.velocityState;
+        state.lastScrollY = window.scrollY;
+
+        // Track scroll velocity
+        window.addEventListener('scroll', () => {
+            const currentY = window.scrollY;
+            const delta = currentY - state.lastScrollY;
+            // Smooth the velocity
+            state.scrollVelocity = state.scrollVelocity * 0.9 + delta * 0.1;
+            state.lastScrollY = currentY;
+        }, { passive: true });
+
+        // Animate ticker with scroll-responsive speed
+        const animate = () => {
+            const baseSpeed = 0.3; // pixels per frame base speed
+            const velocityFactor = Math.min(5, Math.abs(state.scrollVelocity) / 10);
+            const direction = state.scrollVelocity >= 0 ? -1 : 1;
+
+            // Modulate speed: faster when scrolling, reverses direction with scroll
+            let speed = baseSpeed;
+            if (Math.abs(state.scrollVelocity) > 0.5) {
+                speed = baseSpeed * (1 + velocityFactor);
+                if (state.scrollVelocity < 0) speed *= -1;
+            }
+
+            state.baseX += speed;
+            tickerContent.style.transform = `translateX(${state.baseX}px)`;
+
+            requestAnimationFrame(animate);
+        };
+
+        // Remove CSS animation, use JS-driven transform
+        tickerContent.style.animation = 'none';
+        tickerContent.style.willChange = 'transform';
+        requestAnimationFrame(animate);
     },
 
     /**

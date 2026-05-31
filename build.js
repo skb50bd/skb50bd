@@ -123,17 +123,32 @@ function generateHeroHTML(resume) {
     const hero = ui?.hero || {};
 
     return `
-        <pre class="ascii-logo" aria-hidden="true">${hero.asciiLogo || ''}</pre>
-        <h1 class="hero-name">${basics.name}</h1>
+        <p class="hero-greeting">${hero.greeting || ''}</p>
+        <h1 class="hero-name aurora-text">${basics.name}</h1>
         <p class="hero-title">${basics.label}</p>
-        <p class="hero-tagline">${hero.tagline || ''}</p>
-        <div class="hero-stats">
+        <p class="hero-subtitle">${hero.tagline || ''}</p>
+        <div class="hero-cta">
+            <a href="#contact" class="cta-button ihb-wrapper">
+                <span class="ihb-content">
+                    <span class="ihb-dot"></span>
+                    <span class="ihb-text">Get in touch</span>
+                </span>
+                <span class="ihb-overlay">
+                    <span>Get in touch</span>
+                    <i class="las la-arrow-right"></i>
+                </span>
+            </a>
+        </div>
+        <div class="hero-metrics">
             ${(hero.stats || []).map(stat => `
-                <div class="stat-item">
-                    <div class="stat-value">${stat.value}</div>
-                    <div class="stat-label">${stat.label}</div>
-                </div>
+                <span class="hero-ticker">
+                    <span class="ticker-value" data-counter="${stat.value}">${stat.value}</span>
+                    <span class="ticker-label">${stat.label}</span>
+                </span>
             `).join('')}
+        </div>
+        <div class="hero-tech-row">
+            ${(hero.techTags || []).map(tag => `<span class="hero-tech-tag">${tag}</span>`).join('')}
         </div>
         <div class="scroll-hint">
             <span>Scroll to explore</span>
@@ -153,7 +168,7 @@ function generateAboutHTML(resume) {
         profileImage: basics.image,
         name: basics.name,
         headline: about.headline || '',
-        bio: basics.summary,
+        bio: about.bio || basics.summary || '',
         systemInfo: (about.systemInfo || []).map(info => `
             <div class="info-block">
                 <div class="info-label">${info.label}</div>
@@ -221,7 +236,7 @@ function generateExperienceHTML(resume) {
 function generateServicesHTML(resume) {
     const services = resume.ui?.services || [];
     return services.map(service => `
-        <article class="service-card stagger-item">
+        <article class="service-card stagger-item hover-lift-glow float-card">
             <div class="service-header">
                 <div class="service-icon"><i class="${service.icon}" aria-hidden="true"></i></div>
                 <h3>${service.title}</h3>
@@ -298,7 +313,7 @@ function generatePortfolioHTML(resume) {
     return projects.map(project => {
         if (project.type === 'infrastructure') {
             return `
-                <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
+                <a href="${project.url}" class="portfolio-card stagger-item hover-lift-glow" target="_blank" rel="noopener noreferrer">
                     <div class="portfolio-gradient ${project.gradient || 'gradient-k8s'}">
                         <i class="${project.icon || 'las la-server'} gradient-icon" aria-hidden="true"></i>
                     </div>
@@ -313,7 +328,7 @@ function generatePortfolioHTML(resume) {
             `;
         } else {
             return `
-                <a href="${project.url}" class="portfolio-card stagger-item" target="_blank" rel="noopener noreferrer">
+                <a href="${project.url}" class="portfolio-card stagger-item hover-lift-glow" target="_blank" rel="noopener noreferrer">
                     <img src="${project.image || './assets/images/me.webp'}" alt="${project.name} screenshot" class="portfolio-image" loading="lazy">
                     <div class="portfolio-info">
                         <h3>${project.name}</h3>
@@ -389,9 +404,6 @@ function generateThemesHTML(resume) {
                 <span class="cmd-name">${theme.id}</span>
                 <span class="cmd-desc">${theme.description}</span>
             </li>
-        `).join(''),
-        themeDropdown: themes.map(theme => `
-            <button data-theme="${theme.id}">${theme.name}</button>
         `).join('')
     };
 }
@@ -424,10 +436,10 @@ function buildHTML(resume) {
         `<div class="output-panel hero-output">${heroHTML}</div></section>`
     );
 
-    // Replace about profile image
+    // Replace about profile image (pixel-image wrapper)
     html = html.replace(
-        /<img class="profile-image" src="" alt="">/,
-        `<img class="profile-image" src="${aboutData.profileImage}" alt="${aboutData.name}">`
+        /<div class="pixel-image" data-src="assets\/images\/shakib-new\.webp" data-grid="6x4" data-grayscale="true">\s*<img class="profile-image" src="" alt="" loading="eager">\s*<\/div>/,
+        `<div class="pixel-image" data-src="${aboutData.profileImage}" data-grid="6x4" data-grayscale="true">\n                                <img class="profile-image" src="${aboutData.profileImage}" alt="${aboutData.name}" loading="eager">\n                            <\/div>`
     );
 
     // Replace about headline
@@ -532,12 +544,6 @@ function buildHTML(resume) {
     html = html.replace(
         /<ul class="help-commands theme-list">\s*<!-- Populated by content-renderer\.js -->\s*<\/ul>/,
         `<ul class="help-commands theme-list">${themesData.themeList}</ul>`
-    );
-
-    // Replace theme dropdown
-    html = html.replace(
-        /<div class="theme-dropdown">\s*<!-- Populated by content-renderer\.js -->\s*<\/div>/,
-        `<div class="theme-dropdown">${themesData.themeDropdown}</div>`
     );
 
     return html;

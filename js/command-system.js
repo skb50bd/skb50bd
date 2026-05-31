@@ -45,19 +45,19 @@ const CommandSystem = {
             // Theme commands
             'theme': () => this.showThemeList(),
             'theme terminal': () => ThemeManager.setTheme('terminal'),
-            'theme glassmorphic': () => ThemeManager.setTheme('glassmorphic'),
-            'theme minimal': () => ThemeManager.setTheme('minimal'),
-            'theme minimal-dark': () => ThemeManager.setTheme('minimal-dark'),
-            'theme solarized-dark': () => ThemeManager.setTheme('solarized-dark'),
-            'theme solarized-light': () => ThemeManager.setTheme('solarized-light'),
-            'theme solarized': () => ThemeManager.setTheme('solarized-dark'),
-            'theme monokai': () => ThemeManager.setTheme('monokai'),
-            'theme dracula': () => ThemeManager.setTheme('dracula'),
-            'theme nord': () => ThemeManager.setTheme('nord'),
+            'theme glass': () => ThemeManager.setTheme('glass'),
+            'theme light': () => ThemeManager.setTheme('light'),
 
-            // Legacy mode commands (for backwards compatibility)
-            'modern': () => ThemeManager.setTheme('glassmorphic'),
-            'terminal': () => ThemeManager.setTheme('terminal')
+            // Legacy theme commands (backwards compatibility)
+            'theme glassmorphic': () => ThemeManager.setTheme('glass'),
+            'theme minimal': () => ThemeManager.setTheme('light'),
+            'theme minimal-dark': () => ThemeManager.setTheme('terminal'),
+            'theme solarized-dark': () => ThemeManager.setTheme('terminal'),
+            'theme solarized-light': () => ThemeManager.setTheme('light'),
+            'theme monokai': () => ThemeManager.setTheme('terminal'),
+            'theme dracula': () => ThemeManager.setTheme('glass'),
+            'theme nord': () => ThemeManager.setTheme('glass'),
+            'modern': () => ThemeManager.setTheme('glass'),
         };
     },
 
