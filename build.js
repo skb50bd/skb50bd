@@ -652,9 +652,9 @@ function build() {
     fs.writeFileSync(outputPath, html);
     console.log(`✓ Wrote pre-rendered HTML to ${outputPath}`);
 
-    // Copy assets
-    const assetDirs = ['css', 'js', 'assets'];
-    assetDirs.forEach(dir => {
+    // Copy static directories
+    const staticDirs = ['css', 'js', 'assets', 'vendor'];
+    staticDirs.forEach(dir => {
         const src = path.resolve(dir);
         const dest = path.join(CONFIG.outputDir, dir);
         if (fs.existsSync(src)) {

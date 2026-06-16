@@ -148,18 +148,8 @@ const ContentRenderer = {
             subtitle.textContent = hero.tagline;
         }
 
-        // Stats — number tickers (default to final value so broken JS still shows correct numbers)
-        const heroStats = document.querySelector('.hero-metrics');
-        if (heroStats && hero.stats) {
-            heroStats.innerHTML = hero.stats.map(stat => `
-                <span class="hero-ticker">
-                    <span class="ticker-value" data-counter="${stat.value}">${stat.value}</span>
-                    <span class="ticker-label">${stat.label}</span>
-                </span>
-            `).join('');
-        }
-
-        // Tech tags
+        // Stats are pre-rendered into dist/index.html by build.js so they stay correct
+        // even if this script loads from cache. Do not overwrite them here.
         const techRow = document.querySelector('.hero-tech-row');
         if (techRow && hero.techTags) {
             techRow.innerHTML = hero.techTags.map(tag =>
