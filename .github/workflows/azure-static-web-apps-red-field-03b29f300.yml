@@ -25,11 +25,21 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install resume build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc fonts-liberation
+          python3 -m venv /tmp/weasyprint
+          /tmp/weasyprint/bin/pip install --upgrade pip
+          /tmp/weasyprint/bin/pip install weasyprint
+
       - name: Build Static Site
         run: |
           node build.js --update-sitemap
           echo "Build completed successfully"
           ls -la dist/
+          ls -la dist/resume/software/
+          ls -la dist/resume/infrastructure/
 
       - name: Build And Deploy
         id: builddeploy

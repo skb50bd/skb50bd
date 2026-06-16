@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 // Configuration
 const CONFIG = {
@@ -138,6 +139,16 @@ function generateHeroHTML(resume) {
                     <i class="las la-arrow-right"></i>
                 </span>
             </a>
+            <div class="hero-resume-links">
+                <a href="./resume/software/shakib_haris_software_engineer.pdf" class="resume-link" download>
+                    <i class="las la-file-download"></i>
+                    <span>Software Resume</span>
+                </a>
+                <a href="./resume/infrastructure/shakib_haris_infrastructure_engineer.pdf" class="resume-link" download>
+                    <i class="las la-file-download"></i>
+                    <span>Infrastructure Resume</span>
+                </a>
+            </div>
         </div>
         <div class="hero-metrics">
             ${(hero.stats || []).map(stat => `
@@ -561,16 +572,83 @@ function updateSitemap() {
 }
 
 /**
+ * Generate resume HTML + PDF from markdown
+ */
+function buildResumes() {
+    const resumesDir = path.resolve(__dirname, 'resumes');
+    const templatePath = path.join(resumesDir, 'resume_template.tpl');
+
+    const resumes = [
+        { id: 'software', md: 'shakib_haris_software_engineer.md', pdf: 'shakib_haris_software_engineer.pdf' },
+        { id: 'infrastructure', md: 'shakib_haris_infrastructure_engineer.md', pdf: 'shakib_haris_infrastructure_engineer.pdf' }
+    ];
+
+    for (const r of resumes) {
+        const outDir = path.join(CONFIG.outputDir, 'resume', r.id);
+        if (!fs.existsSync(outDir)) {
+            fs.mkdirSync(outDir, { recursive: true });
+        }
+
+        const mdPath = path.join(resumesDir, r.md);
+        const htmlPath = path.join(outDir, 'index.html');
+        const pdfPath = path.join(outDir, r.pdf);
+
+        // Generate resume HTML
+        execSync(
+            `pandoc "${mdPath}" -t html --template "${templatePath}" -o "${htmlPath}"`,
+            { stdio: 'inherit' }
+        );
+
+        // Prefer the CI/Docker weasyprint venv, fall back to local dev venv
+        const weasyprint = process.env.WEASYPRINT_PATH || '/tmp/weasyprint/bin/weasyprint';
+        execSync(
+            `"${weasyprint}" "${htmlPath}" "${pdfPath}"`,
+            { stdio: 'inherit' }
+        );
+
+        // Also create a redirect/index page pointing to the PDF
+        const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shakib Haris — ${r.id === 'software' ? 'Software Engineer' : 'Infrastructure / DevOps / SRE Engineer'} Resume</title>
+<meta http-equiv="refresh" content="0; url=./${r.pdf}">
+<style>
+body { font-family: system-ui, sans-serif; background: #0d0d0d; color: #f0f0f0; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+.container { text-align: center; }
+a { color: #ffb000; text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <p>If you are not redirected automatically, <a href="./${r.pdf}">click here to download the PDF</a>.</p>
+</div>
+</body>
+</html>`;
+        fs.writeFileSync(path.join(outDir, 'download.html'), redirectHtml);
+
+        console.log(`✓ Generated resume/${r.id}/${r.pdf}`);
+    }
+}
+
+/**
  * Main build function
  */
 function build() {
     console.log('🔨 Building pre-rendered portfolio...\n');
 
-    // Load content
+    // 1. Generate resume markdown files from resume.json
+    console.log('📄 Generating resume markdown files from resume.json...');
+    const generateResumesPath = path.resolve(__dirname, 'resumes', 'generate.js');
+    execSync(`node "${generateResumesPath}"`, { stdio: 'inherit' });
+
+    // 2. Load content
     console.log('📄 Loading resume.json + overlay...');
     const resume = loadContent();
 
-    // Build HTML
+    // 3. Build portfolio HTML
     console.log('🏗️  Generating pre-rendered HTML...');
     const html = buildHTML(resume);
 
@@ -605,6 +683,10 @@ function build() {
             console.log(`✓ Copied ${file}`);
         }
     });
+
+    // 4. Build resume PDFs
+    console.log('\n📄 Building resume PDFs...');
+    buildResumes();
 
     // Update sitemap if requested
     if (CONFIG.updateSitemap) {

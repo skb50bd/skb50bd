@@ -1,10 +1,23 @@
 # Stage 1: Build the static site
-FROM node:20-alpine AS builder
+FROM node:20-bookworm AS builder
 
 WORKDIR /app
 
 # Copy source files
 COPY . .
+
+# Install tools needed to generate resume PDFs
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        pandoc \
+        fonts-liberation \
+        python3-venv \
+        python3-pip \
+    && \
+    python3 -m venv /tmp/weasyprint && \
+    /tmp/weasyprint/bin/pip install --upgrade pip && \
+    /tmp/weasyprint/bin/pip install weasyprint && \
+    rm -rf /var/lib/apt/lists/*
 
 # Build the pre-rendered static site
 RUN node build.js --update-sitemap

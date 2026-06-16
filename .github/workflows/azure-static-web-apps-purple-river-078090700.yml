@@ -19,6 +19,28 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install resume build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc fonts-liberation
+          python3 -m venv /tmp/weasyprint
+          /tmp/weasyprint/bin/pip install --upgrade pip
+          /tmp/weasyprint/bin/pip install weasyprint
+
+      - name: Build Static Site
+        run: |
+          node build.js --update-sitemap
+          echo "Build completed successfully"
+          ls -la dist/
+          ls -la dist/resume/software/
+          ls -la dist/resume/infrastructure/
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -26,11 +48,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_RIVER_078090700 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
+          ###### Repository/Build Configurations ######
+          app_location: "/dist" # Pre-rendered static site
           api_location: "" # Api source code path - optional
-          output_location: "/" # Built app content directory - optional
+          output_location: "" # Already built, no additional build needed
+          skip_app_build: true # Skip Azure's build since we pre-built
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
@@ -42,5 +64,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_RIVER_078090700 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_RIVER_078090700 }
           action: "close"

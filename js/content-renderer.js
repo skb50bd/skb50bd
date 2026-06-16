@@ -166,6 +166,21 @@ const ContentRenderer = {
                 `<span class="hero-tech-tag">${tag}</span>`
             ).join('');
         }
+
+        // Resume download links
+        const resumeLinks = document.querySelector('.hero-resume-links');
+        if (resumeLinks) {
+            resumeLinks.innerHTML = `
+                <a href="./resume/software/shakib_haris_software_engineer.pdf" class="resume-link" download>
+                    <i class="las la-file-download"></i>
+                    <span>Software Resume</span>
+                </a>
+                <a href="./resume/infrastructure/shakib_haris_infrastructure_engineer.pdf" class="resume-link" download>
+                    <i class="las la-file-download"></i>
+                    <span>Infrastructure Resume</span>
+                </a>
+            `;
+        }
     },
 
     /**
