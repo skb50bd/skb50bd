@@ -148,12 +148,12 @@ const ContentRenderer = {
             subtitle.textContent = hero.tagline;
         }
 
-        // Stats — number tickers
+        // Stats — number tickers (default to final value so broken JS still shows correct numbers)
         const heroStats = document.querySelector('.hero-metrics');
         if (heroStats && hero.stats) {
             heroStats.innerHTML = hero.stats.map(stat => `
                 <span class="hero-ticker">
-                    <span class="ticker-value" data-counter="${stat.value}">0</span>
+                    <span class="ticker-value" data-counter="${stat.value}">${stat.value}</span>
                     <span class="ticker-label">${stat.label}</span>
                 </span>
             `).join('');
@@ -165,21 +165,6 @@ const ContentRenderer = {
             techRow.innerHTML = hero.techTags.map(tag =>
                 `<span class="hero-tech-tag">${tag}</span>`
             ).join('');
-        }
-
-        // Resume download links
-        const resumeLinks = document.querySelector('.hero-resume-links');
-        if (resumeLinks) {
-            resumeLinks.innerHTML = `
-                <a href="./resume/software/shakib_haris_software_engineer.pdf" class="resume-link" download>
-                    <i class="las la-file-download"></i>
-                    <span>Software Resume</span>
-                </a>
-                <a href="./resume/infrastructure/shakib_haris_infrastructure_engineer.pdf" class="resume-link" download>
-                    <i class="las la-file-download"></i>
-                    <span>Infrastructure Resume</span>
-                </a>
-            `;
         }
     },
 

@@ -1,3 +1,7 @@
+---
+title: Shakib Haris — Software Engineer
+---
+
 # Shakib Haris
 **Software Engineer** · Dhaka, Bangladesh · hello@shakib.bd · https://shakib.bd · https://github.com/skb50bd
 

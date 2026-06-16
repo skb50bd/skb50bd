@@ -215,7 +215,7 @@ const AnimationEnhancer = {
                 };
                 requestAnimationFrame(update);
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
 
         statValues.forEach(el => observer.observe(el));
     },

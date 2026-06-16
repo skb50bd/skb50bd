@@ -139,16 +139,6 @@ function generateHeroHTML(resume) {
                     <i class="las la-arrow-right"></i>
                 </span>
             </a>
-            <div class="hero-resume-links">
-                <a href="./resume/software/shakib_haris_software_engineer.pdf" class="resume-link" download>
-                    <i class="las la-file-download"></i>
-                    <span>Software Resume</span>
-                </a>
-                <a href="./resume/infrastructure/shakib_haris_infrastructure_engineer.pdf" class="resume-link" download>
-                    <i class="las la-file-download"></i>
-                    <span>Infrastructure Resume</span>
-                </a>
-            </div>
         </div>
         <div class="hero-metrics">
             ${(hero.stats || []).map(stat => `
