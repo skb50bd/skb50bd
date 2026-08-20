@@ -2,11 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Shakib Haris",
-    "label": "Software & Systems Engineer",
+    "label": "Founder at Brotal · Software & Systems Engineer",
     "image": "assets/images/profile.webp",
     "email": "hello@shakib.bd",
     "url": "https://shakib.bd",
-    "summary": "Senior Software & Systems Engineer with 8+ years of enterprise experience building secure, reliable, and highly automated platforms. I ship backend systems in .NET, design and operate Kubernetes-based infrastructure, and automate with clean IaC and reliable CI/CD. Comfortable deep in incident response, performance profiling, and network/security hardening—then turning those lessons into simpler architectures, stronger runbooks, and observable systems. I take ownership end-to-end (design → build → operate) and optimize for reliability, performance, and long-term maintainability.",
+    "summary": "Founder of Brotal and senior software and systems engineer with 8+ years building highly available products and production platforms end-to-end — from data modeling and application architecture to infrastructure, observability, and iterative delivery.",
     "location": {
       "city": "Dhaka",
       "countryCode": "BD",
@@ -32,18 +32,35 @@
   },
   "work": [
     {
+      "name": "Brotal",
+      "location": "Dhaka, Bangladesh · Hybrid",
+      "description": "Independent software and systems engineering company",
+      "position": "Founder",
+      "employmentType": "Self-employed",
+      "url": "https://brotal.net",
+      "startDate": "2018-01",
+      "endDate": "",
+      "summary": "Built and delivered highly available, scalable, real-world ERP, CRM, EdTech, eCommerce, observability, monitoring, and AI systems from scratch — owning the full stack from data modeling to deployment and iterative improvements.",
+      "highlights": [
+        "Founded Brotal and lead it as a product engineering company spanning software, infrastructure, and operations",
+        "Own architecture and delivery end-to-end: domain modeling, backend and frontend engineering, data platforms, deployment, observability, and iteration",
+        "Built products across monitoring, agent memory, live TV streaming, EdTech, commerce, and real-time multiplayer systems"
+      ]
+    },
+    {
       "name": "Chaldal PLC",
       "position": "Infrastructure Engineer",
       "url": "https://chaldal.tech",
       "startDate": "2023-01",
-      "summary": "Own the on-prem Kubernetes platform end-to-end — from bare metal to production workloads — with a focus on uptime, security, and operational simplicity.",
+      "summary": "Owned the on-prem Kubernetes platform end-to-end — from bare metal to production workloads — with a focus on uptime, security, and operational simplicity.",
       "highlights": [
         "Designed and operated a highly-available on-prem Kubernetes platform with production-grade reliability",
         "Hardened network and access controls with pragmatic security architecture and compliance-minded defaults",
         "Built observability and alerting that reduced MTTR and improved on-call signal quality",
-        "Automated infrastructure delivery with IaC + CI/CD, enabling safe, repeatable changes at scale",
+        "Automated infrastructure delivery with IaC and CI/CD, enabling safe, repeatable changes at scale",
         "Enabled ML/AI workloads on Kubernetes with dependable scheduling, storage, and operational guardrails"
-      ]
+      ],
+      "endDate": "2026-08"
     },
     {
       "name": "Chaldal PLC",
@@ -82,17 +99,6 @@
         "Delivered 30+ features in inventory workflows with a focus on correctness, clarity, and maintainability",
         "Improved system efficiency by reducing expensive operations and tightening critical code paths"
       ]
-    },
-    {
-      "name": "Freelance",
-      "position": "Fullstack Developer",
-      "startDate": "2018-01",
-      "endDate": "2019-12",
-      "summary": "Built real-world ERP and university management systems from scratch — owning the full stack from data modeling to deployment.",
-      "highlights": [
-        "Built and delivered end-to-end ERP solutions—data modeling, workflows, reporting, and deployment",
-        "Designed and implemented a University Management System with role-based access and operational reporting"
-      ]
     }
   ],
   "education": [
@@ -122,139 +128,336 @@
     {
       "name": "Backend Development",
       "level": "Expert",
-      "keywords": ["C#", "F#", ".NET", "ASP.NET Core", "EF Core", "Python"]
+      "keywords": [
+        "C#",
+        "F#",
+        ".NET",
+        "ASP.NET Core",
+        "EF Core",
+        "Python"
+      ]
     },
     {
       "name": "Containers & Orchestration",
       "level": "Advanced",
-      "keywords": ["Docker", "Kubernetes", "Rancher", "Harbor", "Helm"]
+      "keywords": [
+        "Docker",
+        "Kubernetes",
+        "Rancher",
+        "Harbor",
+        "Helm"
+      ]
     },
     {
       "name": "Infrastructure & IaC",
       "level": "Advanced",
-      "keywords": ["Ansible", "Private Cloud", "Hyper-V", "QEMU/KVM", "Xen Orchestra"]
+      "keywords": [
+        "Ansible",
+        "Private Cloud",
+        "Hyper-V",
+        "QEMU/KVM",
+        "Xen Orchestra"
+      ]
     },
     {
       "name": "Databases & Storage",
       "level": "Expert",
-      "keywords": ["MS SQL Server", "PostgreSQL", "Redis", "SeaweedFS"]
+      "keywords": [
+        "MS SQL Server",
+        "PostgreSQL",
+        "Redis",
+        "SeaweedFS"
+      ]
     },
     {
       "name": "Observability",
       "level": "Advanced",
-      "keywords": ["Prometheus", "Grafana", "Elastic Stack", "CheckMK"]
+      "keywords": [
+        "Prometheus",
+        "Grafana",
+        "Elastic Stack",
+        "CheckMK"
+      ]
     },
     {
       "name": "Networking",
       "level": "Expert",
-      "keywords": ["TCP/IP", "DNS", "MikroTik", "Nginx", "HAProxy", "WireGuard", "OpenVPN"]
+      "keywords": [
+        "TCP/IP",
+        "DNS",
+        "MikroTik",
+        "Nginx",
+        "HAProxy",
+        "WireGuard",
+        "OpenVPN"
+      ]
     },
     {
       "name": "Identity & Security",
       "level": "Advanced",
-      "keywords": ["Active Directory", "Zitadel", "SSSD", "PKI", "SIEM"]
+      "keywords": [
+        "Active Directory",
+        "Zitadel",
+        "SSSD",
+        "PKI",
+        "SIEM"
+      ]
     },
     {
       "name": "Cloud & DevOps",
       "level": "Advanced",
-      "keywords": ["Microsoft Azure", "Azure DevOps", "GitHub Actions", "CI/CD", "GitOps"]
+      "keywords": [
+        "Microsoft Azure",
+        "Azure DevOps",
+        "GitHub Actions",
+        "CI/CD",
+        "GitOps"
+      ]
     },
     {
       "name": "Operating Systems",
       "level": "Expert",
-      "keywords": ["Windows Server", "Ubuntu", "Debian", "Linux Administration"]
+      "keywords": [
+        "Windows Server",
+        "Ubuntu",
+        "Debian",
+        "Linux Administration"
+      ]
     }
   ],
   "projects": [
     {
       "name": "Chokidar",
-      "description": "A multi-tenant monitoring platform for networks, services, and hosts — built with .NET 10, Next.js 16, PostgreSQL, and ClickHouse. Features include probe-based health checks, smart alerting, time-series analytics, and multi-tenant isolation.",
-      "highlights": [".NET 10", "Next.js 16", "PostgreSQL", "ClickHouse", "Docker", "Multi-Tenant", "Alerting", "Time-Series"],
+      "description": "Distributed, multi-tenant monitoring platform with probe scheduling, gRPC agents, encrypted credentials, alerting, PostgreSQL coordination, and ClickHouse time-series storage.",
+      "highlights": [
+        ".NET 10",
+        "Next.js 16",
+        "PostgreSQL",
+        "ClickHouse",
+        "gRPC",
+        "Docker"
+      ],
       "url": "https://chokidar.app"
+    },
+    {
+      "name": "ilma",
+      "description": "Framework-agnostic agent memory system with MCP and HTTP interfaces, hybrid vector and full-text retrieval, eight knowledge surfaces, and an Apache AGE graph layer.",
+      "highlights": [
+        "Python",
+        "PostgreSQL",
+        "pgvector",
+        "Apache AGE",
+        "MCP",
+        "Ollama"
+      ],
+      "url": "https://github.com/Brotal-LLC/ilma",
+      "roles": [
+        "Founder",
+        "Architect",
+        "Engineer"
+      ],
+      "entity": "Brotal"
+    },
+    {
+      "name": "Brotal TV",
+      "description": "Live TV streaming aggregator with resilient HLS proxying, multi-source channel management, authenticated administration, analytics, and a responsive web player.",
+      "highlights": [
+        "F#",
+        "ASP.NET Core",
+        "React",
+        "PostgreSQL",
+        "HLS.js",
+        "Docker"
+      ],
+      "url": "https://iptv.shakib.io",
+      "roles": [
+        "Founder",
+        "Architect",
+        "Engineer"
+      ],
+      "entity": "Brotal"
+    },
+    {
+      "name": "29",
+      "description": "Real-time multiplayer implementation of the South Asian 29 trick-taking card game with a type-safe F# domain engine, WebSocket play, Fable client logic, and deterministic bot AI.",
+      "highlights": [
+        "F#",
+        ".NET 10",
+        "Fable",
+        "WebSocket",
+        "Three.js",
+        "Bot AI"
+      ],
+      "url": "https://29.ekta.dev",
+      "roles": [
+        "Founder",
+        "Architect",
+        "Engineer"
+      ],
+      "entity": "Brotal"
     },
     {
       "name": "SportsVerse",
       "description": "A comprehensive sports e-commerce platform built with Next.js and PostgreSQL, featuring a modern UI, secure payments, and seamless shipping integration with Pathao and UddoktaPay.",
-      "highlights": ["React", "Next.js", "PostgreSQL", "SEO", "Payments", "Shipping", "Pathao", "UddoktaPay", "OAuth"],
+      "highlights": [
+        "React",
+        "Next.js",
+        "PostgreSQL",
+        "SEO",
+        "Payments",
+        "Shipping",
+        "Pathao",
+        "UddoktaPay",
+        "OAuth"
+      ],
       "url": "https://sportsverse.bd"
     },
     {
       "name": "Samim's Tutorial",
       "description": "An online education platform built with Next.js and ASP.NET Core, featuring a modern UI, secure payments, and seamless integration with Zitadel for authentication and authorization.",
-      "highlights": ["React", "Next.js", "ASP.NET Core", "PostgreSQL", "Education", "EdTech", "Zitadel", "OIDC", "JWT"],
+      "highlights": [
+        "React",
+        "Next.js",
+        "ASP.NET Core",
+        "PostgreSQL",
+        "Education",
+        "EdTech",
+        "Zitadel",
+        "OIDC",
+        "JWT"
+      ],
       "url": "https://samimstutorial.com"
     },
     {
       "name": "High-Availability Kubernetes Cluster",
       "description": "A production-grade Kubernetes platform engineered for high availability, predictable operations, and strong security posture—built to run critical workloads with confidence.",
-      "highlights": ["Kubernetes", "Linux", "Network", "Security"],
+      "highlights": [
+        "Kubernetes",
+        "Linux",
+        "Network",
+        "Security"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Logging & Observability System",
       "description": "End-to-end observability (metrics, logs, dashboards, alerting) with actionable signals that improve MTTR and enable confident, data-driven operations.",
-      "highlights": ["Elastic", "Grafana", "Prometheus", "CheckMK"],
+      "highlights": [
+        "Elastic",
+        "Grafana",
+        "Prometheus",
+        "CheckMK"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Multi-Region Private Cloud Network",
       "description": "Resilient multi-site private cloud networking using WireGuard/IPsec and dynamic routing (OSPF/BGP/Anycast) to deliver fault-tolerant connectivity and clean segmentation.",
-      "highlights": ["MikroTik", "WireGuard", "BGP", "OSPF"],
+      "highlights": [
+        "MikroTik",
+        "WireGuard",
+        "BGP",
+        "OSPF"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Distributed Storage System",
       "description": "Distributed storage designed for durability and availability, with operational tooling and replication strategies that fit enterprise reliability requirements.",
-      "highlights": ["Distributed Storage", "Reliability", "Scalability"],
+      "highlights": [
+        "Distributed Storage",
+        "Reliability",
+        "Scalability"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "AI/ML Infrastructure",
       "description": "Kubernetes-based ML infrastructure with GPU scheduling and deployment automation—built to keep training and inference pipelines reliable and repeatable.",
-      "highlights": ["AI/ML", "GPU", "Kubernetes", "PyTorch"],
+      "highlights": [
+        "AI/ML",
+        "GPU",
+        "Kubernetes",
+        "PyTorch"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Network Monitoring System",
       "description": "Custom monitoring with Python + CheckMK to track network health, performance, and anomalies—so issues are detected early and resolved faster.",
-      "highlights": ["Python", "CheckMK", "MikroTik"],
+      "highlights": [
+        "Python",
+        "CheckMK",
+        "MikroTik"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Network Configuration Management",
       "description": "Network configuration management with audit trails and approvals—standardizing change control across MikroTik/Juniper/Cisco and reducing configuration drift.",
-      "highlights": ["C#", "MikroTik", "Juniper", "Cisco"],
+      "highlights": [
+        "C#",
+        "MikroTik",
+        "Juniper",
+        "Cisco"
+      ],
       "url": "https://chaldal.tech"
     },
     {
       "name": "Khata: Modern ERP Solution",
       "description": "A modern ERP platform for small businesses—inventory, accounting, and customer workflows designed with practicality, correctness, and extensibility in mind.",
-      "highlights": [".NET", "C#", "ASP.NET Core", "EF Core"],
+      "highlights": [
+        ".NET",
+        "C#",
+        "ASP.NET Core",
+        "EF Core"
+      ],
       "url": "https://github.com/skb50bd/khata"
     },
     {
       "name": "Scroll: Product Magazine",
       "description": "A polished product showcase platform with strong content modeling and performance-minded delivery—built for clean UX and easy iteration.",
-      "highlights": ["ASP.NET Core", "EF Core", "Postgres"],
+      "highlights": [
+        "ASP.NET Core",
+        "EF Core",
+        "Postgres"
+      ],
       "url": "https://github.com/skb50bd/scroll"
     }
   ],
   "interests": [
     {
       "name": "Latency & Reliability",
-      "keywords": ["Performance Profiling", "Bottleneck Elimination", "Load Testing"]
+      "keywords": [
+        "Performance Profiling",
+        "Bottleneck Elimination",
+        "Load Testing"
+      ]
     },
     {
       "name": "Security by Design",
-      "keywords": ["Defense-in-depth", "Least Privilege", "Security Controls"]
+      "keywords": [
+        "Defense-in-depth",
+        "Least Privilege",
+        "Security Controls"
+      ]
     },
     {
       "name": "Open Systems Mindset",
-      "keywords": ["Open Source", "Pragmatic Tool Selection", "Community Contribution"]
+      "keywords": [
+        "Open Source",
+        "Pragmatic Tool Selection",
+        "Community Contribution"
+      ]
     },
     {
       "name": "Systems Thinking",
-      "keywords": ["Distributed Systems", "Observability", "Failure Modes", "Operational Excellence"]
+      "keywords": [
+        "Distributed Systems",
+        "Observability",
+        "Failure Modes",
+        "Operational Excellence"
+      ]
     }
   ],
   "meta": {

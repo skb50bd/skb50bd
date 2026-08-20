@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root="$(git rev-parse --show-toplevel)"
+cd "$root"
+
+git diff --cached --check
+
+while IFS= read -r file; do
+    node --check "$file"
+done < <(git ls-files '*.js')
+
+python3 - <<'PY'
+import json
+import subprocess
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+root = Path.cwd()
+for name in subprocess.check_output(['git', 'ls-files', '*.json'], text=True).splitlines():
+    json.loads((root / name).read_text(encoding='utf-8'))
+for name in subprocess.check_output(['git', 'ls-files', '*.svg'], text=True).splitlines():
+    ET.parse(root / name)
+PY
+
+node --test tests/content.test.js
+node resumes/generate.js
+git diff --exit-code -- resumes/shakib_haris_software_engineer.md resumes/shakib_haris_infrastructure_engineer.md

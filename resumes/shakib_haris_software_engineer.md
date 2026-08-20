@@ -3,10 +3,10 @@ title: Shakib Haris — Software Engineer
 ---
 
 # Shakib Haris
-**Software Engineer** · Dhaka, Bangladesh · hello@shakib.bd · https://shakib.bd · https://github.com/skb50bd
+**Software Engineer · Founder at Brotal** · Dhaka, Bangladesh · hello@shakib.bd · https://shakib.bd · https://github.com/skb50bd
 
 ## Summary
-Senior software engineer with 8+ years building production backend systems, e-commerce platforms, and developer tooling. Strong in C#/.NET, ASP.NET Core, PostgreSQL, and distributed system design. Recent platform/infrastructure work adds unusual depth in observability, CI/CD, Kubernetes, and production debugging.
+Founder of Brotal and senior software engineer with 8+ years building production products end-to-end. Strong in C#/.NET, F#, Python, TypeScript, PostgreSQL, and distributed system design, with deep experience in infrastructure, observability, CI/CD, and production operations.
 
 ## Skills
 - **Languages:** C#, F#, Python, TypeScript, JavaScript, SQL
@@ -19,42 +19,45 @@ Senior software engineer with 8+ years building production backend systems, e-co
 
 ## Experience
 
+### Brotal — Founder
+*Jan 2018 – Present · Dhaka, Bangladesh · Hybrid*
+Built and delivered highly available, scalable, real-world ERP, CRM, EdTech, eCommerce, observability, monitoring, and AI systems from scratch — owning the full stack from data modeling to deployment and iterative improvements.
+
+- Founded Brotal and lead it as a product engineering company spanning software, infrastructure, and operations
+- Own architecture and delivery end-to-end: domain modeling, backend and frontend engineering, data platforms, deployment, observability, and iteration
+- Built products across monitoring, agent memory, live TV streaming, EdTech, commerce, and real-time multiplayer systems
+
 ### Chaldal PLC — Infrastructure Engineer
-*Jan 2023 – Present · Dhaka, Bangladesh*
-Own the on-prem Kubernetes platform end-to-end — from bare metal to production workloads — with a focus on uptime, security, and operational simplicity.
+*Jan 2023 – Aug 2026 · Dhaka, Bangladesh*
+Owned the on-prem Kubernetes platform end-to-end — from bare metal to production workloads — with a focus on uptime, security, and operational simplicity.
+
 - Designed and operated a highly-available on-prem Kubernetes platform with production-grade reliability
 - Hardened network and access controls with pragmatic security architecture and compliance-minded defaults
 - Built observability and alerting that reduced MTTR and improved on-call signal quality
-- Automated infrastructure delivery with IaC + CI/CD, enabling safe, repeatable changes at scale
+- Automated infrastructure delivery with IaC and CI/CD, enabling safe, repeatable changes at scale
 - Enabled ML/AI workloads on Kubernetes with dependable scheduling, storage, and operational guardrails
 
 ### Chaldal PLC — Software Engineer IV
 *Jan 2022 – Dec 2022 · Dhaka, Bangladesh*
 Took ownership of high-impact delivery projects — from building a last-mile routing system to measurably improving inventory performance.
+
 - Delivered a last-mile routing system that improved delivery efficiency and operational decision-making
 - Improved inventory system performance by 20% through profiling, query optimization, and caching strategy
 - Led cross-team execution by aligning requirements, managing trade-offs, and unblocking delivery
-
-### Chaldal PLC — Software Engineer III
-*Jan 2021 – Dec 2021 · Dhaka, Bangladesh*
-Shipped dozens of customer-facing features with production accountability, while mentoring teammates and raising the bar on engineering quality.
-- Shipped 40+ customer-facing features with instrumentation, performance monitoring, and production accountability
-- Mentored junior engineers through pairing, design guidance, and actionable code reviews
-- Raised engineering quality by improving review practices, standards, and release safety
 
 ## Projects
 
 ### Chokidar
 *https://chokidar.app · .NET 10, Next.js 16, PostgreSQL, ClickHouse*
 
-### SportsVerse
-*https://sportsverse.bd · React, Next.js, PostgreSQL, SEO*
+### ilma
+*https://github.com/Brotal-LLC/ilma · Python, PostgreSQL, pgvector, Apache AGE*
 
-### Samim's Tutorial
-*https://samimstutorial.com · React, Next.js, ASP.NET Core, PostgreSQL*
+### Brotal TV
+*https://iptv.shakib.io · F#, ASP.NET Core, React, PostgreSQL*
 
-### High-Availability Kubernetes Cluster
-*https://chaldal.tech · Kubernetes, Linux, Network, Security*
+### 29
+*https://29.ekta.dev · F#, .NET 10, Fable, WebSocket*
 
 
 ## Education
