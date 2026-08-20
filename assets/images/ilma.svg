@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">ilma agent memory system</title>
+  <desc id="desc">Abstract memory graph and search interface on a dark indigo background</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#312e81"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="1100" cy="70" r="250" fill="#7c3aed" opacity=".12"/>
+  <circle cx="120" cy="650" r="240" fill="#06b6d4" opacity=".09"/>
+  <g transform="translate(74 68)">
+    <text x="0" y="62" fill="#f8fafc" font-family="Inter,system-ui,sans-serif" font-size="64" font-weight="800">ilma</text>
+    <text x="2" y="102" fill="#a5b4fc" font-family="Inter,system-ui,sans-serif" font-size="22" letter-spacing="3">AGENT MEMORY, WITHOUT THE FRAMEWORK TAX</text>
+  </g>
+  <g transform="translate(74 220)">
+    <rect width="590" height="410" rx="28" fill="url(#card)" stroke="#475569"/>
+    <text x="34" y="55" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="18">ilma recall "deployment preferences"</text>
+    <rect x="32" y="82" width="526" height="82" rx="15" fill="#172554" stroke="#3730a3"/>
+    <circle cx="66" cy="123" r="13" fill="#22d3ee"/>
+    <text x="94" y="116" fill="#e2e8f0" font-family="Inter,system-ui,sans-serif" font-size="19" font-weight="700">Memory</text>
+    <text x="94" y="143" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="16">Production services run rootless.</text>
+    <rect x="32" y="181" width="526" height="82" rx="15" fill="#1e1b4b" stroke="#5b21b6"/>
+    <circle cx="66" cy="222" r="13" fill="#a78bfa"/>
+    <text x="94" y="215" fill="#e2e8f0" font-family="Inter,system-ui,sans-serif" font-size="19" font-weight="700">Skill</text>
+    <text x="94" y="242" fill="#94a3b8" font-family="Inter,system-ui,sans-serif" font-size="16">Verified deployment workflow</text>
+    <rect x="32" y="280" width="526" height="96" rx="15" fill="#0f2f35" stroke="#0f766e"/>
+    <text x="55" y="317" fill="#5eead4" font-family="ui-monospace,monospace" font-size="16">vector + FTS + graph</text>
+    <rect x="55" y="338" width="405" height="8" rx="4" fill="#164e63"/><rect x="55" y="338" width="344" height="8" rx="4" fill="#22d3ee"/>
+  </g>
+  <g transform="translate(800 230)" stroke-width="4" filter="url(#glow)">
+    <path d="M88 76 246 160 122 306M246 160 356 70M246 160 378 294M122 306 378 294" fill="none" stroke="#6366f1" opacity=".75"/>
+    <circle cx="88" cy="76" r="42" fill="#0f172a" stroke="#22d3ee"/>
+    <circle cx="246" cy="160" r="58" fill="#1e1b4b" stroke="#a78bfa"/>
+    <circle cx="356" cy="70" r="40" fill="#0f172a" stroke="#34d399"/>
+    <circle cx="122" cy="306" r="48" fill="#0f172a" stroke="#38bdf8"/>
+    <circle cx="378" cy="294" r="48" fill="#0f172a" stroke="#f472b6"/>
+    <text x="246" y="168" text-anchor="middle" fill="#fff" stroke="none" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="700">recall</text>
+  </g>
+  <g transform="translate(790 605)" fill="#cbd5e1" font-family="ui-monospace,monospace" font-size="18">
+    <text x="0" y="0">PostgreSQL</text><text x="142" y="0">pgvector</text><text x="260" y="0">Apache AGE</text>
+  </g>
+</svg>

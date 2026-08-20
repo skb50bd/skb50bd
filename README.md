@@ -5,10 +5,10 @@
 </p>
 
 <h2 align="center">Shakib Haris</h2>
-<p align="center"><b>Software & Systems Engineer</b></p>
+<p align="center"><b>Founder at <a href="https://brotal.net">Brotal</a> · Software & Systems Engineer</b></p>
 
 <p align="center">
-  <i>I design and operate secure, high-performance systems—from code to clusters.</i>
+  <i>I build and operate real-world products from data model to deployment.</i>
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@
 </p>
 
 <p align="center">
-  <img alt="Years" src="https://img.shields.io/badge/5%2B-Years%20Enterprise-0f172a?style=flat-square" />
+  <img alt="Years" src="https://img.shields.io/badge/8%2B-Years%20Engineering-0f172a?style=flat-square" />
   <img alt="Features" src="https://img.shields.io/badge/70%2B-Features%20Engineered-0f172a?style=flat-square" />
   <img alt="Optimization" src="https://img.shields.io/badge/49%25-Infrastructure%20Cost%20Optimization-0f172a?style=flat-square" />
 </p>
@@ -39,14 +39,17 @@
 
 ## 👋 About
 
+- 🏗️ **Founder at [Brotal](https://brotal.net)** — product engineering across software, infrastructure, and operations
 - 🧠 **I build systems that stay fast, stay up, and stay secure**
-- 🧰 **Code → clusters**: .NET + Kubernetes + automation
-- 🔥 **Comfort zone**: incidents, performance, hardening, observability
+- 🧰 **Code → clusters**: .NET, F#, Python, TypeScript, PostgreSQL, Kubernetes, and automation
+- 🔥 **Comfort zone**: product architecture, distributed systems, incidents, performance, hardening, and observability
 
 - 📍 **Dhaka, Bangladesh**
-- 🎯 **Infra / DevOps / Platform**
+- 🎯 **Product / Platform / Infrastructure**
 - 💻 **C# • F# • PowerShell • Bash • Python**
 - 📈 **Reliability • Performance • Observability • Cost**
+
+Built and delivered highly available, scalable, real-world ERP, CRM, EdTech, eCommerce, observability, monitoring, and AI systems from scratch — owning the full stack from data modeling to deployment and iterative improvements.
 
 ---
 
@@ -58,12 +61,12 @@
 
 ---
 
-## 🚀 Featured (high-level)
+## 🚀 Featured projects
 
-- 🧱 **HA Kubernetes platform** (secure ops, predictable day-2)
-- 📊 **Logging + monitoring** (Prometheus/Grafana/Elastic)
-- 🌍 **Private cloud networking** (WireGuard + routing)
-- 🗄️ **Distributed storage** (durability + ops tooling)
+- 📡 **[Chokidar](https://chokidar.app)** — distributed, multi-tenant monitoring with .NET 10, Next.js, PostgreSQL, ClickHouse, and gRPC agents
+- 🧠 **[ilma](https://github.com/Brotal-LLC/ilma)** — framework-agnostic agent memory with MCP, pgvector hybrid retrieval, and an Apache AGE knowledge graph
+- 📺 **[Brotal TV](https://iptv.shakib.io)** — F#/ASP.NET Core live-TV aggregator with resilient HLS proxying, multi-source channels, analytics, and a React player
+- 🃏 **[29](https://29.ekta.dev)** — real-time multiplayer South Asian card game with an F# domain engine, Fable client logic, WebSockets, Three.js, and deterministic bot AI
 
 ## 🧩 Open-source
 

@@ -35,6 +35,7 @@ jobs:
 
       - name: Build Static Site
         run: |
+          .githooks/pre-commit
           node build.js --update-sitemap
           echo "Build completed successfully"
           ls -la dist/

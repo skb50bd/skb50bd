@@ -42,11 +42,12 @@ function renderWork(work, location, opts = {}) {
     return items.map(job => {
         const lines = [];
         lines.push(`### ${job.name} — ${job.position}`);
-        lines.push(`*${formatRange(job.startDate, job.endDate)} · ${location}*`);
+        lines.push(`*${formatRange(job.startDate, job.endDate)} · ${job.location || location}*`);
         if (job.summary && !hideSummary) {
             lines.push(job.summary);
         }
         if (job.highlights && job.highlights.length) {
+            lines.push('');
             job.highlights.forEach(h => lines.push(`- ${h}`));
         }
         return lines.join('\n');
@@ -85,10 +86,10 @@ title: Shakib Haris — Software Engineer
 ---
 
 # ${basics.name}
-**Software Engineer** · ${location} · ${basics.email} · ${basics.url} · ${github}
+**Software Engineer · Founder at Brotal** · ${location} · ${basics.email} · ${basics.url} · ${github}
 
 ## Summary
-Senior software engineer with 8+ years building production backend systems, e-commerce platforms, and developer tooling. Strong in C#/.NET, ASP.NET Core, PostgreSQL, and distributed system design. Recent platform/infrastructure work adds unusual depth in observability, CI/CD, Kubernetes, and production debugging.
+Founder of Brotal and senior software engineer with 8+ years building production products end-to-end. Strong in C#/.NET, F#, Python, TypeScript, PostgreSQL, and distributed system design, with deep experience in infrastructure, observability, CI/CD, and production operations.
 
 ## Skills
 - **Languages:** C#, F#, Python, TypeScript, JavaScript, SQL
@@ -125,17 +126,32 @@ function generateInfrastructureResume(resume) {
     const location = formatLocation(resume);
     const github = formatProfiles(resume);
 
-    // Keep the infrastructure role plus a concise note on prior software work.
+    // Keep the current founder role, infrastructure role, and a concise note on prior software work.
+    const currentRole = resume.work.find(j => !j.endDate);
     const infraRole = resume.work.find(j => j.position.toLowerCase().includes('infrastructure'));
-    const otherRoles = resume.work.filter(j => j !== infraRole);
+    const otherRoles = resume.work.filter(j => j !== currentRole && j !== infraRole);
 
-    const infraProjects = resume.projects.filter(p =>
-        p.highlights.some(k => ['Kubernetes', 'Linux', 'Network', 'Security', 'Elastic', 'Grafana', 'Prometheus', 'CheckMK', 'MikroTik', 'WireGuard', 'BGP', 'OSPF', 'GPU', 'AI/ML'].includes(k))
+    const infrastructureKeywords = new Set([
+        'Kubernetes', 'Linux', 'Network', 'Security', 'Elastic', 'Grafana', 'Prometheus',
+        'CheckMK', 'MikroTik', 'WireGuard', 'BGP', 'OSPF', 'GPU', 'AI/ML', 'Docker',
+        'PostgreSQL', 'ClickHouse', 'MCP', 'Apache AGE'
+    ]);
+    const filteredInfrastructureProjects = resume.projects.filter(p =>
+        p.highlights.some(k => infrastructureKeywords.has(k))
     );
+    const featuredProjects = resume.projects.slice(0, 4);
+    const infraProjects = [
+        ...featuredProjects,
+        ...filteredInfrastructureProjects.filter(project => !featuredProjects.includes(project))
+    ];
+
+    const founderRole = currentRole
+        ? `### ${currentRole.name} — ${currentRole.position}\n*${formatRange(currentRole.startDate, currentRole.endDate)} · ${currentRole.location || location}*\n\n- Build and deliver production systems across software, data, infrastructure, observability, and operations.`
+        : '';
 
     // For space, collapse non-infra roles into a single earlier-career entry.
     const earlierRole = otherRoles.length
-        ? `### Chaldal PLC — Software Engineer (2020–2022)\n*2020 – 2022 · ${location}*\n- Built last-mile delivery routing, inventory optimization, and 40+ customer-facing features in .NET/PostgreSQL.`
+        ? `### Chaldal PLC — Software Engineer (2020–2022)\n*2020 – 2022 · ${location}*\n\n- Built last-mile delivery routing, inventory optimization, and 40+ customer-facing features in .NET/PostgreSQL.`
         : '';
 
     return `---
@@ -143,10 +159,10 @@ title: Shakib Haris — Infrastructure / DevOps / SRE Engineer
 ---
 
 # ${basics.name}
-**Infrastructure / DevOps / SRE Engineer** · ${location} · ${basics.email} · ${basics.url} · ${github}
+**Infrastructure / DevOps / SRE Engineer · Founder at Brotal** · ${location} · ${basics.email} · ${basics.url} · ${github}
 
 ## Summary
-Infrastructure engineer with 8+ years designing, building, and operating production platforms. The last 3+ years I have owned an on-prem Kubernetes platform end-to-end, from bare metal and networking to production workloads, observability, and incident response. Strong software-engineering background enables automation, tooling, and reliable IaC.
+Founder of Brotal and infrastructure engineer with 8+ years designing, building, and operating production platforms. Previously owned an on-prem Kubernetes platform end-to-end, from bare metal and networking to workloads, observability, and incident response. A software-engineering background enables durable automation, tooling, and IaC.
 
 ## Skills
 - **Platforms:** Kubernetes, K3s, Rancher, Docker, bare-metal provisioning, private cloud, Hyper-V, QEMU
@@ -159,7 +175,8 @@ Infrastructure engineer with 8+ years designing, building, and operating product
 
 ## Experience
 
-${renderWork([infraRole], location)}
+${founderRole}
+${founderRole ? '\n' : ''}${renderWork([infraRole], location)}
 ${earlierRole ? '\n' + earlierRole : ''}
 
 ## Projects
